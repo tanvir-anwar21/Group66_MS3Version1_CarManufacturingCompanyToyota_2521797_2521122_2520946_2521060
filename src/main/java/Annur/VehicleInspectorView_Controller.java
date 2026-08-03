@@ -1,4 +1,4 @@
-package FxmlControllers;
+package Annur;
 
 public class VehicleInspectorView_Controller
 {

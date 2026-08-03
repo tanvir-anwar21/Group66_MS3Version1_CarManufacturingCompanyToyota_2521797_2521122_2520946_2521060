@@ -1,7 +1,7 @@
 package Tawsif;
 
 
-import com.example.group66_ms3version1_carmanufacturingcompanytoyota_2521797_2521122_2520946_2521060.User;
+import Utiliy.User;
 
 public class SalesExecutive extends User {
 

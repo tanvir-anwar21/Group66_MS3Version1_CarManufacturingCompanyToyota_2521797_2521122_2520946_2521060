@@ -1,4 +1,4 @@
-package FxmlControllers;
+package Sohan;
 
 public class QualityControlManagerView_Controller
 {
