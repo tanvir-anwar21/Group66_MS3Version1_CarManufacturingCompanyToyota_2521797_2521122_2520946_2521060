@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="Sohan.QualityControlManagerControllers.ReviewWorkerPerformanceView_Controller"
+            prefWidth="1100" prefHeight="700">
+
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="15" style="-fx-padding: 15 20; -fx-background-color: #2c3e50;">
+            <Button text="← Back to Dashboard" onAction="#handleBack" style="-fx-background-color: #34495e; -fx-text-fill: white;"/>
+            <Label text="👷 Review Worker Performance" style="-fx-text-fill: white; -fx-font-size: 20px; -fx-font-weight: bold;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="userLabel" text="QC Manager: " style="-fx-text-fill: #bdc3c7;"/>
+        </HBox>
+    </top>
+
+    <center>
+        <VBox spacing="15" style="-fx-padding: 20;">
+
+            <GridPane hgap="15" vgap="10" style="-fx-padding: 15; -fx-background-color: #ecf0f1; -fx-border-color: #bdc3c7; -fx-border-radius: 5;">
+                <Label text="Worker ID:" GridPane.columnIndex="0" GridPane.rowIndex="0" style="-fx-font-weight: bold;"/>
+                <TextField fx:id="workerIdField" GridPane.columnIndex="1" GridPane.rowIndex="0" promptText="Enter Worker ID"/>
+                <Button text="🔍 Search" onAction="#handleSearch" GridPane.columnIndex="2" GridPane.rowIndex="0" style="-fx-background-color: #3498db; -fx-text-fill: white;"/>
+
+                <Label text="OR Worker Name:" GridPane.columnIndex="3" GridPane.rowIndex="0" style="-fx-font-weight: bold;"/>
+                <TextField fx:id="workerNameField" GridPane.columnIndex="4" GridPane.rowIndex="0" promptText="Enter name"/>
+                <Button text="Search" onAction="#handleSearchByName" GridPane.columnIndex="5" GridPane.rowIndex="0" style="-fx-background-color: #2ecc71; -fx-text-fill: white;"/>
+            </GridPane>
+
+            <TitledPane text="Worker Profile" expanded="true">
+                <GridPane hgap="15" vgap="10" style="-fx-padding: 15;">
+                    <Label text="Worker ID:" GridPane.columnIndex="0" GridPane.rowIndex="0" style="-fx-font-weight: bold;"/>
+                    <Label fx:id="workerIdDisplay" text="-" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+                    <Label text="Name:" GridPane.columnIndex="0" GridPane.rowIndex="1" style="-fx-font-weight: bold;"/>
+                    <Label fx:id="workerNameDisplay" text="-" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+                    <Label text="Department:" GridPane.columnIndex="2" GridPane.rowIndex="0" style="-fx-font-weight: bold;"/>
+                    <Label fx:id="departmentDisplay" text="-" GridPane.columnIndex="3" GridPane.rowIndex="0"/>
+
+                    <Label text="Designation:" GridPane.columnIndex="2" GridPane.rowIndex="1" style="-fx-font-weight: bold;"/>
+                    <Label fx:id="designationDisplay" text="-" GridPane.columnIndex="3" GridPane.rowIndex="1"/>
+
+                    <Label text="Join Date:" GridPane.columnIndex="0" GridPane.rowIndex="2" style="-fx-font-weight: bold;"/>
+                    <Label fx:id="joinDateDisplay" text="-" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+                    <Label text="Experience:" GridPane.columnIndex="2" GridPane.rowIndex="2" style="-fx-font-weight: bold;"/>
+                    <Label fx:id="experienceDisplay" text="-" GridPane.columnIndex="3" GridPane.rowIndex="2"/>
+                </GridPane>
+            </TitledPane>
+
+            <TitledPane text="Performance Metrics" expanded="true">
+                <GridPane hgap="20" vgap="10" style="-fx-padding: 15;">
+                    <Label text="Quality Score:" GridPane.columnIndex="0" GridPane.rowIndex="0" style="-fx-font-weight: bold;"/>
+                    <Label fx:id="qualityScoreDisplay" text="-" GridPane.columnIndex="1" GridPane.rowIndex="0" style="-fx-font-weight: bold;"/>
+
+                    <Label text="Defect Rate:" GridPane.columnIndex="0" GridPane.rowIndex="1" style="-fx-font-weight: bold;"/>
+                    <Label fx:id="defectRateDisplay" text="-" GridPane.columnIndex="1" GridPane.rowIndex="1" style="-fx-font-weight: bold;"/>
+
+                    <Label text="Production Efficiency:" GridPane.columnIndex="2" GridPane.rowIndex="0" style="-fx-font-weight: bold;"/>
+                    <Label fx:id="efficiencyDisplay" text="-" GridPane.columnIndex="3" GridPane.rowIndex="0" style="-fx-font-weight: bold;"/>
+
+                    <Label text="Attendance Rate:" GridPane.columnIndex="2" GridPane.rowIndex="1" style="-fx-font-weight: bold;"/>
+                    <Label fx:id="attendanceDisplay" text="-" GridPane.columnIndex="3" GridPane.rowIndex="1" style="-fx-font-weight: bold;"/>
+
+                    <Label text="Performance Rating:" GridPane.columnIndex="0" GridPane.rowIndex="2" style="-fx-font-weight: bold;"/>
+                    <Label fx:id="performanceRatingDisplay" text="-" GridPane.columnIndex="1" GridPane.rowIndex="2" style="-fx-font-weight: bold; -fx-text-fill: #27ae60;"/>
+
+                    <Label text="Overall Status:" GridPane.columnIndex="2" GridPane.rowIndex="2" style="-fx-font-weight: bold;"/>
+                    <Label fx:id="overallStatusDisplay" text="-" GridPane.columnIndex="3" GridPane.rowIndex="2" style="-fx-font-weight: bold; -fx-text-fill: #f39c12;"/>
+                </GridPane>
+            </TitledPane>
+
+            <TitledPane text="Performance History" expanded="true">
+                <TableView fx:id="performanceHistoryTable" style="-fx-pref-height: 150;">
+                </TableView>
+            </TitledPane>
+
+            <TitledPane text="Review Comments" expanded="true">
+                <GridPane hgap="15" vgap="10" style="-fx-padding: 15;">
+                    <Label text="Review Date:" GridPane.columnIndex="0" GridPane.rowIndex="0" style="-fx-font-weight: bold;"/>
+                    <DatePicker fx:id="reviewDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+                    <Label text="Comments:" GridPane.columnIndex="0" GridPane.rowIndex="1" style="-fx-font-weight: bold;"/>
+                    <TextField fx:id="reviewCommentsField" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.columnSpan="3" promptText="Enter review comments..." prefWidth="400"/>
+                </GridPane>
+            </TitledPane>
+
+            <HBox spacing="15" alignment="CENTER">
+                <Button text="💾 Save Review" onAction="#handleSaveReview" style="-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 30;"/>
+                <Button text="📊 Generate Performance Report" onAction="#handleGenerateReport" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-padding: 10 30;"/>
+                <Button text="📈 View Performance Trend" onAction="#handleViewTrend" style="-fx-background-color: #9b59b6; -fx-text-fill: white; -fx-padding: 10 30;"/>
+                <Button text="❌ Reset" onAction="#handleReset" style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-padding: 10 30;"/>
+            </HBox>
+
+            <Label fx:id="statusMessage" text="" style="-fx-text-fill: #2c3e50; -fx-font-weight: bold;"/>
+        </VBox>
+    </center>
+</BorderPane>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="Sohan.QualityControlManagerControllers.ApproveCarsForDeliveryView_Controller"
+            prefWidth="1100" prefHeight="700">
+
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="15" style="-fx-padding: 15 20; -fx-background-color: #2c3e50;">
+            <Button text="← Back to Dashboard" onAction="#handleBack" style="-fx-background-color: #34495e; -fx-text-fill: white;"/>
+            <Label text="✅ Approve Cars for Delivery" style="-fx-text-fill: white; -fx-font-size: 20px; -fx-font-weight: bold;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="userLabel" text="QC Manager: " style="-fx-text-fill: #bdc3c7;"/>
+        </HBox>
+    </top>
+
+    <center>
+        <VBox spacing="15" style="-fx-padding: 20;">
+
+            <GridPane hgap="15" vgap="10" style="-fx-padding: 15; -fx-background-color: #ecf0f1; -fx-border-color: #bdc3c7; -fx-border-radius: 5;">
+                <Label text="Filter by:" GridPane.columnIndex="0" GridPane.rowIndex="0" style="-fx-font-weight: bold;"/>
+                <ComboBox fx:id="statusFilterCombo" GridPane.columnIndex="1" GridPane.rowIndex="0" promptText="All status">
+                </ComboBox>
+                <Label text="Model:" GridPane.columnIndex="2" GridPane.rowIndex="0" style="-fx-font-weight: bold;"/>
+                <ComboBox fx:id="modelFilterCombo" GridPane.columnIndex="3" GridPane.rowIndex="0" promptText="All models"/>
+                <Button text="🔍 Apply Filters" onAction="#handleApplyFilters" GridPane.columnIndex="4" GridPane.rowIndex="0" style="-fx-background-color: #3498db; -fx-text-fill: white;"/>
+            </GridPane>
+
+            <TableView fx:id="pendingCarsTable" style="-fx-pref-height: 300;">
+            </TableView>
+
+            <TitledPane text="Selected Car Details" expanded="true">
+                <GridPane hgap="15" vgap="10" style="-fx-padding: 15;">
+                    <Label text="Vehicle ID:" GridPane.columnIndex="0" GridPane.rowIndex="0" style="-fx-font-weight: bold;"/>
+                    <Label fx:id="vehicleIdDisplay" text="-" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+                    <Label text="Model:" GridPane.columnIndex="0" GridPane.rowIndex="1" style="-fx-font-weight: bold;"/>
+                    <Label fx:id="modelDisplay" text="-" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+                    <Label text="VIN:" GridPane.columnIndex="0" GridPane.rowIndex="2" style="-fx-font-weight: bold;"/>
+                    <Label fx:id="vinDisplay" text="-" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+                    <Label text="Inspection Status:" GridPane.columnIndex="2" GridPane.rowIndex="0" style="-fx-font-weight: bold;"/>
+                    <Label fx:id="inspectionStatusDisplay" text="-" GridPane.columnIndex="3" GridPane.rowIndex="0"/>
+
+                    <Label text="Inspection Date:" GridPane.columnIndex="2" GridPane.rowIndex="1" style="-fx-font-weight: bold;"/>
+                    <Label fx:id="inspectionDateDisplay" text="-" GridPane.columnIndex="3" GridPane.rowIndex="1"/>
+
+                    <Label text="QC Inspector:" GridPane.columnIndex="2" GridPane.rowIndex="2" style="-fx-font-weight: bold;"/>
+                    <Label fx:id="inspectorDisplay" text="-" GridPane.columnIndex="3" GridPane.rowIndex="2"/>
+
+                    <Label text="Quality Score:" GridPane.columnIndex="0" GridPane.rowIndex="3" style="-fx-font-weight: bold;"/>
+                    <Label fx:id="qualityScoreDisplay" text="-" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+
+                    <Label text="Inspection Notes:" GridPane.columnIndex="0" GridPane.rowIndex="4" style="-fx-font-weight: bold;"/>
+                    <Label fx:id="notesDisplay" text="-" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.columnSpan="3"/>
+                </GridPane>
+            </TitledPane>
+
+            <TitledPane text="Approval Actions" expanded="true">
+                <GridPane hgap="15" vgap="10" style="-fx-padding: 15;">
+                    <Label text="Approval Decision:" GridPane.columnIndex="0" GridPane.rowIndex="0" style="-fx-font-weight: bold;"/>
+                    <RadioButton fx:id="approveRadio" text="✅ Approve" GridPane.columnIndex="1" GridPane.rowIndex="0" selected="true">
+                        <toggleGroup><ToggleGroup fx:id="approvalGroup"/></toggleGroup>
+                    </RadioButton>
+                    <RadioButton fx:id="rejectRadio" text="❌ Reject" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                        <toggleGroup><ToggleGroup fx:id="approvalGroup"/></toggleGroup>
+                    </RadioButton>
+
+                    <Label text="Comments:" GridPane.columnIndex="0" GridPane.rowIndex="1" style="-fx-font-weight: bold;"/>
+                    <TextField fx:id="commentsField" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.columnSpan="3" promptText="Enter approval comments..." prefWidth="400"/>
+
+                    <Label text="Delivery Date:" GridPane.columnIndex="0" GridPane.rowIndex="2" style="-fx-font-weight: bold;"/>
+                    <DatePicker fx:id="deliveryDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                </GridPane>
+            </TitledPane>
+
+            <HBox spacing="15" alignment="CENTER">
+                <Button text="✅ Submit Approval" onAction="#handleSubmitApproval" style="-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 30;"/>
+                <Button text="📋 Batch Approve" onAction="#handleBatchApprove" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-padding: 10 30;"/>
+                <Button text="❌ Reset" onAction="#handleReset" style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-padding: 10 30;"/>
+                <Button text="📄 Generate Approval Report" onAction="#handleGenerateReport" style="-fx-background-color: #9b59b6; -fx-text-fill: white; -fx-padding: 10 30;"/>
+            </HBox>
+
+            <Label fx:id="statusMessage" text="" style="-fx-text-fill: #2c3e50; -fx-font-weight: bold;"/>
+        </VBox>
+    </center>
+</BorderPane>

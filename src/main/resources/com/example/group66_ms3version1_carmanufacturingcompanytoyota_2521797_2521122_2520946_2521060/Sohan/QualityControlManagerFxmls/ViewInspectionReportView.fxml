@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="Sohan.QualityControlManagerControllers.ViewInspectionReportView_Controller"
+            prefWidth="1100" prefHeight="700">
+
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="15" style="-fx-padding: 15 20; -fx-background-color: #2c3e50;">
+            <Button text="← Back to Dashboard" onAction="#handleBack" style="-fx-background-color: #34495e; -fx-text-fill: white;"/>
+            <Label text="📄 View Inspection Report" style="-fx-text-fill: white; -fx-font-size: 20px; -fx-font-weight: bold;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="userLabel" text="QC Manager: " style="-fx-text-fill: #bdc3c7;"/>
+        </HBox>
+    </top>
+
+    <center>
+        <VBox spacing="15" style="-fx-padding: 20;">
+
+            <GridPane hgap="15" vgap="10" style="-fx-padding: 15; -fx-background-color: #ecf0f1; -fx-border-color: #bdc3c7; -fx-border-radius: 5;">
+                <Label text="Report Date:" GridPane.columnIndex="0" GridPane.rowIndex="0" style="-fx-font-weight: bold;"/>
+                <DatePicker fx:id="reportDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="0" promptText="Select date"/>
+
+                <Label text="Vehicle Model:" GridPane.columnIndex="0" GridPane.rowIndex="1" style="-fx-font-weight: bold;"/>
+                <ComboBox fx:id="modelFilterCombo" GridPane.columnIndex="1" GridPane.rowIndex="1" promptText="All models">
+                </ComboBox>
+
+                <Label text="Inspection Result:" GridPane.columnIndex="0" GridPane.rowIndex="2" style="-fx-font-weight: bold;"/>
+                <ComboBox fx:id="resultFilterCombo" GridPane.columnIndex="1" GridPane.rowIndex="2" promptText="All results">
+                </ComboBox>
+
+                <Label text="Search:" GridPane.columnIndex="2" GridPane.rowIndex="0" style="-fx-font-weight: bold;"/>
+                <TextField fx:id="searchField" GridPane.columnIndex="3" GridPane.rowIndex="0" promptText="Search by Vehicle ID..." prefWidth="200"/>
+                <Button text="🔍 Search" onAction="#handleSearch" GridPane.columnIndex="4" GridPane.rowIndex="0" style="-fx-background-color: #3498db; -fx-text-fill: white;"/>
+
+                <Button text="📊 Generate Report" onAction="#handleGenerate" GridPane.columnIndex="3" GridPane.rowIndex="2" GridPane.columnSpan="2" style="-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-font-weight: bold;"/>
+            </GridPane>
+
+            <TableView fx:id="inspectionReportsTable" style="-fx-pref-height: 350;">
+            </TableView>
+
+            <GridPane hgap="20" vgap="5" style="-fx-padding: 10; -fx-background-color: #f8f9fa; -fx-border-color: #dee2e6; -fx-border-radius: 5;">
+                <Label text="Summary Statistics:" GridPane.columnIndex="0" GridPane.rowIndex="0" style="-fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+                <Label text="Total Inspections:" GridPane.columnIndex="0" GridPane.rowIndex="1" style="-fx-text-fill: #7f8c8d;"/>
+                <Label fx:id="totalInspectionsLabel" text="0" GridPane.columnIndex="1" GridPane.rowIndex="1" style="-fx-font-weight: bold;"/>
+                <Label text="Passed:" GridPane.columnIndex="2" GridPane.rowIndex="1" style="-fx-text-fill: #7f8c8d;"/>
+                <Label fx:id="passedLabel" text="0" GridPane.columnIndex="3" GridPane.rowIndex="1" style="-fx-font-weight: bold; -fx-text-fill: #27ae60;"/>
+                <Label text="Failed:" GridPane.columnIndex="4" GridPane.rowIndex="1" style="-fx-text-fill: #7f8c8d;"/>
+                <Label fx:id="failedLabel" text="0" GridPane.columnIndex="5" GridPane.rowIndex="1" style="-fx-font-weight: bold; -fx-text-fill: #e74c3c;"/>
+                <Label text="Pending:" GridPane.columnIndex="6" GridPane.rowIndex="1" style="-fx-text-fill: #7f8c8d;"/>
+                <Label fx:id="pendingLabel" text="0" GridPane.columnIndex="7" GridPane.rowIndex="1" style="-fx-font-weight: bold; -fx-text-fill: #f39c12;"/>
+                <Label text="Pass Rate:" GridPane.columnIndex="8" GridPane.rowIndex="1" style="-fx-text-fill: #7f8c8d;"/>
+                <Label fx:id="passRateLabel" text="0%" GridPane.columnIndex="9" GridPane.rowIndex="1" style="-fx-font-weight: bold; -fx-text-fill: #2980b9;"/>
+            </GridPane>
+
+            <HBox spacing="15" alignment="CENTER_RIGHT">
+                <Button text="📥 Export to Excel" onAction="#handleExportExcel" style="-fx-background-color: #27ae60; -fx-text-fill: white;"/>
+                <Button text="📄 Export to PDF" onAction="#handleExportPDF" style="-fx-background-color: #e74c3c; -fx-text-fill: white;"/>
+                <Button text="🖨️ Print Report" onAction="#handlePrint" style="-fx-background-color: #2980b9; -fx-text-fill: white;"/>
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>
