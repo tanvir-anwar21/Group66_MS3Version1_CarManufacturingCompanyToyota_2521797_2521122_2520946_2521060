@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="650.0" prefWidth="900.0"
+            xmlns="http://javafx.com/javafx/26"
+            xmlns:fx="http://javafx.com/fxml/1">
+
+    <children>
+
+        <VBox spacing="15"
+              AnchorPane.topAnchor="15"
+              AnchorPane.leftAnchor="15"
+              AnchorPane.rightAnchor="15"
+              AnchorPane.bottomAnchor="15">
+
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+
+            <Label text="Update Vehicle Specifications"
+                   style="-fx-font-size:22px; -fx-font-weight:bold;"/>
+
+            <Separator/>
+
+            <GridPane hgap="12" vgap="12">
+
+                <columnConstraints>
+                    <ColumnConstraints/>
+                    <ColumnConstraints hgrow="ALWAYS"/>
+                </columnConstraints>
+
+                <rowConstraints>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                </rowConstraints>
+
+                <Label text="Vehicle Model"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="0"/>
+
+                <TextField fx:id="vehicleModelField"
+                           promptText="Vehicle Model"
+                           GridPane.columnIndex="1"
+                           GridPane.rowIndex="0"/>
+
+                <Label text="Engine Type"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="1"/>
+
+                <TextField fx:id="engineTypeField"
+                           promptText="Engine Type"
+                           GridPane.columnIndex="1"
+                           GridPane.rowIndex="1"/>
+
+                <Label text="Horsepower"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="2"/>
+
+                <TextField fx:id="horsePowerField"
+                           promptText="Horsepower"
+                           GridPane.columnIndex="1"
+                           GridPane.rowIndex="2"/>
+
+                <Label text="Fuel Efficiency"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="3"/>
+
+                <TextField fx:id="fuelEfficiencyField"
+                           promptText="Fuel Efficiency"
+                           GridPane.columnIndex="1"
+                           GridPane.rowIndex="3"/>
+
+                <Label text="Transmission"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="4"/>
+
+                <TextField fx:id="transmissionField"
+                           promptText="Transmission"
+                           GridPane.columnIndex="1"
+                           GridPane.rowIndex="4"/>
+
+                <Label text="Vehicle Weight"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="5"/>
+
+                <TextField fx:id="weightField"
+                           promptText="Weight (kg)"
+                           GridPane.columnIndex="1"
+                           GridPane.rowIndex="5"/>
+
+                <Label text="Emission Standard"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="6"/>
+
+                <TextField fx:id="emissionField"
+                           promptText="Emission Standard"
+                           GridPane.columnIndex="1"
+                           GridPane.rowIndex="6"/>
+
+                <Label text="Safety Rating"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="7"/>
+
+                <TextField fx:id="safetyRatingField"
+                           promptText="Safety Rating"
+                           GridPane.columnIndex="1"
+                           GridPane.rowIndex="7"/>
+
+            </GridPane>
+
+            <Separator/>
+
+            <HBox spacing="15">
+
+                <Button fx:id="searchButton"
+                        text="Search"
+                        onAction="#searchSpecification"/>
+
+                <Button fx:id="updateButton"
+                        text="Update"
+                        onAction="#updateSpecification"/>
+
+                <Button fx:id="clearButton"
+                        text="Clear"
+                        onAction="#clearFields"/>
+
+                <Button fx:id="backButton"
+                        text="Back"
+                        onAction="#backToDashboard"/>
+
+            </HBox>
+
+            <Label fx:id="statusLabel"
+                   text="Enter vehicle specifications."
+                   style="-fx-font-weight:bold; -fx-text-fill:green;"/>
+
+        </VBox>
+
+    </children>
+
+</AnchorPane>

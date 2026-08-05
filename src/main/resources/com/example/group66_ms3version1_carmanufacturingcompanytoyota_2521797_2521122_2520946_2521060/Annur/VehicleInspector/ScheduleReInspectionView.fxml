@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="650.0" prefWidth="900.0"
+            xmlns="http://javafx.com/javafx/26"
+            xmlns:fx="http://javafx.com/fxml/1">
+
+    <children>
+
+        <VBox spacing="15"
+              AnchorPane.topAnchor="15"
+              AnchorPane.leftAnchor="15"
+              AnchorPane.rightAnchor="15"
+              AnchorPane.bottomAnchor="15">
+
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+
+            <Label text="Re-Inspection Schedule"
+                   style="-fx-font-size:22px; -fx-font-weight:bold;"/>
+
+            <Separator/>
+
+            <GridPane hgap="12" vgap="12">
+
+                <columnConstraints>
+                    <ColumnConstraints/>
+                    <ColumnConstraints hgrow="ALWAYS"/>
+                </columnConstraints>
+
+                <rowConstraints>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                </rowConstraints>
+
+                <Label text="Inspection ID"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="0"/>
+
+                <ComboBox fx:id="inspectionIdComboBox"
+                          prefWidth="280"
+                          promptText="Select Inspection"
+                          GridPane.columnIndex="1"
+                          GridPane.rowIndex="0"/>
+
+                <Label text="Vehicle ID"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="1"/>
+
+                <ComboBox fx:id="vehicleIdComboBox"
+                          prefWidth="280"
+                          promptText="Select Vehicle"
+                          GridPane.columnIndex="1"
+                          GridPane.rowIndex="1"/>
+
+                <Label text="Re-Inspection Date"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="2"/>
+
+                <DatePicker fx:id="reInspectionDatePicker"
+                            GridPane.columnIndex="1"
+                            GridPane.rowIndex="2"/>
+
+                <Label text="Priority"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="3"/>
+
+                <ComboBox fx:id="priorityComboBox"
+                          prefWidth="280"
+                          promptText="Select Priority"
+                          GridPane.columnIndex="1"
+                          GridPane.rowIndex="3"/>
+
+                <Button fx:id="loadInspectionButton"
+                        text="Load Inspection"
+                        onAction="#loadInspection"
+                        GridPane.columnIndex="1"
+                        GridPane.rowIndex="4"/>
+
+            </GridPane>
+
+            <Separator/>
+
+            <Label text="Scheduled Re-Inspections"
+                   style="-fx-font-size:16px; -fx-font-weight:bold;"/>
+
+            <TableView fx:id="reInspectionTable" prefHeight="260">
+
+                <columns>
+
+                    <TableColumn fx:id="inspectionIdColumn"
+                                 text="Inspection ID"
+                                 prefWidth="110"/>
+
+                    <TableColumn fx:id="vehicleColumn"
+                                 text="Vehicle"
+                                 prefWidth="150"/>
+
+                    <TableColumn fx:id="previousDateColumn"
+                                 text="Previous Inspection"
+                                 prefWidth="150"/>
+
+                    <TableColumn fx:id="reInspectionDateColumn"
+                                 text="Re-Inspection Date"
+                                 prefWidth="150"/>
+
+                    <TableColumn fx:id="priorityColumn"
+                                 text="Priority"
+                                 prefWidth="110"/>
+
+                    <TableColumn fx:id="statusColumn"
+                                 text="Status"
+                                 prefWidth="150"/>
+
+                </columns>
+
+            </TableView>
+
+            <Separator/>
+
+            <HBox spacing="15">
+
+                <Button fx:id="scheduleButton"
+                        text="Schedule"
+                        onAction="#scheduleInspection"/>
+
+                <Button fx:id="updateButton"
+                        text="Update"
+                        onAction="#updateSchedule"/>
+
+                <Button fx:id="cancelButton"
+                        text="Cancel Schedule"
+                        onAction="#cancelSchedule"/>
+
+                <Button fx:id="clearButton"
+                        text="Clear"
+                        onAction="#clearFields"/>
+
+                <Button fx:id="backButton"
+                        text="Back"
+                        onAction="#backToDashboard"/>
+
+            </HBox>
+
+            <Label fx:id="statusLabel"
+                   text="Select an inspection to schedule a re-inspection."
+                   style="-fx-font-weight:bold; -fx-text-fill:green;"/>
+
+        </VBox>
+
+    </children>
+
+</AnchorPane>

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="650.0" prefWidth="900.0"
+            xmlns="http://javafx.com/javafx/26"
+            xmlns:fx="http://javafx.com/fxml/1">
+
+    <children>
+
+        <VBox spacing="15"
+              AnchorPane.topAnchor="15"
+              AnchorPane.leftAnchor="15"
+              AnchorPane.rightAnchor="15"
+              AnchorPane.bottomAnchor="15">
+
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+
+            <Label text="Defect Reports"
+                   style="-fx-font-size:22px; -fx-font-weight:bold;"/>
+
+            <Separator/>
+
+            <GridPane hgap="12" vgap="12">
+
+                <columnConstraints>
+                    <ColumnConstraints/>
+                    <ColumnConstraints hgrow="ALWAYS"/>
+                </columnConstraints>
+
+                <rowConstraints>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                </rowConstraints>
+
+                <Label text="Vehicle ID"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="0"/>
+
+                <ComboBox fx:id="vehicleIdComboBox"
+                          prefWidth="280"
+                          promptText="Select Vehicle"
+                          GridPane.columnIndex="1"
+                          GridPane.rowIndex="0"/>
+
+                <Label text="Defect Category"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="1"/>
+
+                <ComboBox fx:id="defectCategoryComboBox"
+                          prefWidth="280"
+                          promptText="Select Category"
+                          GridPane.columnIndex="1"
+                          GridPane.rowIndex="1"/>
+
+                <Label text="Reported Date"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="2"/>
+
+                <DatePicker fx:id="reportedDatePicker"
+                            GridPane.columnIndex="1"
+                            GridPane.rowIndex="2"/>
+
+                <Button fx:id="searchButton"
+                        text="Search"
+                        onAction="#searchDefects"
+                        GridPane.columnIndex="1"
+                        GridPane.rowIndex="3"/>
+
+            </GridPane>
+
+            <Separator/>
+
+            <Label text="Defect Report List"
+                   style="-fx-font-size:16px; -fx-font-weight:bold;"/>
+
+            <TableView fx:id="defectTable" prefHeight="260">
+
+                <columns>
+
+                    <TableColumn fx:id="defectIdColumn"
+                                 text="Defect ID"
+                                 prefWidth="100"/>
+
+                    <TableColumn fx:id="vehicleColumn"
+                                 text="Vehicle"
+                                 prefWidth="140"/>
+
+                    <TableColumn fx:id="categoryColumn"
+                                 text="Category"
+                                 prefWidth="150"/>
+
+                    <TableColumn fx:id="severityColumn"
+                                 text="Severity"
+                                 prefWidth="120"/>
+
+                    <TableColumn fx:id="statusColumn"
+                                 text="Status"
+                                 prefWidth="120"/>
+
+                    <TableColumn fx:id="descriptionColumn"
+                                 text="Description"
+                                 prefWidth="220"/>
+
+                </columns>
+
+            </TableView>
+
+            <Separator/>
+
+            <HBox spacing="15">
+
+                <Button fx:id="viewButton"
+                        text="View"
+                        onAction="#viewDefect"/>
+
+                <Button fx:id="updateButton"
+                        text="Update Status"
+                        onAction="#updateDefect"/>
+
+                <Button fx:id="exportButton"
+                        text="Export"
+                        onAction="#exportDefects"/>
+
+                <Button fx:id="clearButton"
+                        text="Clear"
+                        onAction="#clearFields"/>
+
+                <Button fx:id="backButton"
+                        text="Back"
+                        onAction="#backToDashboard"/>
+
+            </HBox>
+
+            <Label fx:id="statusLabel"
+                   text="Select search criteria to view defect reports."
+                   style="-fx-font-weight:bold; -fx-text-fill:green;"/>
+
+        </VBox>
+
+    </children>
+
+</AnchorPane>

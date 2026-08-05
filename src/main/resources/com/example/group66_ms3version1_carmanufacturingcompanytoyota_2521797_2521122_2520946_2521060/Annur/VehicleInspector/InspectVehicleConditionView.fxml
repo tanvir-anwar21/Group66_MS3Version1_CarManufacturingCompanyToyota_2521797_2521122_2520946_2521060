@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="650.0" prefWidth="900.0"
+            xmlns="http://javafx.com/javafx/26"
+            xmlns:fx="http://javafx.com/fxml/1">
+
+    <children>
+
+        <VBox spacing="15"
+              AnchorPane.topAnchor="15"
+              AnchorPane.leftAnchor="15"
+              AnchorPane.rightAnchor="15"
+              AnchorPane.bottomAnchor="15">
+
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+
+            <Label text="New Vehicle Inspection"
+                   style="-fx-font-size:22px; -fx-font-weight:bold;"/>
+
+            <Separator/>
+
+            <GridPane hgap="12" vgap="12">
+
+                <columnConstraints>
+                    <ColumnConstraints/>
+                    <ColumnConstraints hgrow="ALWAYS"/>
+                </columnConstraints>
+
+                <rowConstraints>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                </rowConstraints>
+
+                <Label text="Inspection ID"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="0"/>
+
+                <TextField fx:id="inspectionIdField"
+                           promptText="Inspection ID"
+                           GridPane.columnIndex="1"
+                           GridPane.rowIndex="0"/>
+
+                <Label text="Vehicle ID"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="1"/>
+
+                <ComboBox fx:id="vehicleIdComboBox"
+                          promptText="Select Vehicle"
+                          prefWidth="280"
+                          GridPane.columnIndex="1"
+                          GridPane.rowIndex="1"/>
+
+                <Label text="Inspector"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="2"/>
+
+                <ComboBox fx:id="inspectorComboBox"
+                          promptText="Select Inspector"
+                          prefWidth="280"
+                          GridPane.columnIndex="1"
+                          GridPane.rowIndex="2"/>
+
+                <Label text="Inspection Date"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="3"/>
+
+                <DatePicker fx:id="inspectionDatePicker"
+                            GridPane.columnIndex="1"
+                            GridPane.rowIndex="3"/>
+
+                <Label text="Inspection Type"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="4"/>
+
+                <ComboBox fx:id="inspectionTypeComboBox"
+                          promptText="Select Type"
+                          prefWidth="280"
+                          GridPane.columnIndex="1"
+                          GridPane.rowIndex="4"/>
+
+                <Button fx:id="loadVehicleButton"
+                        text="Load Vehicle"
+                        onAction="#loadVehicle"
+                        GridPane.columnIndex="1"
+                        GridPane.rowIndex="5"/>
+
+            </GridPane>
+
+            <Separator/>
+
+            <Label text="Inspection Checklist"
+                   style="-fx-font-size:16px; -fx-font-weight:bold;"/>
+
+            <TableView fx:id="inspectionTable" prefHeight="220">
+
+                <columns>
+
+                    <TableColumn fx:id="itemColumn"
+                                 text="Inspection Item"
+                                 prefWidth="220"/>
+
+                    <TableColumn fx:id="conditionColumn"
+                                 text="Condition"
+                                 prefWidth="130"/>
+
+                    <TableColumn fx:id="statusColumn"
+                                 text="Status"
+                                 prefWidth="120"/>
+
+                    <TableColumn fx:id="remarksColumn"
+                                 text="Remarks"
+                                 prefWidth="280"/>
+
+                </columns>
+
+            </TableView>
+
+            <Label text="Inspector Remarks"
+                   style="-fx-font-size:16px; -fx-font-weight:bold;"/>
+
+            <TextArea fx:id="remarksTextArea"
+                      prefHeight="100"
+                      promptText="Enter inspection remarks..."/>
+
+            <HBox spacing="15">
+
+                <Button fx:id="saveButton"
+                        text="Save"
+                        onAction="#saveInspection"/>
+
+                <Button fx:id="completeButton"
+                        text="Complete"
+                        onAction="#completeInspection"/>
+
+                <Button fx:id="clearButton"
+                        text="Clear"
+                        onAction="#clearFields"/>
+
+                <Button fx:id="backButton"
+                        text="Back"
+                        onAction="#backToDashboard"/>
+
+            </HBox>
+
+            <Label fx:id="statusLabel"
+                   text="Ready to create a new inspection."
+                   style="-fx-font-weight:bold; -fx-text-fill:green;"/>
+
+        </VBox>
+
+    </children>
+
+</AnchorPane>

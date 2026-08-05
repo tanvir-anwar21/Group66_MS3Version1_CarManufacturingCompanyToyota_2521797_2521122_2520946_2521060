@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="650.0" prefWidth="900.0"
+            xmlns="http://javafx.com/javafx/26"
+            xmlns:fx="http://javafx.com/fxml/1">
+
+    <children>
+
+        <VBox spacing="15"
+              AnchorPane.topAnchor="15"
+              AnchorPane.leftAnchor="15"
+              AnchorPane.rightAnchor="15"
+              AnchorPane.bottomAnchor="15">
+
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+
+            <Label text="Inspection History"
+                   style="-fx-font-size:22px; -fx-font-weight:bold;"/>
+
+            <Separator/>
+
+            <GridPane hgap="12" vgap="12">
+
+                <columnConstraints>
+                    <ColumnConstraints/>
+                    <ColumnConstraints hgrow="ALWAYS"/>
+                </columnConstraints>
+
+                <rowConstraints>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                </rowConstraints>
+
+                <Label text="Vehicle ID"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="0"/>
+
+                <ComboBox fx:id="vehicleIdComboBox"
+                          prefWidth="280"
+                          promptText="Select Vehicle"
+                          GridPane.columnIndex="1"
+                          GridPane.rowIndex="0"/>
+
+                <Label text="Inspection Year"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="1"/>
+
+                <DatePicker fx:id="inspectionDatePicker"
+                            GridPane.columnIndex="1"
+                            GridPane.rowIndex="1"/>
+
+                <Button fx:id="searchButton"
+                        text="Search History"
+                        onAction="#searchHistory"
+                        GridPane.columnIndex="1"
+                        GridPane.rowIndex="2"/>
+
+            </GridPane>
+
+            <Separator/>
+
+            <Label text="Inspection History Records"
+                   style="-fx-font-size:16px; -fx-font-weight:bold;"/>
+
+            <TableView fx:id="historyTable" prefHeight="260">
+
+                <columns>
+
+                    <TableColumn fx:id="inspectionIdColumn"
+                                 text="Inspection ID"
+                                 prefWidth="120"/>
+
+                    <TableColumn fx:id="inspectionDateColumn"
+                                 text="Date"
+                                 prefWidth="130"/>
+
+                    <TableColumn fx:id="inspectionTypeColumn"
+                                 text="Inspection Type"
+                                 prefWidth="170"/>
+
+                    <TableColumn fx:id="resultColumn"
+                                 text="Result"
+                                 prefWidth="110"/>
+
+                    <TableColumn fx:id="inspectorColumn"
+                                 text="Inspector"
+                                 prefWidth="160"/>
+
+                    <TableColumn fx:id="remarksColumn"
+                                 text="Remarks"
+                                 prefWidth="180"/>
+
+                </columns>
+
+            </TableView>
+
+            <Separator/>
+
+            <HBox spacing="15">
+
+                <Button fx:id="viewDetailsButton"
+                        text="View Details"
+                        onAction="#viewDetails"/>
+
+                <Button fx:id="printButton"
+                        text="Print History"
+                        onAction="#printHistory"/>
+
+                <Button fx:id="exportButton"
+                        text="Export"
+                        onAction="#exportHistory"/>
+
+                <Button fx:id="clearButton"
+                        text="Clear"
+                        onAction="#clearFields"/>
+
+                <Button fx:id="backButton"
+                        text="Back"
+                        onAction="#backToDashboard"/>
+
+            </HBox>
+
+            <Label fx:id="statusLabel"
+                   text="Select a vehicle to view inspection history."
+                   style="-fx-font-weight:bold; -fx-text-fill:green;"/>
+
+        </VBox>
+
+    </children>
+
+</AnchorPane>

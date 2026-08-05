@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="650.0" prefWidth="900.0"
+            xmlns="http://javafx.com/javafx/26"
+            xmlns:fx="http://javafx.com/fxml/1">
+
+    <children>
+
+        <VBox spacing="15"
+              AnchorPane.topAnchor="15"
+              AnchorPane.leftAnchor="15"
+              AnchorPane.rightAnchor="15"
+              AnchorPane.bottomAnchor="15">
+
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+
+            <Label text="Analyze Vehicle Performance"
+                   style="-fx-font-size:22px; -fx-font-weight:bold;"/>
+
+            <Separator/>
+
+            <GridPane hgap="12" vgap="12">
+
+                <columnConstraints>
+                    <ColumnConstraints/>
+                    <ColumnConstraints hgrow="ALWAYS"/>
+                </columnConstraints>
+
+                <rowConstraints>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                </rowConstraints>
+
+                <Label text="Vehicle Model"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="0"/>
+
+                <ComboBox fx:id="vehicleModelComboBox"
+                          promptText="Select Vehicle Model"
+                          prefWidth="280"
+                          GridPane.columnIndex="1"
+                          GridPane.rowIndex="0"/>
+
+                <Label text="Test Data"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="1"/>
+
+                <ComboBox fx:id="testDataComboBox"
+                          promptText="Select Test Data"
+                          prefWidth="280"
+                          GridPane.columnIndex="1"
+                          GridPane.rowIndex="1"/>
+
+            </GridPane>
+
+            <Separator/>
+
+            <Label text="Performance Summary"
+                   style="-fx-font-size:16px; -fx-font-weight:bold;"/>
+
+            <TableView fx:id="performanceTable" prefHeight="180">
+
+                <columns>
+
+                    <TableColumn fx:id="parameterColumn"
+                                 text="Parameter"
+                                 prefWidth="170"/>
+
+                    <TableColumn fx:id="valueColumn"
+                                 text="Value"
+                                 prefWidth="140"/>
+
+                    <TableColumn fx:id="standardColumn"
+                                 text="Standard"
+                                 prefWidth="150"/>
+
+                    <TableColumn fx:id="scoreColumn"
+                                 text="Score"
+                                 prefWidth="120"/>
+
+                    <TableColumn fx:id="remarksColumn"
+                                 text="Remarks"
+                                 prefWidth="220"/>
+
+                </columns>
+
+            </TableView>
+
+            <Label text="Performance Comparison"
+                   style="-fx-font-size:16px; -fx-font-weight:bold;"/>
+
+            <BarChart fx:id="performanceChart" prefHeight="180">
+
+                <xAxis>
+                    <CategoryAxis label="Performance Category"/>
+                </xAxis>
+
+                <yAxis>
+                    <NumberAxis label="Score"/>
+                </yAxis>
+
+            </BarChart>
+
+            <HBox spacing="15">
+
+                <Button fx:id="analyzeButton"
+                        text="Analyze"
+                        onAction="#analyzePerformance"/>
+
+                <Button fx:id="generateChartButton"
+                        text="Generate Chart"
+                        onAction="#generateChart"/>
+
+                <Button fx:id="saveButton"
+                        text="Save Analysis"
+                        onAction="#saveAnalysis"/>
+
+                <Button fx:id="clearButton"
+                        text="Clear"
+                        onAction="#clearFields"/>
+
+                <Button fx:id="backButton"
+                        text="Back"
+                        onAction="#backToDashboard"/>
+
+            </HBox>
+
+            <Label fx:id="statusLabel"
+                   text="Select a vehicle and test data."
+                   style="-fx-font-weight:bold; -fx-text-fill:green;"/>
+
+        </VBox>
+
+    </children>
+
+</AnchorPane>

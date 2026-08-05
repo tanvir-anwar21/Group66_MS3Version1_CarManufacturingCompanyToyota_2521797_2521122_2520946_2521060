@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="650.0" prefWidth="900.0"
+            xmlns="http://javafx.com/javafx/26"
+            xmlns:fx="http://javafx.com/fxml/1">
+
+    <children>
+
+        <VBox spacing="15"
+              AnchorPane.topAnchor="15"
+              AnchorPane.leftAnchor="15"
+              AnchorPane.rightAnchor="15"
+              AnchorPane.bottomAnchor="15">
+
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+
+            <Label text="Inspection Approval"
+                   style="-fx-font-size:22px; -fx-font-weight:bold;"/>
+
+            <Separator/>
+
+            <GridPane hgap="12" vgap="12">
+
+                <columnConstraints>
+                    <ColumnConstraints/>
+                    <ColumnConstraints hgrow="ALWAYS"/>
+                </columnConstraints>
+
+                <rowConstraints>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                </rowConstraints>
+
+                <Label text="Inspection ID"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="0"/>
+
+                <ComboBox fx:id="inspectionIdComboBox"
+                          promptText="Select Inspection"
+                          prefWidth="280"
+                          GridPane.columnIndex="1"
+                          GridPane.rowIndex="0"/>
+
+                <Label text="Approval Status"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="1"/>
+
+                <ComboBox fx:id="approvalStatusComboBox"
+                          promptText="Select Status"
+                          prefWidth="280"
+                          GridPane.columnIndex="1"
+                          GridPane.rowIndex="1"/>
+
+                <Button fx:id="loadInspectionButton"
+                        text="Load Inspection"
+                        onAction="#loadInspection"
+                        GridPane.columnIndex="1"
+                        GridPane.rowIndex="2"/>
+
+            </GridPane>
+
+            <Separator/>
+
+            <Label text="Inspection Details"
+                   style="-fx-font-size:16px; -fx-font-weight:bold;"/>
+
+            <TableView fx:id="inspectionTable" prefHeight="220">
+
+                <columns>
+
+                    <TableColumn fx:id="vehicleIdColumn"
+                                 text="Vehicle ID"
+                                 prefWidth="120"/>
+
+                    <TableColumn fx:id="inspectionTypeColumn"
+                                 text="Inspection Type"
+                                 prefWidth="160"/>
+
+                    <TableColumn fx:id="inspectorColumn"
+                                 text="Inspector"
+                                 prefWidth="150"/>
+
+                    <TableColumn fx:id="resultColumn"
+                                 text="Result"
+                                 prefWidth="120"/>
+
+                    <TableColumn fx:id="dateColumn"
+                                 text="Inspection Date"
+                                 prefWidth="150"/>
+
+                    <TableColumn fx:id="remarksColumn"
+                                 text="Remarks"
+                                 prefWidth="180"/>
+
+                </columns>
+
+            </TableView>
+
+            <Label text="Approval Comments"
+                   style="-fx-font-size:16px; -fx-font-weight:bold;"/>
+
+            <TextArea fx:id="approvalRemarksArea"
+                      prefHeight="120"
+                      promptText="Enter approval comments..."/>
+
+            <HBox spacing="15">
+
+                <Button fx:id="approveButton"
+                        text="Approve"
+                        onAction="#approveInspection"/>
+
+                <Button fx:id="rejectButton"
+                        text="Reject"
+                        onAction="#rejectInspection"/>
+
+                <Button fx:id="saveButton"
+                        text="Save"
+                        onAction="#saveApproval"/>
+
+                <Button fx:id="clearButton"
+                        text="Clear"
+                        onAction="#clearFields"/>
+
+                <Button fx:id="backButton"
+                        text="Back"
+                        onAction="#backToDashboard"/>
+
+            </HBox>
+
+            <Label fx:id="statusLabel"
+                   text="Select an inspection for approval."
+                   style="-fx-font-weight:bold; -fx-text-fill:green;"/>
+
+        </VBox>
+
+    </children>
+
+</AnchorPane>
