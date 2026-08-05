@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="900.0"
+            xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1">
+
+    <children>
+
+        <VBox spacing="15"
+              AnchorPane.topAnchor="15"
+              AnchorPane.leftAnchor="15"
+              AnchorPane.rightAnchor="15"
+              AnchorPane.bottomAnchor="15">
+
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+
+            <!-- Title -->
+            <Label text="Sales Performance Dashboard"
+                   style="-fx-font-size:24px; -fx-font-weight:bold;"/>
+
+            <Separator/>
+
+            <!-- Sales Summary -->
+            <GridPane hgap="15" vgap="15">
+
+                <columnConstraints>
+                    <ColumnConstraints percentWidth="25"/>
+                    <ColumnConstraints percentWidth="25"/>
+                    <ColumnConstraints percentWidth="25"/>
+                    <ColumnConstraints percentWidth="25"/>
+                </columnConstraints>
+
+                <VBox spacing="5"
+                      style="-fx-border-color:#BDBDBD; -fx-padding:10;">
+                    <Label text="Total Sales"/>
+                    <TextField fx:id="totalSalesField" editable="false"/>
+                </VBox>
+
+                <VBox GridPane.columnIndex="1"
+                      spacing="5"
+                      style="-fx-border-color:#BDBDBD; -fx-padding:10;">
+                    <Label text="Monthly Sales"/>
+                    <TextField fx:id="monthlySalesField" editable="false"/>
+                </VBox>
+
+                <VBox GridPane.columnIndex="2"
+                      spacing="5"
+                      style="-fx-border-color:#BDBDBD; -fx-padding:10;">
+                    <Label text="Top Product"/>
+                    <TextField fx:id="topProductField" editable="false"/>
+                </VBox>
+
+                <VBox GridPane.columnIndex="3"
+                      spacing="5"
+                      style="-fx-border-color:#BDBDBD; -fx-padding:10;">
+                    <Label text="Sales Growth"/>
+                    <TextField fx:id="growthField" editable="false"/>
+                </VBox>
+
+            </GridPane>
+
+            <Separator/>
+
+            <!-- Sales Details -->
+            <Label text="Sales Records"
+                   style="-fx-font-size:18px; -fx-font-weight:bold;"/>
+
+            <TableView fx:id="salesTable" prefHeight="250">
+
+                <columns>
+
+                    <TableColumn fx:id="productColumn"
+                                 text="Product"
+                                 prefWidth="180"/>
+
+                    <TableColumn fx:id="quantityColumn"
+                                 text="Quantity Sold"
+                                 prefWidth="140"/>
+
+                    <TableColumn fx:id="revenueColumn"
+                                 text="Revenue"
+                                 prefWidth="180"/>
+
+                    <TableColumn fx:id="performanceColumn"
+                                 text="Performance"
+                                 prefWidth="160"/>
+
+                </columns>
+
+            </TableView>
+
+            <Separator/>
+
+            <!-- CEO Notes -->
+            <Label text="CEO Notes"
+                   style="-fx-font-size:18px; -fx-font-weight:bold;"/>
+
+            <TextArea fx:id="notesArea"
+                      prefHeight="100"
+                      wrapText="true"
+                      promptText="Write observations or recommendations..."/>
+
+            <HBox spacing="15">
+
+                <Button fx:id="loadButton"
+                        text="Load Data"
+                        prefWidth="130"/>
+
+                <Button fx:id="refreshButton"
+                        text="Refresh"
+                        prefWidth="120"/>
+
+                <Button fx:id="exportButton"
+                        text="Export Report"
+                        prefWidth="150"/>
+
+                <Button fx:id="backButton"
+                        text="Back"
+                        prefWidth="100"/>
+
+            </HBox>
+
+            <Label fx:id="statusLabel"
+                   text="Ready"
+                   style="-fx-text-fill:green; -fx-font-weight:bold;"/>
+
+        </VBox>
+
+    </children>
+
+</AnchorPane>

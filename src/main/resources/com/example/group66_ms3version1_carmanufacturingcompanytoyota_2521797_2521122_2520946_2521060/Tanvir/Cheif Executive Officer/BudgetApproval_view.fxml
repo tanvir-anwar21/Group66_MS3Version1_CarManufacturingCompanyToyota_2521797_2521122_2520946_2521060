@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="650.0" prefWidth="950.0"
+            xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1">
+
+    <children>
+
+        <VBox spacing="15"
+              AnchorPane.topAnchor="15"
+              AnchorPane.leftAnchor="15"
+              AnchorPane.rightAnchor="15"
+              AnchorPane.bottomAnchor="15">
+
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+
+            <!-- Title -->
+            <Label text="Budget Approval"
+                   style="-fx-font-size:24px; -fx-font-weight:bold;"/>
+
+            <Separator/>
+
+            <!-- Budget Summary -->
+            <GridPane hgap="15" vgap="15">
+
+                <columnConstraints>
+                    <ColumnConstraints percentWidth="33"/>
+                    <ColumnConstraints percentWidth="33"/>
+                    <ColumnConstraints percentWidth="34"/>
+                </columnConstraints>
+
+                <VBox spacing="5"
+                      style="-fx-border-color:#BDBDBD; -fx-padding:10;">
+                    <Label text="Total Budget"/>
+                    <TextField fx:id="totalBudgetField" editable="false"/>
+                </VBox>
+
+                <VBox GridPane.columnIndex="1"
+                      spacing="5"
+                      style="-fx-border-color:#BDBDBD; -fx-padding:10;">
+                    <Label text="Approved Budget"/>
+                    <TextField fx:id="approvedBudgetField" editable="false"/>
+                </VBox>
+
+                <VBox GridPane.columnIndex="2"
+                      spacing="5"
+                      style="-fx-border-color:#BDBDBD; -fx-padding:10;">
+                    <Label text="Pending Requests"/>
+                    <TextField fx:id="pendingRequestsField" editable="false"/>
+                </VBox>
+
+            </GridPane>
+
+            <Separator/>
+
+            <!-- Budget Requests Table -->
+            <Label text="Budget Requests"
+                   style="-fx-font-size:18px; -fx-font-weight:bold;"/>
+
+            <TableView fx:id="budgetTable" prefHeight="260">
+
+                <columns>
+
+                    <TableColumn fx:id="departmentColumn"
+                                 text="Department"
+                                 prefWidth="180"/>
+
+                    <TableColumn fx:id="requestColumn"
+                                 text="Request Amount"
+                                 prefWidth="170"/>
+
+                    <TableColumn fx:id="purposeColumn"
+                                 text="Purpose"
+                                 prefWidth="280"/>
+
+                    <TableColumn fx:id="statusColumn"
+                                 text="Status"
+                                 prefWidth="140"/>
+
+                </columns>
+
+            </TableView>
+
+            <Separator/>
+
+            <!-- CEO Decision -->
+            <Label text="CEO Decision / Comments"
+                   style="-fx-font-size:18px; -fx-font-weight:bold;"/>
+
+            <TextArea fx:id="commentArea"
+                      prefHeight="100"
+                      wrapText="true"
+                      promptText="Write approval comments or remarks..."/>
+
+            <HBox spacing="15">
+
+                <Button fx:id="approveButton"
+                        text="Approve"
+                        prefWidth="120"/>
+
+                <Button fx:id="rejectButton"
+                        text="Reject"
+                        prefWidth="120"/>
+
+                <Button fx:id="refreshButton"
+                        text="Refresh"
+                        prefWidth="120"/>
+
+                <Button fx:id="backButton"
+                        text="Back"
+                        prefWidth="100"/>
+
+            </HBox>
+
+            <Label fx:id="statusLabel"
+                   text="Ready"
+                   style="-fx-text-fill:green; -fx-font-weight:bold;"/>
+
+        </VBox>
+
+    </children>
+
+</AnchorPane>

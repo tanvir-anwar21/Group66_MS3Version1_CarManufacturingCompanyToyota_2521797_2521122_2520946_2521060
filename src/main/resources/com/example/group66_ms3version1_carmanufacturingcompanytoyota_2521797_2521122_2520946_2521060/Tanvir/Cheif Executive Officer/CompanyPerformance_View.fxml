@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="900.0"
+            xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1">
+
+    <children>
+
+        <VBox spacing="15"
+              AnchorPane.topAnchor="15"
+              AnchorPane.leftAnchor="15"
+              AnchorPane.rightAnchor="15"
+              AnchorPane.bottomAnchor="15">
+
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+
+            <!-- Title -->
+            <Label text="Company Performance"
+                   style="-fx-font-size:24px; -fx-font-weight:bold;"/>
+
+            <Separator/>
+
+            <!-- Performance Summary -->
+            <GridPane hgap="15" vgap="15">
+
+                <columnConstraints>
+                    <ColumnConstraints percentWidth="33"/>
+                    <ColumnConstraints percentWidth="33"/>
+                    <ColumnConstraints percentWidth="34"/>
+                </columnConstraints>
+
+                <VBox spacing="5"
+                      style="-fx-border-color:#BDBDBD; -fx-padding:10;">
+                    <Label text="Total Revenue"/>
+                    <TextField fx:id="revenueField" editable="false"/>
+                </VBox>
+
+                <VBox GridPane.columnIndex="1"
+                      spacing="5"
+                      style="-fx-border-color:#BDBDBD; -fx-padding:10;">
+                    <Label text="Net Profit"/>
+                    <TextField fx:id="profitField" editable="false"/>
+                </VBox>
+
+                <VBox GridPane.columnIndex="2"
+                      spacing="5"
+                      style="-fx-border-color:#BDBDBD; -fx-padding:10;">
+                    <Label text="Growth Rate"/>
+                    <TextField fx:id="growthField" editable="false"/>
+                </VBox>
+
+            </GridPane>
+
+            <Separator/>
+
+            <!-- Department Performance -->
+            <Label text="Department Performance"
+                   style="-fx-font-size:18px; -fx-font-weight:bold;"/>
+
+            <TableView fx:id="departmentTable" prefHeight="220">
+
+                <columns>
+
+                    <TableColumn fx:id="departmentColumn"
+                                 text="Department"
+                                 prefWidth="180"/>
+
+                    <TableColumn fx:id="targetColumn"
+                                 text="Target"
+                                 prefWidth="150"/>
+
+                    <TableColumn fx:id="achievementColumn"
+                                 text="Achievement"
+                                 prefWidth="170"/>
+
+                    <TableColumn fx:id="statusColumn"
+                                 text="Status"
+                                 prefWidth="150"/>
+
+                </columns>
+
+            </TableView>
+
+            <Separator/>
+
+            <!-- CEO Remarks -->
+            <Label text="CEO Remarks"
+                   style="-fx-font-size:18px; -fx-font-weight:bold;"/>
+
+            <TextArea fx:id="remarksArea"
+                      prefHeight="120"
+                      wrapText="true"
+                      promptText="Enter company performance remarks..."/>
+
+            <HBox spacing="15">
+
+                <Button fx:id="loadButton"
+                        text="Load Performance"
+                        prefWidth="160"/>
+
+                <Button fx:id="saveButton"
+                        text="Save Remarks"
+                        prefWidth="140"/>
+
+                <Button fx:id="exportButton"
+                        text="Export Report"
+                        prefWidth="140"/>
+
+                <Button fx:id="backButton"
+                        text="Back"
+                        prefWidth="100"/>
+
+            </HBox>
+
+            <Label fx:id="statusLabel"
+                   text="Ready"
+                   style="-fx-text-fill:green; -fx-font-weight:bold;"/>
+
+        </VBox>
+
+    </children>
+
+</AnchorPane>
