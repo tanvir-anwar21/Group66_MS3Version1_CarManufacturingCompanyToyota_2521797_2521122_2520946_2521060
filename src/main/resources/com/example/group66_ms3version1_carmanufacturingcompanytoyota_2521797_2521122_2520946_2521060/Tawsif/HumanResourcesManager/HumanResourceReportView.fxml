@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="User3.SalesExecutiveControllers.SalesExecutiveDashboard_Controller"
+            prefWidth="1000"
+            prefHeight="650">
+
+    <top>
+        <HBox alignment="CENTER_LEFT"
+              spacing="15"
+              style="-fx-padding:15 20; -fx-background-color:#2c3e50;">
+
+            <Label text="🚗 Toyota Manufacturing System"
+                   style="-fx-text-fill:white; -fx-font-size:22px; -fx-font-weight:bold;"/>
+
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <Label fx:id="userLabel"
+                   text="Sales Executive"
+                   style="-fx-text-fill:white;"/>
+
+        </HBox>
+    </top>
+
+    <center>
+
+        <VBox alignment="TOP_CENTER"
+              spacing="25"
+              style="-fx-padding:30;">
+
+            <Label text="Sales Executive Dashboard"
+                   style="-fx-font-size:26px; -fx-font-weight:bold;"/>
+
+            <GridPane hgap="25"
+                      vgap="25"
+                      alignment="CENTER">
+
+                <Button text="🚗&#10;New Vehicle Order"
+                        prefWidth="220"
+                        prefHeight="90"
+                        onAction="#handleNewOrder"
+                        GridPane.columnIndex="0"
+                        GridPane.rowIndex="0"/>
+
+                <Button text="🧾&#10;Generate Invoice"
+                        prefWidth="220"
+                        prefHeight="90"
+                        onAction="#handleInvoice"
+                        GridPane.columnIndex="1"
+                        GridPane.rowIndex="0"/>
+
+                <Button text="🚙&#10;Vehicle Inventory"
+                        prefWidth="220"
+                        prefHeight="90"
+                        onAction="#handleInventory"
+                        GridPane.columnIndex="2"
+                        GridPane.rowIndex="0"/>
+
+                <Button text="👥&#10;Customer Management"
+                        prefWidth="220"
+                        prefHeight="90"
+                        onAction="#handleCustomer"
+                        GridPane.columnIndex="0"
+                        GridPane.rowIndex="1"/>
+
+                <Button text="✏️&#10;Update Customer"
+                        prefWidth="220"
+                        prefHeight="90"
+                        onAction="#handleUpdateCustomer"
+                        GridPane.columnIndex="1"
+                        GridPane.rowIndex="1"/>
+
+                <Button text="📦&#10;Track Order"
+                        prefWidth="220"
+                        prefHeight="90"
+                        onAction="#handleTrackOrder"
+                        GridPane.columnIndex="2"
+                        GridPane.rowIndex="1"/>
+
+                <Button text="📧&#10;Send Confirmation"
+                        prefWidth="220"
+                        prefHeight="90"
+                        onAction="#handleConfirmation"
+                        GridPane.columnIndex="0"
+                        GridPane.rowIndex="2"/>
+
+                <Button text="📊&#10;Sales Report"
+                        prefWidth="220"
+                        prefHeight="90"
+                        onAction="#handleSalesReport"
+                        GridPane.columnIndex="1"
+                        GridPane.rowIndex="2"/>
+
+                <Button text="🚪&#10;Logout"
+                        prefWidth="220"
+                        prefHeight="90"
+                        onAction="#handleLogout"
+                        style="-fx-background-color:#e74c3c; -fx-text-fill:white;"
+                        GridPane.columnIndex="2"
+                        GridPane.rowIndex="2"/>
+
+            </GridPane>
+
+        </VBox>
+
+    </center>
+
+</BorderPane>

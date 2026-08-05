@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="User4.HRManagerControllers.LeaveManagement_Controller"
+            prefWidth="1000"
+            prefHeight="650">
+
+    <top>
+        <HBox alignment="CENTER_LEFT"
+              spacing="15"
+              style="-fx-padding:15 20; -fx-background-color:#2c3e50;">
+
+            <Button text="← Back to Dashboard"
+                    onAction="#handleBack"
+                    style="-fx-background-color:#34495e; -fx-text-fill:white;"/>
+
+            <Label text="📝 Leave Management"
+                   style="-fx-text-fill:white; -fx-font-size:20px; -fx-font-weight:bold;"/>
+
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <Label fx:id="userLabel"
+                   text="HR Manager"
+                   style="-fx-text-fill:#ecf0f1;"/>
+
+        </HBox>
+    </top>
+
+    <center>
+
+        <VBox spacing="15"
+              style="-fx-padding:20;">
+
+            <GridPane hgap="15"
+                      vgap="10"
+                      style="-fx-padding:20; -fx-background-color:#ecf0f1; -fx-border-color:#bdc3c7; -fx-border-radius:5;">
+
+                <Label text="Employee ID"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="0"/>
+
+                <TextField fx:id="employeeIdField"
+                           promptText="Employee ID"
+                           GridPane.columnIndex="1"
+                           GridPane.rowIndex="0"/>
+
+                <Label text="Employee Name"
+                       GridPane.columnIndex="2"
+                       GridPane.rowIndex="0"/>
+
+                <TextField fx:id="employeeNameField"
+                           editable="false"
+                           GridPane.columnIndex="3"
+                           GridPane.rowIndex="0"/>
+
+                <Label text="Leave Type"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="1"/>
+
+                <ComboBox fx:id="leaveTypeComboBox"
+                          prefWidth="180"
+                          GridPane.columnIndex="1"
+                          GridPane.rowIndex="1"/>
+
+                <Label text="From Date"
+                       GridPane.columnIndex="2"
+                       GridPane.rowIndex="1"/>
+
+                <DatePicker fx:id="fromDatePicker"
+                            GridPane.columnIndex="3"
+                            GridPane.rowIndex="1"/>
+
+                <Label text="To Date"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="2"/>
+
+                <DatePicker fx:id="toDatePicker"
+                            GridPane.columnIndex="1"
+                            GridPane.rowIndex="2"/>
+
+                <Label text="Reason"
+                       GridPane.columnIndex="2"
+                       GridPane.rowIndex="2"/>
+
+                <TextField fx:id="reasonField"
+                           promptText="Reason for leave"
+                           GridPane.columnIndex="3"
+                           GridPane.rowIndex="2"/>
+
+            </GridPane>
+
+            <HBox spacing="15" alignment="CENTER">
+
+                <Button text="🔍 Search"
+                        onAction="#handleSearch"
+                        style="-fx-background-color:#3498db; -fx-text-fill:white;"/>
+
+                <Button text="✅ Approve"
+                        onAction="#handleApprove"
+                        style="-fx-background-color:#27ae60; -fx-text-fill:white;"/>
+
+                <Button text="❌ Reject"
+                        onAction="#handleReject"
+                        style="-fx-background-color:#e74c3c; -fx-text-fill:white;"/>
+
+                <Button text="🧹 Clear"
+                        onAction="#handleClear"
+                        style="-fx-background-color:#f39c12; -fx-text-fill:white;"/>
+
+            </HBox>
+
+            <TitledPane text="Leave Requests" expanded="true">
+
+                <VBox spacing="10" style="-fx-padding:10;">
+
+                    <TableView fx:id="leaveTableView" prefHeight="250">
+
+                        <columns>
+
+                            <TableColumn fx:id="employeeIdColumn"
+                                         text="Employee ID"
+                                         prefWidth="110"/>
+
+                            <TableColumn fx:id="employeeNameColumn"
+                                         text="Employee Name"
+                                         prefWidth="170"/>
+
+                            <TableColumn fx:id="leaveTypeColumn"
+                                         text="Leave Type"
+                                         prefWidth="120"/>
+
+                            <TableColumn fx:id="fromDateColumn"
+                                         text="From"
+                                         prefWidth="100"/>
+
+                            <TableColumn fx:id="toDateColumn"
+                                         text="To"
+                                         prefWidth="100"/>
+
+                            <TableColumn fx:id="daysColumn"
+                                         text="Days"
+                                         prefWidth="70"/>
+
+                            <TableColumn fx:id="statusColumn"
+                                         text="Status"
+                                         prefWidth="100"/>
+
+                            <TableColumn fx:id="reasonColumn"
+                                         text="Reason"
+                                         prefWidth="180"/>
+
+                        </columns>
+
+                    </TableView>
+
+                </VBox>
+
+            </TitledPane>
+
+            <Label fx:id="statusLabel"
+                   text="Select a leave request to approve or reject."
+                   style="-fx-font-weight:bold; -fx-text-fill:#2c3e50;"/>
+
+        </VBox>
+
+    </center>
+
+</BorderPane>

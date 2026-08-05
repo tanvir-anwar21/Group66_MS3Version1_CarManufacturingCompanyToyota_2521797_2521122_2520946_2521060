@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="User4.HRManagerControllers.PayrollManagement_Controller"
+            prefWidth="1000"
+            prefHeight="650">
+
+    <top>
+        <HBox alignment="CENTER_LEFT"
+              spacing="15"
+              style="-fx-padding:15 20; -fx-background-color:#2c3e50;">
+
+            <Button text="← Back to Dashboard"
+                    onAction="#handleBack"
+                    style="-fx-background-color:#34495e; -fx-text-fill:white;"/>
+
+            <Label text="💰 Payroll Management"
+                   style="-fx-text-fill:white; -fx-font-size:20px; -fx-font-weight:bold;"/>
+
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <Label fx:id="userLabel"
+                   text="HR Manager"
+                   style="-fx-text-fill:#ecf0f1;"/>
+
+        </HBox>
+    </top>
+
+    <center>
+
+        <VBox spacing="15"
+              style="-fx-padding:20;">
+
+            <GridPane hgap="15"
+                      vgap="10"
+                      style="-fx-padding:20; -fx-background-color:#ecf0f1; -fx-border-color:#bdc3c7; -fx-border-radius:5;">
+
+                <Label text="Employee ID"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="0"/>
+
+                <TextField fx:id="employeeIdField"
+                           promptText="Employee ID"
+                           GridPane.columnIndex="1"
+                           GridPane.rowIndex="0"/>
+
+                <Label text="Employee Name"
+                       GridPane.columnIndex="2"
+                       GridPane.rowIndex="0"/>
+
+                <TextField fx:id="employeeNameField"
+                           editable="false"
+                           GridPane.columnIndex="3"
+                           GridPane.rowIndex="0"/>
+
+                <Label text="Basic Salary"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="1"/>
+
+                <TextField fx:id="basicSalaryField"
+                           GridPane.columnIndex="1"
+                           GridPane.rowIndex="1"/>
+
+                <Label text="Bonus"
+                       GridPane.columnIndex="2"
+                       GridPane.rowIndex="1"/>
+
+                <TextField fx:id="bonusField"
+                           promptText="Bonus"
+                           GridPane.columnIndex="3"
+                           GridPane.rowIndex="1"/>
+
+                <Label text="Deduction"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="2"/>
+
+                <TextField fx:id="deductionField"
+                           promptText="Deduction"
+                           GridPane.columnIndex="1"
+                           GridPane.rowIndex="2"/>
+
+                <Label text="Payment Date"
+                       GridPane.columnIndex="2"
+                       GridPane.rowIndex="2"/>
+
+                <DatePicker fx:id="paymentDatePicker"
+                            GridPane.columnIndex="3"
+                            GridPane.rowIndex="2"/>
+
+                <Label text="Net Salary"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="3"/>
+
+                <TextField fx:id="netSalaryField"
+                           editable="false"
+                           GridPane.columnIndex="1"
+                           GridPane.rowIndex="3"/>
+
+            </GridPane>
+
+            <HBox alignment="CENTER" spacing="15">
+
+                <Button text="🧮 Calculate"
+                        onAction="#handleCalculate"
+                        style="-fx-background-color:#3498db; -fx-text-fill:white;"/>
+
+                <Button text="💾 Save Payroll"
+                        onAction="#handleSave"
+                        style="-fx-background-color:#27ae60; -fx-text-fill:white;"/>
+
+                <Button text="🔍 Search"
+                        onAction="#handleSearch"
+                        style="-fx-background-color:#9b59b6; -fx-text-fill:white;"/>
+
+                <Button text="🧹 Clear"
+                        onAction="#handleClear"
+                        style="-fx-background-color:#f39c12; -fx-text-fill:white;"/>
+
+            </HBox>
+
+            <TitledPane text="Payroll Records" expanded="true">
+
+                <VBox spacing="10" style="-fx-padding:10;">
+
+                    <TableView fx:id="payrollTableView" prefHeight="250">
+
+                        <columns>
+
+                            <TableColumn fx:id="employeeIdColumn"
+                                         text="Employee ID"
+                                         prefWidth="100"/>
+
+                            <TableColumn fx:id="employeeNameColumn"
+                                         text="Employee Name"
+                                         prefWidth="170"/>
+
+                            <TableColumn fx:id="basicSalaryColumn"
+                                         text="Basic Salary"
+                                         prefWidth="120"/>
+
+                            <TableColumn fx:id="bonusColumn"
+                                         text="Bonus"
+                                         prefWidth="90"/>
+
+                            <TableColumn fx:id="deductionColumn"
+                                         text="Deduction"
+                                         prefWidth="100"/>
+
+                            <TableColumn fx:id="netSalaryColumn"
+                                         text="Net Salary"
+                                         prefWidth="120"/>
+
+                            <TableColumn fx:id="paymentDateColumn"
+                                         text="Payment Date"
+                                         prefWidth="120"/>
+
+                            <TableColumn fx:id="statusColumn"
+                                         text="Status"
+                                         prefWidth="100"/>
+
+                        </columns>
+
+                    </TableView>
+
+                </VBox>
+
+            </TitledPane>
+
+            <HBox spacing="30" alignment="CENTER_LEFT">
+
+                <Label text="Employees Paid:"
+                       style="-fx-font-weight:bold;"/>
+
+                <Label fx:id="paidEmployeesLabel"
+                       text="0"/>
+
+                <Label text="Total Payroll:"
+                       style="-fx-font-weight:bold;"/>
+
+                <Label fx:id="totalPayrollLabel"
+                       text="0.00"/>
+
+            </HBox>
+
+            <Label fx:id="statusLabel"
+                   text="Enter payroll information and click Calculate."
+                   style="-fx-font-weight:bold; -fx-text-fill:#2c3e50;"/>
+
+        </VBox>
+
+    </center>
+
+</BorderPane>

@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="User4.HRManagerControllers.EmployeeDirectory_Controller"
+            prefWidth="1000"
+            prefHeight="650">
+
+    <top>
+        <HBox alignment="CENTER_LEFT"
+              spacing="15"
+              style="-fx-padding:15 20; -fx-background-color:#2c3e50;">
+
+            <Button text="← Back to Dashboard"
+                    onAction="#handleBack"
+                    style="-fx-background-color:#34495e; -fx-text-fill:white;"/>
+
+            <Label text="📋 Employee Directory"
+                   style="-fx-text-fill:white; -fx-font-size:20px; -fx-font-weight:bold;"/>
+
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <Label fx:id="userLabel"
+                   text="HR Manager"
+                   style="-fx-text-fill:#ecf0f1;"/>
+
+        </HBox>
+    </top>
+
+    <center>
+
+        <VBox spacing="15"
+              style="-fx-padding:20;">
+
+            <GridPane hgap="15"
+                      vgap="12"
+                      style="-fx-padding:20; -fx-background-color:#ecf0f1; -fx-border-color:#bdc3c7; -fx-border-radius:5;">
+
+                <Label text="Employee ID"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="0"/>
+
+                <TextField fx:id="employeeIdField"
+                           promptText="Employee ID"
+                           GridPane.columnIndex="1"
+                           GridPane.rowIndex="0"/>
+
+                <Label text="Employee Name"
+                       GridPane.columnIndex="2"
+                       GridPane.rowIndex="0"/>
+
+                <TextField fx:id="employeeNameField"
+                           promptText="Employee Name"
+                           GridPane.columnIndex="3"
+                           GridPane.rowIndex="0"/>
+
+                <Label text="Department"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="1"/>
+
+                <ComboBox fx:id="departmentComboBox"
+                          prefWidth="180"
+                          GridPane.columnIndex="1"
+                          GridPane.rowIndex="1"/>
+
+                <Label text="Designation"
+                       GridPane.columnIndex="2"
+                       GridPane.rowIndex="1"/>
+
+                <ComboBox fx:id="designationComboBox"
+                          prefWidth="180"
+                          GridPane.columnIndex="3"
+                          GridPane.rowIndex="1"/>
+
+            </GridPane>
+
+            <HBox spacing="15" alignment="CENTER">
+
+                <Button text="🔍 Search"
+                        onAction="#handleSearch"
+                        style="-fx-background-color:#3498db; -fx-text-fill:white;"/>
+
+                <Button text="📄 View Details"
+                        onAction="#handleViewDetails"
+                        style="-fx-background-color:#27ae60; -fx-text-fill:white;"/>
+
+                <Button text="🔄 Refresh"
+                        onAction="#handleRefresh"
+                        style="-fx-background-color:#9b59b6; -fx-text-fill:white;"/>
+
+                <Button text="🧹 Clear"
+                        onAction="#handleClear"
+                        style="-fx-background-color:#f39c12; -fx-text-fill:white;"/>
+
+            </HBox>
+
+            <TitledPane text="Employee Directory" expanded="true">
+
+                <VBox spacing="10" style="-fx-padding:10;">
+
+                    <TableView fx:id="employeeDirectoryTableView"
+                               prefHeight="290">
+
+                        <columns>
+
+                            <TableColumn fx:id="employeeIdColumn"
+                                         text="Employee ID"
+                                         prefWidth="90"/>
+
+                            <TableColumn fx:id="employeeNameColumn"
+                                         text="Employee Name"
+                                         prefWidth="170"/>
+
+                            <TableColumn fx:id="departmentColumn"
+                                         text="Department"
+                                         prefWidth="130"/>
+
+                            <TableColumn fx:id="designationColumn"
+                                         text="Designation"
+                                         prefWidth="140"/>
+
+                            <TableColumn fx:id="phoneColumn"
+                                         text="Phone"
+                                         prefWidth="120"/>
+
+                            <TableColumn fx:id="emailColumn"
+                                         text="Email"
+                                         prefWidth="180"/>
+
+                            <TableColumn fx:id="joiningDateColumn"
+                                         text="Joining Date"
+                                         prefWidth="110"/>
+
+                        </columns>
+
+                    </TableView>
+
+                </VBox>
+
+            </TitledPane>
+
+            <HBox spacing="30" alignment="CENTER_LEFT">
+
+                <Label text="Total Employees:"
+                       style="-fx-font-weight:bold;"/>
+
+                <Label fx:id="totalEmployeesLabel"
+                       text="0"/>
+
+                <Label text="Departments:"
+                       style="-fx-font-weight:bold;"/>
+
+                <Label fx:id="departmentCountLabel"
+                       text="0"/>
+
+            </HBox>
+
+            <Label fx:id="statusLabel"
+                   text="Search or browse employee records."
+                   style="-fx-font-weight:bold; -fx-text-fill:#2c3e50;"/>
+
+        </VBox>
+
+    </center>
+
+</BorderPane>
