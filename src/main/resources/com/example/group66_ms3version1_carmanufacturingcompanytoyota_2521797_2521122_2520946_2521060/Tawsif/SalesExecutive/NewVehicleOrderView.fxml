@@ -1,145 +1,231 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.Spinner?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="700.0"
+            prefWidth="1000.0"
+            xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="Tawsif.SalesExecutiveControllers.NewVehicleOrder_Controller">
 
     <children>
 
-        <VBox spacing="15.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
+        <VBox spacing="15.0"
+              AnchorPane.topAnchor="15.0"
+              AnchorPane.bottomAnchor="15.0"
+              AnchorPane.leftAnchor="15.0"
+              AnchorPane.rightAnchor="15.0">
 
             <padding>
-                <Insets bottom="20" left="20" right="20" top="20" />
+                <Insets top="20" right="20" bottom="20" left="20"/>
             </padding>
 
-            <Label style="-fx-font-size:22px; -fx-font-weight:bold;" text="New Vehicle Order" />
+            <Label text="New Vehicle Order"
+                   style="-fx-font-size:22px; -fx-font-weight:bold;"/>
 
-            <Separator />
+            <Separator/>
 
-            <Label style="-fx-font-size:16px; -fx-font-weight:bold;" text="Customer Information" />
-
-            <GridPane hgap="10" vgap="10">
-
-                <Label text="Customer ID" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-                <TextField fx:id="customerIdField" promptText="Customer ID" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-
-                <Label text="Customer Name" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-                <TextField fx:id="customerNameField" promptText="Customer Name" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-
-                <Label text="Phone" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-                <TextField fx:id="phoneField" promptText="Phone Number" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-
-                <Label text="Email" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-                <TextField fx:id="emailField" promptText="Email" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-
-                <Label text="Address" GridPane.columnIndex="0" GridPane.rowIndex="4" />
-                <TextField fx:id="addressField" promptText="Address" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <columnConstraints>
-               <ColumnConstraints />
-               <ColumnConstraints />
-            </columnConstraints>
-            <rowConstraints>
-               <RowConstraints />
-               <RowConstraints />
-               <RowConstraints />
-               <RowConstraints />
-               <RowConstraints />
-            </rowConstraints>
-
-            </GridPane>
-
-            <Separator />
-
-            <Label style="-fx-font-size:16px; -fx-font-weight:bold;" text="Vehicle Information" />
+            <Label text="Customer Information"
+                   style="-fx-font-size:16px; -fx-font-weight:bold;"/>
 
             <GridPane hgap="10" vgap="10">
 
-                <Label text="Vehicle Model" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-                <ComboBox fx:id="vehicleModelComboBox" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                <columnConstraints>
+                    <ColumnConstraints/>
+                    <ColumnConstraints/>
+                </columnConstraints>
 
-                <Label text="Color" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-                <ComboBox fx:id="colorComboBox" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <rowConstraints>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                </rowConstraints>
 
-                <Label text="Transmission" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-                <ComboBox fx:id="transmissionComboBox" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <Label text="Customer ID"
+                       GridPane.rowIndex="0"
+                       GridPane.columnIndex="0"/>
 
-                <Label text="Quantity" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-                <Spinner fx:id="quantitySpinner" prefWidth="120" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                <TextField fx:id="customerIdField"
+                           promptText="Customer ID"
+                           GridPane.rowIndex="0"
+                           GridPane.columnIndex="1"/>
 
-                <Label text="Delivery Date" GridPane.columnIndex="0" GridPane.rowIndex="4" />
-                <DatePicker fx:id="deliveryDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <columnConstraints>
-               <ColumnConstraints />
-               <ColumnConstraints />
-            </columnConstraints>
-            <rowConstraints>
-               <RowConstraints />
-               <RowConstraints />
-               <RowConstraints />
-               <RowConstraints />
-               <RowConstraints />
-            </rowConstraints>
+                <Label text="Customer Name"
+                       GridPane.rowIndex="1"
+                       GridPane.columnIndex="0"/>
+
+                <TextField fx:id="customerNameField"
+                           promptText="Customer Name"
+                           GridPane.rowIndex="1"
+                           GridPane.columnIndex="1"/>
+
+                <Label text="Phone"
+                       GridPane.rowIndex="2"
+                       GridPane.columnIndex="0"/>
+
+                <TextField fx:id="phoneField"
+                           promptText="Phone Number"
+                           GridPane.rowIndex="2"
+                           GridPane.columnIndex="1"/>
+
+                <Label text="Email"
+                       GridPane.rowIndex="3"
+                       GridPane.columnIndex="0"/>
+
+                <TextField fx:id="emailField"
+                           promptText="Email"
+                           GridPane.rowIndex="3"
+                           GridPane.columnIndex="1"/>
+
+                <Label text="Address"
+                       GridPane.rowIndex="4"
+                       GridPane.columnIndex="0"/>
+
+                <TextField fx:id="addressField"
+                           promptText="Address"
+                           GridPane.rowIndex="4"
+                           GridPane.columnIndex="1"/>
 
             </GridPane>
 
-            <Separator />
+            <Separator/>
+
+            <Label text="Vehicle Information"
+                   style="-fx-font-size:16px; -fx-font-weight:bold;"/>
+
+            <GridPane hgap="10" vgap="10">
+
+                <columnConstraints>
+                    <ColumnConstraints/>
+                    <ColumnConstraints/>
+                </columnConstraints>
+
+                <rowConstraints>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                </rowConstraints>
+
+                <Label text="Vehicle Model"
+                       GridPane.rowIndex="0"
+                       GridPane.columnIndex="0"/>
+
+                <ComboBox fx:id="vehicleModelComboBox"
+                          prefWidth="200"
+                          GridPane.rowIndex="0"
+                          GridPane.columnIndex="1"/>
+
+                <Label text="Color"
+                       GridPane.rowIndex="1"
+                       GridPane.columnIndex="0"/>
+
+                <ComboBox fx:id="colorComboBox"
+                          prefWidth="200"
+                          GridPane.rowIndex="1"
+                          GridPane.columnIndex="1"/>
+
+                <Label text="Transmission"
+                       GridPane.rowIndex="2"
+                       GridPane.columnIndex="0"/>
+
+                <ComboBox fx:id="transmissionComboBox"
+                          prefWidth="200"
+                          GridPane.rowIndex="2"
+                          GridPane.columnIndex="1"/>
+
+                <Label text="Quantity"
+                       GridPane.rowIndex="3"
+                       GridPane.columnIndex="0"/>
+
+                <Spinner fx:id="quantitySpinner"
+                         prefWidth="120"
+                         GridPane.rowIndex="3"
+                         GridPane.columnIndex="1"/>
+
+                <Label text="Delivery Date"
+                       GridPane.rowIndex="4"
+                       GridPane.columnIndex="0"/>
+
+                <DatePicker fx:id="deliveryDatePicker"
+                            GridPane.rowIndex="4"
+                            GridPane.columnIndex="1"/>
+
+            </GridPane>
+
+            <Separator/>
 
             <HBox spacing="15">
 
-                <Button fx:id="calculatePriceButton" text="Calculate Price" />
+                <Button fx:id="calculatePriceButton"
+                        text="Calculate Price"
+                        onAction="#handleCalculatePrice"/>
 
-                <Label text="Total Price:" />
+                <Label text="Total Price:"/>
 
-                <Label fx:id="totalPriceLabel" text="0.00" />
+                <Label fx:id="totalPriceLabel"
+                       text="0.00"/>
 
             </HBox>
 
             <HBox spacing="15">
 
-                <Button fx:id="confirmOrderButton" text="Confirm Order" />
+                <Button fx:id="confirmOrderButton"
+                        text="Confirm Order"
+                        onAction="#handleConfirmOrder"/>
 
-                <Button fx:id="clearButton" text="Clear" />
+                <Button fx:id="clearButton"
+                        text="Clear"
+                        onAction="#handleClear"/>
 
             </HBox>
 
-            <TableView fx:id="orderTableView" prefHeight="220.0" prefWidth="852.0">
+            <TableView fx:id="orderTableView"
+                       prefHeight="220"
+                       prefWidth="850">
 
                 <columns>
 
-                    <TableColumn fx:id="orderIdColumn" prefWidth="90" text="Order ID" />
+                    <TableColumn fx:id="orderIdColumn"
+                                 text="Order ID"
+                                 prefWidth="90"/>
 
-                    <TableColumn fx:id="customerColumn" prefWidth="170" text="Customer" />
+                    <TableColumn fx:id="customerColumn"
+                                 text="Customer"
+                                 prefWidth="170"/>
 
-                    <TableColumn fx:id="vehicleColumn" prefWidth="150" text="Vehicle" />
+                    <TableColumn fx:id="vehicleColumn"
+                                 text="Vehicle"
+                                 prefWidth="150"/>
 
-                    <TableColumn fx:id="colorColumn" prefWidth="90" text="Color" />
+                    <TableColumn fx:id="colorColumn"
+                                 text="Color"
+                                 prefWidth="90"/>
 
-                    <TableColumn fx:id="quantityColumn" prefWidth="90" text="Quantity" />
+                    <TableColumn fx:id="quantityColumn"
+                                 text="Quantity"
+                                 prefWidth="90"/>
 
-                    <TableColumn fx:id="priceColumn" prefWidth="120" text="Price" />
+                    <TableColumn fx:id="priceColumn"
+                                 text="Price"
+                                 prefWidth="120"/>
 
-                    <TableColumn fx:id="deliveryColumn" prefWidth="219.0" text="Delivery Date" />
+                    <TableColumn fx:id="deliveryColumn"
+                                 text="Delivery Date"
+                                 prefWidth="140"/>
 
                 </columns>
 
             </TableView>
 
-            <Label fx:id="statusLabel" style="-fx-text-fill:green; -fx-font-weight:bold;" text="Ready" />
+            <Label fx:id="statusLabel"
+                   text="Ready"
+                   style="-fx-text-fill: green; -fx-font-weight: bold;"/>
 
         </VBox>
 

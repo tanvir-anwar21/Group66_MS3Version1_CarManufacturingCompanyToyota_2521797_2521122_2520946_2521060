@@ -6,7 +6,7 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/17"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="User4.HRManagerControllers.UpdateEmployee_Controller"
+            fx:controller="Tawsif.HumanResourcesManagerControllers.UpdateEmployeeInformation_Controller"
             prefWidth="1000"
             prefHeight="650">
 
