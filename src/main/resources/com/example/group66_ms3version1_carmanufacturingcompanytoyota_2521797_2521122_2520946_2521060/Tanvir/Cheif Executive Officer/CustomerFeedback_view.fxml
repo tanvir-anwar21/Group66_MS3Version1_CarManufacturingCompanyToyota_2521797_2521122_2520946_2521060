@@ -1,138 +1,113 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="650.0" prefWidth="950.0"
-            xmlns="http://javafx.com/javafx/17"
-            xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="650.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
 
     <children>
 
-        <VBox spacing="15"
-              AnchorPane.topAnchor="15"
-              AnchorPane.leftAnchor="15"
-              AnchorPane.rightAnchor="15"
-              AnchorPane.bottomAnchor="15">
+        <VBox spacing="15" AnchorPane.bottomAnchor="15" AnchorPane.leftAnchor="15" AnchorPane.rightAnchor="15" AnchorPane.topAnchor="15">
 
             <padding>
-                <Insets top="20" right="20" bottom="20" left="20"/>
+                <Insets bottom="20" left="20" right="20" top="20" />
             </padding>
 
             <!-- Title -->
-            <Label text="Customer Feedback"
-                   style="-fx-font-size:24px; -fx-font-weight:bold;"/>
+            <Label style="-fx-font-size:24px; -fx-font-weight:bold;" text="Customer Feedback" />
 
-            <Separator/>
+            <Separator />
 
             <!-- Feedback Summary -->
             <GridPane hgap="15" vgap="15">
 
                 <columnConstraints>
-                    <ColumnConstraints percentWidth="25"/>
-                    <ColumnConstraints percentWidth="25"/>
-                    <ColumnConstraints percentWidth="25"/>
-                    <ColumnConstraints percentWidth="25"/>
+                    <ColumnConstraints percentWidth="25" />
+                    <ColumnConstraints percentWidth="25" />
+                    <ColumnConstraints percentWidth="25" />
+                    <ColumnConstraints percentWidth="25" />
                 </columnConstraints>
 
-                <VBox spacing="5"
-                      style="-fx-border-color:#BDBDBD; -fx-padding:10;">
-                    <Label text="Total Feedback"/>
-                    <TextField fx:id="totalFeedbackField" editable="false"/>
+                <VBox spacing="5" style="-fx-border-color:#BDBDBD; -fx-padding:10;">
+                    <Label text="Total Feedback" />
+                    <TextField fx:id="totalFeedbackField" editable="false" />
                 </VBox>
 
-                <VBox GridPane.columnIndex="1"
-                      spacing="5"
-                      style="-fx-border-color:#BDBDBD; -fx-padding:10;">
-                    <Label text="Positive"/>
-                    <TextField fx:id="positiveField" editable="false"/>
+                <VBox spacing="5" style="-fx-border-color:#BDBDBD; -fx-padding:10;" GridPane.columnIndex="1">
+                    <Label text="Positive" />
+                    <TextField fx:id="positiveField" editable="false" />
                 </VBox>
 
-                <VBox GridPane.columnIndex="2"
-                      spacing="5"
-                      style="-fx-border-color:#BDBDBD; -fx-padding:10;">
-                    <Label text="Negative"/>
-                    <TextField fx:id="negativeField" editable="false"/>
+                <VBox spacing="5" style="-fx-border-color:#BDBDBD; -fx-padding:10;" GridPane.columnIndex="2">
+                    <Label text="Negative" />
+                    <TextField fx:id="negativeField" editable="false" />
                 </VBox>
 
-                <VBox GridPane.columnIndex="3"
-                      spacing="5"
-                      style="-fx-border-color:#BDBDBD; -fx-padding:10;">
-                    <Label text="Average Rating"/>
-                    <TextField fx:id="ratingField" editable="false"/>
+                <VBox spacing="5" style="-fx-border-color:#BDBDBD; -fx-padding:10;" GridPane.columnIndex="3">
+                    <Label text="Average Rating" />
+                    <TextField fx:id="ratingField" editable="false" />
                 </VBox>
+            <rowConstraints>
+               <RowConstraints />
+            </rowConstraints>
 
             </GridPane>
 
-            <Separator/>
+            <Separator />
 
             <!-- Customer Feedback Table -->
-            <Label text="Customer Feedback Records"
-                   style="-fx-font-size:18px; -fx-font-weight:bold;"/>
+            <Label style="-fx-font-size:18px; -fx-font-weight:bold;" text="Customer Feedback Records" />
 
             <TableView fx:id="feedbackTable" prefHeight="270">
 
                 <columns>
 
-                    <TableColumn fx:id="customerColumn"
-                                 text="Customer"
-                                 prefWidth="180"/>
+                    <TableColumn fx:id="customerColumn" prefWidth="180" text="Customer" />
 
-                    <TableColumn fx:id="productColumn"
-                                 text="Product"
-                                 prefWidth="180"/>
+                    <TableColumn fx:id="productColumn" prefWidth="180" text="Product" />
 
-                    <TableColumn fx:id="ratingColumn"
-                                 text="Rating"
-                                 prefWidth="100"/>
+                    <TableColumn fx:id="ratingColumn" prefWidth="100" text="Rating" />
 
-                    <TableColumn fx:id="feedbackColumn"
-                                 text="Feedback"
-                                 prefWidth="320"/>
+                    <TableColumn fx:id="feedbackColumn" prefWidth="320" text="Feedback" />
 
-                    <TableColumn fx:id="dateColumn"
-                                 text="Date"
-                                 prefWidth="140"/>
+                    <TableColumn fx:id="dateColumn" prefWidth="140" text="Date" />
 
                 </columns>
 
             </TableView>
 
-            <Separator/>
+            <Separator />
 
             <!-- CEO Response -->
-            <Label text="CEO Remarks / Response"
-                   style="-fx-font-size:18px; -fx-font-weight:bold;"/>
+            <Label style="-fx-font-size:18px; -fx-font-weight:bold;" text="CEO Remarks / Response" />
 
-            <TextArea fx:id="remarksArea"
-                      prefHeight="100"
-                      wrapText="true"
-                      promptText="Enter remarks or action plan based on customer feedback..."/>
+            <TextArea fx:id="remarksArea" prefHeight="100" promptText="Enter remarks or action plan based on customer feedback..." wrapText="true" />
 
             <HBox spacing="15">
 
-                <Button fx:id="loadButton"
-                        text="Load Feedback"
-                        prefWidth="140"/>
+                <Button onAction="#loadButton" prefWidth="140" text="Load Feedback" />
 
-                <Button fx:id="refreshButton"
-                        text="Refresh"
-                        prefWidth="120"/>
+                <Button onAction="#refreshButton" prefWidth="120" text="Refresh" />
 
-                <Button fx:id="exportButton"
-                        text="Export Report"
-                        prefWidth="150"/>
+                <Button onAction="#exportButton" prefWidth="150" text="Export Report" />
 
-                <Button fx:id="backButton"
-                        text="Back"
-                        prefWidth="100"/>
+                <Button onAction="#backButton" prefWidth="100" text="Back" />
 
             </HBox>
 
-            <Label fx:id="statusLabel"
-                   text="Ready"
-                   style="-fx-text-fill:green; -fx-font-weight:bold;"/>
+            <Label fx:id="statusLabel" style="-fx-text-fill:green; -fx-font-weight:bold;" text="Ready" />
 
         </VBox>
 

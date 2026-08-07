@@ -1,32 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="650.0" prefWidth="950.0"
-            xmlns="http://javafx.com/javafx/17"
-            xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="650.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
 
     <children>
 
-        <VBox spacing="15"
-              AnchorPane.topAnchor="15"
-              AnchorPane.leftAnchor="15"
-              AnchorPane.rightAnchor="15"
-              AnchorPane.bottomAnchor="15">
+        <VBox spacing="15" AnchorPane.bottomAnchor="15" AnchorPane.leftAnchor="15" AnchorPane.rightAnchor="15" AnchorPane.topAnchor="15">
 
             <padding>
-                <Insets top="20" right="20" bottom="20" left="20"/>
+                <Insets bottom="20" left="20" right="20" top="20" />
             </padding>
 
 
             <!-- Title -->
 
-            <Label text="Quality Control Management"
-                   style="-fx-font-size:24px; -fx-font-weight:bold;"/>
+            <Label style="-fx-font-size:24px; -fx-font-weight:bold;" text="Quality Control Management" />
 
-            <Separator/>
+            <Separator />
 
 
             <!-- Quality Summary -->
@@ -34,91 +40,71 @@
             <GridPane hgap="15" vgap="15">
 
                 <columnConstraints>
-                    <ColumnConstraints percentWidth="25"/>
-                    <ColumnConstraints percentWidth="25"/>
-                    <ColumnConstraints percentWidth="25"/>
-                    <ColumnConstraints percentWidth="25"/>
+                    <ColumnConstraints percentWidth="25" />
+                    <ColumnConstraints percentWidth="25" />
+                    <ColumnConstraints percentWidth="25" />
+                    <ColumnConstraints percentWidth="25" />
                 </columnConstraints>
 
 
-                <VBox spacing="5"
-                      style="-fx-border-color:#BDBDBD; -fx-padding:10;">
-                    <Label text="Total Inspections"/>
-                    <TextField fx:id="inspectionField"
-                               editable="false"/>
+                <VBox spacing="5" style="-fx-border-color:#BDBDBD; -fx-padding:10;">
+                    <Label text="Total Inspections" />
+                    <TextField fx:id="inspectionField" editable="false" />
                 </VBox>
 
 
-                <VBox GridPane.columnIndex="1"
-                      spacing="5"
-                      style="-fx-border-color:#BDBDBD; -fx-padding:10;">
-                    <Label text="Passed Products"/>
-                    <TextField fx:id="passedField"
-                               editable="false"/>
+                <VBox spacing="5" style="-fx-border-color:#BDBDBD; -fx-padding:10;" GridPane.columnIndex="1">
+                    <Label text="Passed Products" />
+                    <TextField fx:id="passedField" editable="false" />
                 </VBox>
 
 
-                <VBox GridPane.columnIndex="2"
-                      spacing="5"
-                      style="-fx-border-color:#BDBDBD; -fx-padding:10;">
-                    <Label text="Failed Products"/>
-                    <TextField fx:id="failedField"
-                               editable="false"/>
+                <VBox spacing="5" style="-fx-border-color:#BDBDBD; -fx-padding:10;" GridPane.columnIndex="2">
+                    <Label text="Failed Products" />
+                    <TextField fx:id="failedField" editable="false" />
                 </VBox>
 
 
-                <VBox GridPane.columnIndex="3"
-                      spacing="5"
-                      style="-fx-border-color:#BDBDBD; -fx-padding:10;">
-                    <Label text="Quality Rate"/>
-                    <TextField fx:id="qualityRateField"
-                               editable="false"/>
+                <VBox spacing="5" style="-fx-border-color:#BDBDBD; -fx-padding:10;" GridPane.columnIndex="3">
+                    <Label text="Quality Rate" />
+                    <TextField fx:id="qualityRateField" editable="false" />
                 </VBox>
+            <rowConstraints>
+               <RowConstraints />
+            </rowConstraints>
 
 
             </GridPane>
 
 
-            <Separator/>
+            <Separator />
 
 
             <!-- Quality Inspection Table -->
 
 
-            <Label text="Quality Inspection Records"
-                   style="-fx-font-size:18px; -fx-font-weight:bold;"/>
+            <Label style="-fx-font-size:18px; -fx-font-weight:bold;" text="Quality Inspection Records" />
 
 
-            <TableView fx:id="qualityTable"
-                       prefHeight="270">
+            <TableView fx:id="qualityTable" prefHeight="270">
 
 
                 <columns>
 
 
-                    <TableColumn fx:id="productColumn"
-                                 text="Product"
-                                 prefWidth="180"/>
+                    <TableColumn fx:id="productColumn" prefWidth="180" text="Product" />
 
 
-                    <TableColumn fx:id="inspectionDateColumn"
-                                 text="Inspection Date"
-                                 prefWidth="150"/>
+                    <TableColumn fx:id="inspectionDateColumn" prefWidth="150" text="Inspection Date" />
 
 
-                    <TableColumn fx:id="inspectorColumn"
-                                 text="Inspector"
-                                 prefWidth="150"/>
+                    <TableColumn fx:id="inspectorColumn" prefWidth="150" text="Inspector" />
 
 
-                    <TableColumn fx:id="resultColumn"
-                                 text="Result"
-                                 prefWidth="120"/>
+                    <TableColumn fx:id="resultColumn" prefWidth="120" text="Result" />
 
 
-                    <TableColumn fx:id="remarksColumn"
-                                 text="Remarks"
-                                 prefWidth="250"/>
+                    <TableColumn fx:id="remarksColumn" prefWidth="250" text="Remarks" />
 
 
                 </columns>
@@ -127,80 +113,67 @@
             </TableView>
 
 
-            <Separator/>
+            <Separator />
 
 
             <!-- Quality Check Entry -->
 
 
-            <Label text="New Quality Inspection"
-                   style="-fx-font-size:18px; -fx-font-weight:bold;"/>
+            <Label style="-fx-font-size:18px; -fx-font-weight:bold;" text="New Quality Inspection" />
 
 
             <GridPane hgap="10" vgap="10">
 
 
-                <TextField fx:id="productField"
-                           promptText="Product Name"/>
+                <TextField fx:id="productField" promptText="Product Name" />
 
 
-                <TextField fx:id="inspectorField"
-                           GridPane.columnIndex="1"
-                           promptText="Inspector Name"/>
+                <TextField fx:id="inspectorField" promptText="Inspector Name" GridPane.columnIndex="1" />
 
 
-                <ComboBox fx:id="resultComboBox"
-                          GridPane.columnIndex="2"
-                          promptText="Result"/>
+                <ComboBox fx:id="resultComboBox" promptText="Result" GridPane.columnIndex="2" />
 
 
-                <DatePicker fx:id="datePicker"
-                            GridPane.columnIndex="3"/>
+                <DatePicker fx:id="datePicker" GridPane.columnIndex="3" />
+            <columnConstraints>
+               <ColumnConstraints />
+               <ColumnConstraints />
+               <ColumnConstraints />
+               <ColumnConstraints />
+            </columnConstraints>
+            <rowConstraints>
+               <RowConstraints />
+            </rowConstraints>
 
 
             </GridPane>
 
 
-            <TextArea fx:id="remarksArea"
-                      prefHeight="80"
-                      wrapText="true"
-                      promptText="Quality remarks..."/>
+            <TextArea fx:id="remarksArea" prefHeight="80" promptText="Quality remarks..." wrapText="true" />
 
 
             <HBox spacing="15">
 
 
-                <Button fx:id="addButton"
-                        text="Add Inspection"
-                        prefWidth="140"/>
+                <Button onAction="#addButton" prefWidth="140" text="Add Inspection" />
 
 
-                <Button fx:id="updateButton"
-                        text="Update"
-                        prefWidth="120"/>
+                <Button onAction="#updateButton" prefWidth="120" text="Update" />
 
 
-                <Button fx:id="deleteButton"
-                        text="Delete"
-                        prefWidth="120"/>
+                <Button onAction="#deleteButton" prefWidth="120" text="Delete" />
 
 
-                <Button fx:id="refreshButton"
-                        text="Refresh"
-                        prefWidth="120"/>
+                <Button onAction="#refreshButton" prefWidth="120" text="Refresh" />
 
 
-                <Button fx:id="backButton"
-                        text="Back"
-                        prefWidth="100"/>
+                <Button onAction="#backButton" prefWidth="100" text="Back" />
 
 
             </HBox>
 
 
-            <Label fx:id="statusLabel"
-                   text="Ready"
-                   style="-fx-text-fill:green; -fx-font-weight:bold;"/>
+            <Label fx:id="statusLabel" style="-fx-text-fill:green; -fx-font-weight:bold;" text="Ready" />
 
 
         </VBox>

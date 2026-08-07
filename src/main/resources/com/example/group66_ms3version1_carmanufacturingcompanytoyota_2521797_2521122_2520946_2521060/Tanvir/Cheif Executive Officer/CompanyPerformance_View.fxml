@@ -1,126 +1,105 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0"
-            xmlns="http://javafx.com/javafx/17"
-            xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
 
     <children>
 
-        <VBox spacing="15"
-              AnchorPane.topAnchor="15"
-              AnchorPane.leftAnchor="15"
-              AnchorPane.rightAnchor="15"
-              AnchorPane.bottomAnchor="15">
+        <VBox spacing="15" AnchorPane.bottomAnchor="15" AnchorPane.leftAnchor="15" AnchorPane.rightAnchor="15" AnchorPane.topAnchor="15">
 
             <padding>
-                <Insets top="20" right="20" bottom="20" left="20"/>
+                <Insets bottom="20" left="20" right="20" top="20" />
             </padding>
 
             <!-- Title -->
-            <Label text="Company Performance"
-                   style="-fx-font-size:24px; -fx-font-weight:bold;"/>
+            <Label style="-fx-font-size:24px; -fx-font-weight:bold;" text="Company Performance" />
 
-            <Separator/>
+            <Separator />
 
             <!-- Performance Summary -->
             <GridPane hgap="15" vgap="15">
 
                 <columnConstraints>
-                    <ColumnConstraints percentWidth="33"/>
-                    <ColumnConstraints percentWidth="33"/>
-                    <ColumnConstraints percentWidth="34"/>
+                    <ColumnConstraints percentWidth="33" />
+                    <ColumnConstraints percentWidth="33" />
+                    <ColumnConstraints percentWidth="34" />
                 </columnConstraints>
 
-                <VBox spacing="5"
-                      style="-fx-border-color:#BDBDBD; -fx-padding:10;">
-                    <Label text="Total Revenue"/>
-                    <TextField fx:id="revenueField" editable="false"/>
+                <VBox spacing="5" style="-fx-border-color:#BDBDBD; -fx-padding:10;">
+                    <Label text="Total Revenue" />
+                    <TextField fx:id="revenueField" editable="false" />
                 </VBox>
 
-                <VBox GridPane.columnIndex="1"
-                      spacing="5"
-                      style="-fx-border-color:#BDBDBD; -fx-padding:10;">
-                    <Label text="Net Profit"/>
-                    <TextField fx:id="profitField" editable="false"/>
+                <VBox spacing="5" style="-fx-border-color:#BDBDBD; -fx-padding:10;" GridPane.columnIndex="1">
+                    <Label text="Net Profit" />
+                    <TextField fx:id="profitField" editable="false" />
                 </VBox>
 
-                <VBox GridPane.columnIndex="2"
-                      spacing="5"
-                      style="-fx-border-color:#BDBDBD; -fx-padding:10;">
-                    <Label text="Growth Rate"/>
-                    <TextField fx:id="growthField" editable="false"/>
+                <VBox spacing="5" style="-fx-border-color:#BDBDBD; -fx-padding:10;" GridPane.columnIndex="2">
+                    <Label text="Growth Rate" />
+                    <TextField fx:id="growthField" editable="false" />
                 </VBox>
+            <rowConstraints>
+               <RowConstraints />
+            </rowConstraints>
 
             </GridPane>
 
-            <Separator/>
+            <Separator />
 
             <!-- Department Performance -->
-            <Label text="Department Performance"
-                   style="-fx-font-size:18px; -fx-font-weight:bold;"/>
+            <Label style="-fx-font-size:18px; -fx-font-weight:bold;" text="Department Performance" />
 
             <TableView fx:id="departmentTable" prefHeight="220">
 
                 <columns>
 
-                    <TableColumn fx:id="departmentColumn"
-                                 text="Department"
-                                 prefWidth="180"/>
+                    <TableColumn fx:id="departmentColumn" prefWidth="180" text="Department" />
 
-                    <TableColumn fx:id="targetColumn"
-                                 text="Target"
-                                 prefWidth="150"/>
+                    <TableColumn fx:id="targetColumn" prefWidth="150" text="Target" />
 
-                    <TableColumn fx:id="achievementColumn"
-                                 text="Achievement"
-                                 prefWidth="170"/>
+                    <TableColumn fx:id="achievementColumn" prefWidth="170" text="Achievement" />
 
-                    <TableColumn fx:id="statusColumn"
-                                 text="Status"
-                                 prefWidth="150"/>
+                    <TableColumn fx:id="statusColumn" prefWidth="150" text="Status" />
 
                 </columns>
 
             </TableView>
 
-            <Separator/>
+            <Separator />
 
             <!-- CEO Remarks -->
-            <Label text="CEO Remarks"
-                   style="-fx-font-size:18px; -fx-font-weight:bold;"/>
+            <Label style="-fx-font-size:18px; -fx-font-weight:bold;" text="CEO Remarks" />
 
-            <TextArea fx:id="remarksArea"
-                      prefHeight="120"
-                      wrapText="true"
-                      promptText="Enter company performance remarks..."/>
+            <TextArea fx:id="remarksArea" prefHeight="120" promptText="Enter company performance remarks..." wrapText="true" />
 
             <HBox spacing="15">
 
-                <Button fx:id="loadButton"
-                        text="Load Performance"
-                        prefWidth="160"/>
+                <Button onAction="#loadButton" prefWidth="160" text="Load Performance" />
 
-                <Button fx:id="saveButton"
-                        text="Save Remarks"
-                        prefWidth="140"/>
+                <Button onAction="#saveButton" prefWidth="140" text="Save Remarks" />
 
-                <Button fx:id="exportButton"
-                        text="Export Report"
-                        prefWidth="140"/>
+                <Button onAction="#exportButton" prefWidth="140" text="Export Report" />
 
-                <Button fx:id="backButton"
-                        text="Back"
-                        prefWidth="100"/>
+                <Button onAction="#backButton" prefWidth="100" text="Back" />
 
             </HBox>
 
-            <Label fx:id="statusLabel"
-                   text="Ready"
-                   style="-fx-text-fill:green; -fx-font-weight:bold;"/>
+            <Label fx:id="statusLabel" style="-fx-text-fill:green; -fx-font-weight:bold;" text="Ready" />
 
         </VBox>
 

@@ -1,173 +1,135 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="650.0" prefWidth="1000.0"
-            xmlns="http://javafx.com/javafx/17"
-            xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
 
     <children>
 
-        <VBox spacing="15"
-              AnchorPane.topAnchor="15"
-              AnchorPane.leftAnchor="15"
-              AnchorPane.rightAnchor="15"
-              AnchorPane.bottomAnchor="15">
+        <VBox spacing="15" AnchorPane.bottomAnchor="15" AnchorPane.leftAnchor="15" AnchorPane.rightAnchor="15" AnchorPane.topAnchor="15">
 
             <padding>
-                <Insets top="20" right="20" bottom="20" left="20"/>
+                <Insets bottom="20" left="20" right="20" top="20" />
             </padding>
 
-            <Label text="Production Manager Dashboard"
-                   style="-fx-font-size:24px; -fx-font-weight:bold;"/>
+            <Label style="-fx-font-size:24px; -fx-font-weight:bold;" text="Production Manager Dashboard" />
 
-            <Separator/>
+            <Separator />
 
             <!-- Production Overview -->
             <GridPane hgap="15" vgap="15">
 
                 <columnConstraints>
-                    <ColumnConstraints percentWidth="25"/>
-                    <ColumnConstraints percentWidth="25"/>
-                    <ColumnConstraints percentWidth="25"/>
-                    <ColumnConstraints percentWidth="25"/>
+                    <ColumnConstraints percentWidth="25" />
+                    <ColumnConstraints percentWidth="25" />
+                    <ColumnConstraints percentWidth="25" />
+                    <ColumnConstraints percentWidth="25" />
                 </columnConstraints>
 
                 <VBox spacing="5" style="-fx-border-color:black;-fx-padding:10;">
-                    <Label text="Today's Production"/>
-                    <TextField fx:id="productionField" editable="false"/>
+                    <Label text="Today's Production" />
+                    <TextField fx:id="productionField" editable="false" />
                 </VBox>
 
-                <VBox GridPane.columnIndex="1"
-                      spacing="5"
-                      style="-fx-border-color:black;-fx-padding:10;">
-                    <Label text="Production Target"/>
-                    <TextField fx:id="targetField" editable="false"/>
+                <VBox spacing="5" style="-fx-border-color:black;-fx-padding:10;" GridPane.columnIndex="1">
+                    <Label text="Production Target" />
+                    <TextField fx:id="targetField" editable="false" />
                 </VBox>
 
-                <VBox GridPane.columnIndex="2"
-                      spacing="5"
-                      style="-fx-border-color:black;-fx-padding:10;">
-                    <Label text="Inventory Level"/>
-                    <TextField fx:id="inventoryField" editable="false"/>
+                <VBox spacing="5" style="-fx-border-color:black;-fx-padding:10;" GridPane.columnIndex="2">
+                    <Label text="Inventory Level" />
+                    <TextField fx:id="inventoryField" editable="false" />
                 </VBox>
 
-                <VBox GridPane.columnIndex="3"
-                      spacing="5"
-                      style="-fx-border-color:black;-fx-padding:10;">
-                    <Label text="Machine Status"/>
-                    <TextField fx:id="machineStatusField" editable="false"/>
+                <VBox spacing="5" style="-fx-border-color:black;-fx-padding:10;" GridPane.columnIndex="3">
+                    <Label text="Machine Status" />
+                    <TextField fx:id="machineStatusField" editable="false" />
                 </VBox>
+            <rowConstraints>
+               <RowConstraints />
+            </rowConstraints>
 
             </GridPane>
 
-            <Separator/>
+            <Separator />
 
-            <Label text="Production Manager Functions"
-                   style="-fx-font-size:18px; -fx-font-weight:bold;"/>
+            <Label style="-fx-font-size:18px; -fx-font-weight:bold;" text="Production Manager Functions" />
 
             <GridPane hgap="15" vgap="15">
 
                 <columnConstraints>
-                    <ColumnConstraints percentWidth="25"/>
-                    <ColumnConstraints percentWidth="25"/>
-                    <ColumnConstraints percentWidth="25"/>
-                    <ColumnConstraints percentWidth="25"/>
+                    <ColumnConstraints percentWidth="25" />
+                    <ColumnConstraints percentWidth="25" />
+                    <ColumnConstraints percentWidth="25" />
+                    <ColumnConstraints percentWidth="25" />
                 </columnConstraints>
 
-                <Button fx:id="planningButton"
-                        text="Production Planning"
-                        prefHeight="45"/>
+                <Button onAction="#planningButton" prefHeight="45" text="Production Planning" />
 
-                <Button fx:id="inventoryButton"
-                        GridPane.columnIndex="1"
-                        text="Inventory Management"
-                        prefHeight="45"/>
+                <Button onAction="#inventoryButton" prefHeight="45" text="Inventory Management" GridPane.columnIndex="1" />
 
-                <Button fx:id="qualityButton"
-                        GridPane.columnIndex="2"
-                        text="Quality Control"
-                        prefHeight="45"/>
+                <Button onAction="#qualityButton" prefHeight="45" text="Quality Control" GridPane.columnIndex="2" />
 
-                <Button fx:id="maintenanceButton"
-                        GridPane.columnIndex="3"
-                        text="Machine Maintenance"
-                        prefHeight="45"/>
+                <Button onAction="#maintenanceButton" prefHeight="45" text="Machine Maintenance" GridPane.columnIndex="3" />
 
-                <Button fx:id="workforceButton"
-                        GridPane.rowIndex="1"
-                        text="Workforce Management"
-                        prefHeight="45"/>
+                <Button onAction="#workforceButton" prefHeight="45" text="Workforce Management" GridPane.rowIndex="1" />
 
-                <Button fx:id="supplierButton"
-                        GridPane.columnIndex="1"
-                        GridPane.rowIndex="1"
-                        text="Supplier Management"
-                        prefHeight="45"/>
+                <Button onAction="#supplierButton" prefHeight="45" text="Supplier Management" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-                <Button fx:id="reportButton"
-                        GridPane.columnIndex="2"
-                        GridPane.rowIndex="1"
-                        text="Production Report"
-                        prefHeight="45"/>
+                <Button onAction="#reportButton" prefHeight="45" text="Production Report" GridPane.columnIndex="2" GridPane.rowIndex="1" />
 
-                <Button fx:id="performanceButton"
-                        GridPane.columnIndex="3"
-                        GridPane.rowIndex="1"
-                        text="Production Performance"
-                        prefHeight="45"/>
+                <Button onAction="#performanceButton" prefHeight="45" text="Production Performance" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <rowConstraints>
+               <RowConstraints />
+               <RowConstraints />
+            </rowConstraints>
 
             </GridPane>
 
-            <Separator/>
+            <Separator />
 
             <HBox spacing="20">
 
                 <VBox spacing="10">
 
-                    <Label text="Pending Production Tasks"
-                           style="-fx-font-size:16px; -fx-font-weight:bold;"/>
+                    <Label style="-fx-font-size:16px; -fx-font-weight:bold;" text="Pending Production Tasks" />
 
-                    <TextArea fx:id="taskArea"
-                              prefHeight="180"
-                              prefWidth="300"
-                              editable="false"/>
+                    <TextArea fx:id="taskArea" editable="false" prefHeight="180" prefWidth="300" />
 
                 </VBox>
 
                 <VBox spacing="10">
 
-                    <Label text="Production Activity Log"
-                           style="-fx-font-size:16px; -fx-font-weight:bold;"/>
+                    <Label style="-fx-font-size:16px; -fx-font-weight:bold;" text="Production Activity Log" />
 
-                    <TextArea fx:id="activityArea"
-                              prefHeight="180"
-                              prefWidth="550"
-                              editable="false"/>
+                    <TextArea fx:id="activityArea" editable="false" prefHeight="180" prefWidth="550" />
 
                 </VBox>
 
             </HBox>
 
-            <Separator/>
+            <Separator />
 
             <HBox spacing="20">
 
-                <Button fx:id="refreshButton"
-                        text="Refresh Dashboard"
-                        prefWidth="170"/>
+                <Button onAction="#refreshButton" prefWidth="170" text="Refresh Dashboard" />
 
-                <Button fx:id="logoutButton"
-                        text="Logout"
-                        prefWidth="120"/>
+                <Button onAction="#logoutButton" prefWidth="120" text="Logout" />
 
             </HBox>
 
-            <Label fx:id="statusLabel"
-                   text="Dashboard Loaded Successfully"
-                   style="-fx-text-fill:green; -fx-font-weight:bold;"/>
+            <Label fx:id="statusLabel" style="-fx-text-fill:green; -fx-font-weight:bold;" text="Dashboard Loaded Successfully" />
 
         </VBox>
 

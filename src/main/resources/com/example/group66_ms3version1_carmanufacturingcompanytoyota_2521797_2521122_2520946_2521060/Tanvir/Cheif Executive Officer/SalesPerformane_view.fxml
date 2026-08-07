@@ -1,134 +1,111 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0"
-            xmlns="http://javafx.com/javafx/17"
-            xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
 
     <children>
 
-        <VBox spacing="15"
-              AnchorPane.topAnchor="15"
-              AnchorPane.leftAnchor="15"
-              AnchorPane.rightAnchor="15"
-              AnchorPane.bottomAnchor="15">
+        <VBox spacing="15" AnchorPane.bottomAnchor="15" AnchorPane.leftAnchor="15" AnchorPane.rightAnchor="15" AnchorPane.topAnchor="15">
 
             <padding>
-                <Insets top="20" right="20" bottom="20" left="20"/>
+                <Insets bottom="20" left="20" right="20" top="20" />
             </padding>
 
             <!-- Title -->
-            <Label text="Sales Performance Dashboard"
-                   style="-fx-font-size:24px; -fx-font-weight:bold;"/>
+            <Label style="-fx-font-size:24px; -fx-font-weight:bold;" text="Sales Performance Dashboard" />
 
-            <Separator/>
+            <Separator />
 
             <!-- Sales Summary -->
             <GridPane hgap="15" vgap="15">
 
                 <columnConstraints>
-                    <ColumnConstraints percentWidth="25"/>
-                    <ColumnConstraints percentWidth="25"/>
-                    <ColumnConstraints percentWidth="25"/>
-                    <ColumnConstraints percentWidth="25"/>
+                    <ColumnConstraints percentWidth="25" />
+                    <ColumnConstraints percentWidth="25" />
+                    <ColumnConstraints percentWidth="25" />
+                    <ColumnConstraints percentWidth="25" />
                 </columnConstraints>
 
-                <VBox spacing="5"
-                      style="-fx-border-color:#BDBDBD; -fx-padding:10;">
-                    <Label text="Total Sales"/>
-                    <TextField fx:id="totalSalesField" editable="false"/>
+                <VBox spacing="5" style="-fx-border-color:#BDBDBD; -fx-padding:10;">
+                    <Label text="Total Sales" />
+                    <TextField fx:id="totalSalesField" editable="false" />
                 </VBox>
 
-                <VBox GridPane.columnIndex="1"
-                      spacing="5"
-                      style="-fx-border-color:#BDBDBD; -fx-padding:10;">
-                    <Label text="Monthly Sales"/>
-                    <TextField fx:id="monthlySalesField" editable="false"/>
+                <VBox spacing="5" style="-fx-border-color:#BDBDBD; -fx-padding:10;" GridPane.columnIndex="1">
+                    <Label text="Monthly Sales" />
+                    <TextField fx:id="monthlySalesField" editable="false" />
                 </VBox>
 
-                <VBox GridPane.columnIndex="2"
-                      spacing="5"
-                      style="-fx-border-color:#BDBDBD; -fx-padding:10;">
-                    <Label text="Top Product"/>
-                    <TextField fx:id="topProductField" editable="false"/>
+                <VBox spacing="5" style="-fx-border-color:#BDBDBD; -fx-padding:10;" GridPane.columnIndex="2">
+                    <Label text="Top Product" />
+                    <TextField fx:id="topProductField" editable="false" />
                 </VBox>
 
-                <VBox GridPane.columnIndex="3"
-                      spacing="5"
-                      style="-fx-border-color:#BDBDBD; -fx-padding:10;">
-                    <Label text="Sales Growth"/>
-                    <TextField fx:id="growthField" editable="false"/>
+                <VBox spacing="5" style="-fx-border-color:#BDBDBD; -fx-padding:10;" GridPane.columnIndex="3">
+                    <Label text="Sales Growth" />
+                    <TextField fx:id="growthField" editable="false" />
                 </VBox>
+            <rowConstraints>
+               <RowConstraints />
+            </rowConstraints>
 
             </GridPane>
 
-            <Separator/>
+            <Separator />
 
             <!-- Sales Details -->
-            <Label text="Sales Records"
-                   style="-fx-font-size:18px; -fx-font-weight:bold;"/>
+            <Label style="-fx-font-size:18px; -fx-font-weight:bold;" text="Sales Records" />
 
             <TableView fx:id="salesTable" prefHeight="250">
 
                 <columns>
 
-                    <TableColumn fx:id="productColumn"
-                                 text="Product"
-                                 prefWidth="180"/>
+                    <TableColumn fx:id="productColumn" prefWidth="180" text="Product" />
 
-                    <TableColumn fx:id="quantityColumn"
-                                 text="Quantity Sold"
-                                 prefWidth="140"/>
+                    <TableColumn fx:id="quantityColumn" prefWidth="140" text="Quantity Sold" />
 
-                    <TableColumn fx:id="revenueColumn"
-                                 text="Revenue"
-                                 prefWidth="180"/>
+                    <TableColumn fx:id="revenueColumn" prefWidth="180" text="Revenue" />
 
-                    <TableColumn fx:id="performanceColumn"
-                                 text="Performance"
-                                 prefWidth="160"/>
+                    <TableColumn fx:id="performanceColumn" prefWidth="160" text="Performance" />
 
                 </columns>
 
             </TableView>
 
-            <Separator/>
+            <Separator />
 
             <!-- CEO Notes -->
-            <Label text="CEO Notes"
-                   style="-fx-font-size:18px; -fx-font-weight:bold;"/>
+            <Label style="-fx-font-size:18px; -fx-font-weight:bold;" text="CEO Notes" />
 
-            <TextArea fx:id="notesArea"
-                      prefHeight="100"
-                      wrapText="true"
-                      promptText="Write observations or recommendations..."/>
+            <TextArea fx:id="notesArea" prefHeight="100" promptText="Write observations or recommendations..." wrapText="true" />
 
             <HBox spacing="15">
 
-                <Button fx:id="loadButton"
-                        text="Load Data"
-                        prefWidth="130"/>
+                <Button onAction="#loadButton" prefWidth="130" text="Load Data" />
 
-                <Button fx:id="refreshButton"
-                        text="Refresh"
-                        prefWidth="120"/>
+                <Button onAction="#refreshButton" prefWidth="120" text="Refresh" />
 
-                <Button fx:id="exportButton"
-                        text="Export Report"
-                        prefWidth="150"/>
+                <Button onAction="#exportButton" prefWidth="150" text="Export Report" />
 
-                <Button fx:id="backButton"
-                        text="Back"
-                        prefWidth="100"/>
+                <Button onAction="#backbutton" prefWidth="100" text="Back" />
 
             </HBox>
 
-            <Label fx:id="statusLabel"
-                   text="Ready"
-                   style="-fx-text-fill:green; -fx-font-weight:bold;"/>
+            <Label fx:id="statusLabel" style="-fx-text-fill:green; -fx-font-weight:bold;" text="Ready" />
 
         </VBox>
 
