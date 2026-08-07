@@ -1,45 +1,61 @@
 package Tawsif.SalesExecutiveControllers;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
 public class SalesExecutiveDashboard_Controller {
-    @javafx.fxml.FXML
+
+    @FXML
     private Label userLabel;
 
-    @javafx.fxml.FXML
-    public void handleNewOrder(ActionEvent actionEvent) {
+    @FXML
+    public void initialize() {
+        userLabel.setText("Sales Executive");
     }
 
-    @javafx.fxml.FXML
-    public void handleInventory(ActionEvent actionEvent) {
+    @FXML
+    public void handleNewOrder(ActionEvent event) {
+        System.out.println("Opening New Vehicle Order...");
     }
 
-    @javafx.fxml.FXML
-    public void handleSalesReport(ActionEvent actionEvent) {
+    @FXML
+    public void handleInventory(ActionEvent event) {
+        System.out.println("Opening Vehicle Inventory...");
     }
 
-    @javafx.fxml.FXML
-    public void handleTrackOrder(ActionEvent actionEvent) {
+    @FXML
+    public void handleSalesReport(ActionEvent event) {
+        System.out.println("Opening Sales Report...");
     }
 
-    @javafx.fxml.FXML
-    public void handleInvoice(ActionEvent actionEvent) {
+    @FXML
+    public void handleTrackOrder(ActionEvent event) {
+        System.out.println("Opening Track Order...");
     }
 
-    @javafx.fxml.FXML
-    public void handleUpdateCustomer(ActionEvent actionEvent) {
+    @FXML
+    public void handleInvoice(ActionEvent event) {
+        System.out.println("Opening Generate Invoice...");
     }
 
-    @javafx.fxml.FXML
-    public void handleCustomer(ActionEvent actionEvent) {
+    @FXML
+    public void handleUpdateCustomer(ActionEvent event) {
+        System.out.println("Opening Update Customer...");
     }
 
-    @javafx.fxml.FXML
-    public void handleLogout(ActionEvent actionEvent) {
+    @FXML
+    public void handleCustomer(ActionEvent event) {
+        System.out.println("Opening Customer Management...");
     }
 
-    @javafx.fxml.FXML
-    public void handleConfirmation(ActionEvent actionEvent) {
+    @FXML
+    public void handleConfirmation(ActionEvent event) {
+        System.out.println("Opening Send Confirmation...");
+    }
+
+    @FXML
+    public void handleLogout(ActionEvent event) {
+        System.out.println("Logging out...");
     }
 }

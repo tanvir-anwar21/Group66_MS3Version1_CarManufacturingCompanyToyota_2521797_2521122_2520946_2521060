@@ -1,34 +1,176 @@
 package Tawsif.SalesExecutiveControllers;
 
+import Tawsif.Models.VehicleOrder;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
+
+import java.time.LocalDate;
 
 public class TrackVehicleOrder_Controller {
-    @javafx.fxml.FXML
+
+
+    @FXML
     private DatePicker deliveryDatePicker;
-    @javafx.fxml.FXML
+
+    @FXML
     private Button searchButton;
-    @javafx.fxml.FXML
-    private TableColumn remarksColumn;
-    @javafx.fxml.FXML
-    private ProgressBar orderProgressBar;
-    @javafx.fxml.FXML
-    private TextField customerField;
-    @javafx.fxml.FXML
-    private Label statusLabel;
-    @javafx.fxml.FXML
-    private TableView trackingTableView;
-    @javafx.fxml.FXML
-    private TextField vehicleField;
-    @javafx.fxml.FXML
-    private TextField statusField;
-    @javafx.fxml.FXML
+
+    @FXML
     private Button refreshButton;
-    @javafx.fxml.FXML
+
+    @FXML
     private Button closeButton;
-    @javafx.fxml.FXML
+
+
+    @FXML
+    private TableColumn<VehicleOrder, String> remarksColumn;
+
+    @FXML
+    private TableColumn<VehicleOrder, LocalDate> dateColumn;
+
+    @FXML
+    private TableColumn<VehicleOrder, String> eventColumn;
+
+
+    @FXML
+    private TableView<VehicleOrder> trackingTableView;
+
+
+    @FXML
+    private ProgressBar orderProgressBar;
+
+
+    @FXML
+    private TextField customerField;
+
+    @FXML
+    private TextField vehicleField;
+
+    @FXML
+    private TextField statusField;
+
+    @FXML
     private TextField orderIdField;
-    @javafx.fxml.FXML
-    private TableColumn dateColumn;
-    @javafx.fxml.FXML
-    private TableColumn eventColumn;
+
+
+    @FXML
+    private Label statusLabel;
+
+
+    private ObservableList<VehicleOrder> vehicleOrderList;
+
+
+    @FXML
+    public void initialize() {
+
+
+        vehicleOrderList = FXCollections.observableArrayList();
+
+        trackingTableView.setItems(vehicleOrderList);
+
+
+        dateColumn.setCellValueFactory(
+                data -> new javafx.beans.property.SimpleObjectProperty<>(
+                        data.getValue().getDeliveryDate()
+                )
+        );
+
+
+        eventColumn.setCellValueFactory(
+                data -> new javafx.beans.property.SimpleStringProperty(
+                        data.getValue().getStatus()
+                )
+        );
+
+
+        remarksColumn.setCellValueFactory(
+                data -> new javafx.beans.property.SimpleStringProperty(
+                        "Vehicle delivery tracking"
+                )
+        );
+
+
+        orderProgressBar.setProgress(0);
+
+    }
+
+
+
+    @FXML
+    private void searchOrder() {
+
+
+        String orderId = orderIdField.getText();
+
+
+        if(orderId.isEmpty()) {
+
+            statusLabel.setText("Enter Order ID");
+            return;
+
+        }
+
+
+        // Temporary data
+        VehicleOrder order = new VehicleOrder(
+                orderId,
+                "C001",
+                "Rahim Motors",
+                "Toyota Corolla",
+                "Black",
+                "Automatic",
+                1,
+                3500000,
+                LocalDate.now(),
+                LocalDate.now().plusDays(7),
+                "Manufacturing Completed"
+        );
+
+
+        customerField.setText(order.getCustomerName());
+
+        vehicleField.setText(order.getVehicleModel());
+
+        statusField.setText(order.getStatus());
+
+
+        orderProgressBar.setProgress(0.8);
+
+
+        vehicleOrderList.clear();
+
+        vehicleOrderList.add(order);
+
+
+        statusLabel.setText("Order Found");
+
+
+    }
+
+
+
+    @FXML
+    private void refreshTracking() {
+
+        trackingTableView.refresh();
+
+        statusLabel.setText("Tracking Updated");
+
+    }
+
+
+
+    @FXML
+    private void closeWindow() {
+
+        Stage stage =
+                (Stage) closeButton.getScene().getWindow();
+
+        stage.close();
+
+    }
+
 }

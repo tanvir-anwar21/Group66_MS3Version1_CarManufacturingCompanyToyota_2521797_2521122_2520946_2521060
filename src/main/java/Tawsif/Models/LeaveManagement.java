@@ -2,21 +2,35 @@ package Tawsif.Models;
 
 import java.time.LocalDate;
 
-public class LeaveRequest {
+public class LeaveManagement {
+
     private String leaveId;
     private String employeeId;
+    private String employeeName;
     private String leaveType;
     private LocalDate fromDate;
     private LocalDate toDate;
+    private int numberOfDays;
     private String reason;
     private String status;
 
-    public LeaveRequest(String leaveId, String employeeId, String leaveType, LocalDate fromDate, LocalDate toDate, String reason, String status) {
+    public LeaveManagement(String leaveId,
+                           String employeeId,
+                           String employeeName,
+                           String leaveType,
+                           LocalDate fromDate,
+                           LocalDate toDate,
+                           int numberOfDays,
+                           String reason,
+                           String status) {
+
         this.leaveId = leaveId;
         this.employeeId = employeeId;
+        this.employeeName = employeeName;
         this.leaveType = leaveType;
         this.fromDate = fromDate;
         this.toDate = toDate;
+        this.numberOfDays = numberOfDays;
         this.reason = reason;
         this.status = status;
     }
@@ -35,6 +49,14 @@ public class LeaveRequest {
 
     public void setEmployeeId(String employeeId) {
         this.employeeId = employeeId;
+    }
+
+    public String getEmployeeName() {
+        return employeeName;
+    }
+
+    public void setEmployeeName(String employeeName) {
+        this.employeeName = employeeName;
     }
 
     public String getLeaveType() {
@@ -61,6 +83,14 @@ public class LeaveRequest {
         this.toDate = toDate;
     }
 
+    public int getNumberOfDays() {
+        return numberOfDays;
+    }
+
+    public void setNumberOfDays(int numberOfDays) {
+        this.numberOfDays = numberOfDays;
+    }
+
     public String getReason() {
         return reason;
     }
@@ -79,12 +109,14 @@ public class LeaveRequest {
 
     @Override
     public String toString() {
-        return "LeaveRequest{" +
+        return "LeaveManagement{" +
                 "leaveId='" + leaveId + '\'' +
                 ", employeeId='" + employeeId + '\'' +
+                ", employeeName='" + employeeName + '\'' +
                 ", leaveType='" + leaveType + '\'' +
                 ", fromDate=" + fromDate +
                 ", toDate=" + toDate +
+                ", numberOfDays=" + numberOfDays +
                 ", reason='" + reason + '\'' +
                 ", status='" + status + '\'' +
                 '}';

@@ -1,61 +1,121 @@
 package Tawsif.HumanResourcesManagerControllers;
 
+import Tawsif.Models.LeaveManagement;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+
+import java.time.LocalDate;
 
 public class LeaveManagement_Controller {
-    @javafx.fxml.FXML
+
+    @FXML
     private Label userLabel;
-    @javafx.fxml.FXML
-    private TableColumn fromDateColumn;
-    @javafx.fxml.FXML
-    private TableColumn reasonColumn;
-    @javafx.fxml.FXML
+
+    @FXML
     private TextField employeeIdField;
-    @javafx.fxml.FXML
+
+    @FXML
     private TextField employeeNameField;
-    @javafx.fxml.FXML
+
+    @FXML
+    private ComboBox<String> leaveTypeComboBox;
+
+    @FXML
     private DatePicker fromDatePicker;
-    @javafx.fxml.FXML
-    private TableColumn toDateColumn;
-    @javafx.fxml.FXML
-    private TableColumn leaveTypeColumn;
-    @javafx.fxml.FXML
+
+    @FXML
     private DatePicker toDatePicker;
-    @javafx.fxml.FXML
-    private ComboBox leaveTypeComboBox;
-    @javafx.fxml.FXML
+
+    @FXML
     private TextField reasonField;
-    @javafx.fxml.FXML
+
+    @FXML
+    private TableView<LeaveManagement> leaveTableView;
+
+    @FXML
+    private TableColumn<LeaveManagement, String> employeeIdColumn;
+
+    @FXML
+    private TableColumn<LeaveManagement, String> employeeNameColumn;
+
+    @FXML
+    private TableColumn<LeaveManagement, String> leaveTypeColumn;
+
+    @FXML
+    private TableColumn<LeaveManagement, LocalDate> fromDateColumn;
+
+    @FXML
+    private TableColumn<LeaveManagement, LocalDate> toDateColumn;
+
+    @FXML
+    private TableColumn<LeaveManagement, Integer> daysColumn;
+
+    @FXML
+    private TableColumn<LeaveManagement, String> reasonColumn;
+
+    @FXML
+    private TableColumn<LeaveManagement, String> statusColumn;
+
+    @FXML
     private Label statusLabel;
-    @javafx.fxml.FXML
-    private TableColumn daysColumn;
-    @javafx.fxml.FXML
-    private TableColumn employeeIdColumn;
-    @javafx.fxml.FXML
-    private TableColumn statusColumn;
-    @javafx.fxml.FXML
-    private TableColumn employeeNameColumn;
-    @javafx.fxml.FXML
-    private TableView leaveTableView;
 
-    @javafx.fxml.FXML
-    public void handleSearch(ActionEvent actionEvent) {
+    private ObservableList<LeaveManagement> leaveList =
+            FXCollections.observableArrayList();
+
+    @FXML
+    public void initialize() {
+
+        leaveTypeComboBox.getItems().addAll(
+                "Casual Leave",
+                "Sick Leave",
+                "Annual Leave",
+                "Maternity Leave",
+                "Emergency Leave",
+                "Unpaid Leave"
+        );
+
+        employeeIdColumn.setCellValueFactory(new PropertyValueFactory<>("employeeId"));
+        employeeNameColumn.setCellValueFactory(new PropertyValueFactory<>("employeeName"));
+        leaveTypeColumn.setCellValueFactory(new PropertyValueFactory<>("leaveType"));
+        fromDateColumn.setCellValueFactory(new PropertyValueFactory<>("fromDate"));
+        toDateColumn.setCellValueFactory(new PropertyValueFactory<>("toDate"));
+        daysColumn.setCellValueFactory(new PropertyValueFactory<>("numberOfDays"));
+        reasonColumn.setCellValueFactory(new PropertyValueFactory<>("reason"));
+        statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
+
+        leaveTableView.setItems(leaveList);
+
+        userLabel.setText("HR Manager");
+        statusLabel.setText("Ready");
     }
 
-    @javafx.fxml.FXML
-    public void handleBack(ActionEvent actionEvent) {
+    @FXML
+    public void handleSearch(ActionEvent event) {
+
     }
 
-    @javafx.fxml.FXML
-    public void handleClear(ActionEvent actionEvent) {
+    @FXML
+    public void handleBack(ActionEvent event) {
+
     }
 
-    @javafx.fxml.FXML
-    public void handleReject(ActionEvent actionEvent) {
+    @FXML
+    public void handleClear(ActionEvent event) {
+
     }
 
-    @javafx.fxml.FXML
-    public void handleApprove(ActionEvent actionEvent) {
+    @FXML
+    public void handleApprove(ActionEvent event) {
+
     }
+
+    @FXML
+    public void handleReject(ActionEvent event) {
+
+    }
+
 }

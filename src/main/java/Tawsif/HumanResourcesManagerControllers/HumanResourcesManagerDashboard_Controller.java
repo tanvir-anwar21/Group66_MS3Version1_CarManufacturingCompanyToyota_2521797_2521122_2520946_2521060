@@ -1,45 +1,62 @@
 package Tawsif.HumanResourcesManagerControllers;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
 public class HumanResourcesManagerDashboard_Controller {
-    @javafx.fxml.FXML
+
+    @FXML
     private Label userLabel;
 
-    @javafx.fxml.FXML
-    public void handlePayroll(ActionEvent actionEvent) {
+    @FXML
+    public void initialize() {
+        userLabel.setText("Human Resources Manager");
     }
 
-    @javafx.fxml.FXML
-    public void handleHRReports(ActionEvent actionEvent) {
+    @FXML
+    public void handleEmployeeRegistration(ActionEvent event) {
+
     }
 
-    @javafx.fxml.FXML
-    public void handleEmployeeDirectory(ActionEvent actionEvent) {
+    @FXML
+    public void handleAttendance(ActionEvent event) {
+
     }
 
-    @javafx.fxml.FXML
-    public void handleEmployeeSeparation(ActionEvent actionEvent) {
+    @FXML
+    public void handleLeaveManagement(ActionEvent event) {
+
     }
 
-    @javafx.fxml.FXML
-    public void handleUpdateEmployee(ActionEvent actionEvent) {
+    @FXML
+    public void handlePayroll(ActionEvent event) {
+
     }
 
-    @javafx.fxml.FXML
-    public void handleAttendance(ActionEvent actionEvent) {
+    @FXML
+    public void handleEmployeeDirectory(ActionEvent event) {
+
     }
 
-    @javafx.fxml.FXML
-    public void handleLogout(ActionEvent actionEvent) {
+    @FXML
+    public void handleEmployeeSeparation(ActionEvent event) {
+
     }
 
-    @javafx.fxml.FXML
-    public void handleEmployeeRegistration(ActionEvent actionEvent) {
+    @FXML
+    public void handleUpdateEmployee(ActionEvent event) {
+
     }
 
-    @javafx.fxml.FXML
-    public void handleLeaveManagement(ActionEvent actionEvent) {
+    @FXML
+    public void handleHRReports(ActionEvent event) {
+
     }
+
+    @FXML
+    public void handleLogout(ActionEvent event) {
+
+    }
+
 }

@@ -56,6 +56,15 @@
                           GridPane.columnIndex="3"
                           GridPane.rowIndex="0"/>
 
+                <Label text="Designation"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="2"/>
+
+                <ComboBox fx:id="designationComboBox"
+                          prefWidth="180"
+                          GridPane.columnIndex="1"
+                          GridPane.rowIndex="2"/>
+
                 <Label text="Employee ID"
                        GridPane.columnIndex="0"
                        GridPane.rowIndex="1"/>

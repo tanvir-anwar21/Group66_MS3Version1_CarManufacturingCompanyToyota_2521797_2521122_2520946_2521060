@@ -1,63 +1,121 @@
 package Tawsif.HumanResourcesManagerControllers;
 
+import Tawsif.Models.EmployeeSeparation;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+
+import java.time.LocalDate;
 
 public class EmployeeSeparation_Controller {
-    @javafx.fxml.FXML
-    private TableView separationTableView;
-    @javafx.fxml.FXML
-    private Label userLabel;
-    @javafx.fxml.FXML
-    private TableColumn reasonColumn;
-    @javafx.fxml.FXML
-    private DatePicker lastWorkingDayPicker;
-    @javafx.fxml.FXML
+
+    @FXML
+    private TableView<EmployeeSeparation> separationTableView;
+
+    @FXML
+    private TableColumn<EmployeeSeparation, String> employeeIdColumn;
+
+    @FXML
+    private TableColumn<EmployeeSeparation, String> employeeNameColumn;
+
+    @FXML
+    private TableColumn<EmployeeSeparation, String> departmentColumn;
+
+    @FXML
+    private TableColumn<EmployeeSeparation, String> typeColumn;
+
+    @FXML
+    private TableColumn<EmployeeSeparation, LocalDate> lastDayColumn;
+
+    @FXML
+    private TableColumn<EmployeeSeparation, String> reasonColumn;
+
+    @FXML
+    private TableColumn<EmployeeSeparation, String> statusColumn;
+
+    @FXML
     private TextField employeeIdField;
-    @javafx.fxml.FXML
+
+    @FXML
     private TextField employeeNameField;
-    @javafx.fxml.FXML
-    private TableColumn typeColumn;
-    @javafx.fxml.FXML
-    private Label statusLabel;
-    @javafx.fxml.FXML
-    private TableColumn lastDayColumn;
-    @javafx.fxml.FXML
+
+    @FXML
     private TextField departmentField;
-    @javafx.fxml.FXML
-    private ComboBox separationTypeComboBox;
-    @javafx.fxml.FXML
-    private TableColumn employeeIdColumn;
-    @javafx.fxml.FXML
-    private TableColumn statusColumn;
-    @javafx.fxml.FXML
-    private TableColumn departmentColumn;
-    @javafx.fxml.FXML
-    private TableColumn employeeNameColumn;
-    @javafx.fxml.FXML
+
+    @FXML
+    private ComboBox<String> separationTypeComboBox;
+
+    @FXML
+    private DatePicker lastWorkingDayPicker;
+
+    @FXML
     private TextArea reasonTextArea;
 
-    @javafx.fxml.FXML
-    public void handleSearch(ActionEvent actionEvent) {
+    @FXML
+    private Label userLabel;
+
+    @FXML
+    private Label statusLabel;
+
+    private ObservableList<EmployeeSeparation> separationList =
+            FXCollections.observableArrayList();
+
+    @FXML
+    public void initialize() {
+
+        separationTypeComboBox.getItems().addAll(
+                "Resignation",
+                "Retirement",
+                "Termination",
+                "Contract End",
+                "Transfer"
+        );
+
+        employeeIdColumn.setCellValueFactory(new PropertyValueFactory<>("employeeId"));
+        employeeNameColumn.setCellValueFactory(new PropertyValueFactory<>("employeeName"));
+        departmentColumn.setCellValueFactory(new PropertyValueFactory<>("department"));
+        typeColumn.setCellValueFactory(new PropertyValueFactory<>("separationType"));
+        lastDayColumn.setCellValueFactory(new PropertyValueFactory<>("lastWorkingDay"));
+        reasonColumn.setCellValueFactory(new PropertyValueFactory<>("reason"));
+        statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
+
+        separationTableView.setItems(separationList);
+
+        userLabel.setText("HR Manager");
+        statusLabel.setText("Ready");
     }
 
-    @javafx.fxml.FXML
-    public void handleGenerateClearance(ActionEvent actionEvent) {
+    @FXML
+    public void handleSearch(ActionEvent event) {
+
     }
 
-    @javafx.fxml.FXML
-    public void handleBack(ActionEvent actionEvent) {
+    @FXML
+    public void handleGenerateClearance(ActionEvent event) {
+
     }
 
-    @javafx.fxml.FXML
-    public void handleClear(ActionEvent actionEvent) {
+    @FXML
+    public void handleBack(ActionEvent event) {
+
     }
 
-    @javafx.fxml.FXML
-    public void handleSave(ActionEvent actionEvent) {
+    @FXML
+    public void handleClear(ActionEvent event) {
+
     }
 
-    @javafx.fxml.FXML
-    public void handleRemove(ActionEvent actionEvent) {
+    @FXML
+    public void handleSave(ActionEvent event) {
+
     }
+
+    @FXML
+    public void handleRemove(ActionEvent event) {
+
+    }
+
 }

@@ -2,7 +2,6 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.geometry.Insets?>
 
 <BorderPane xmlns="http://javafx.com/javafx/17"
             xmlns:fx="http://javafx.com/fxml/1"
@@ -40,66 +39,75 @@
                       vgap="10"
                       style="-fx-padding:20; -fx-background-color:#ecf0f1; -fx-border-color:#bdc3c7; -fx-border-radius:5;">
 
-                <Label text="Employee ID"
+                <Label text="Payroll ID"
                        GridPane.columnIndex="0"
                        GridPane.rowIndex="0"/>
+
+                <TextField fx:id="payrollIdField"
+                           promptText="Payroll ID"
+                           GridPane.columnIndex="1"
+                           GridPane.rowIndex="0"/>
+
+                <Label text="Employee ID"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="1"/>
 
                 <TextField fx:id="employeeIdField"
                            promptText="Employee ID"
                            GridPane.columnIndex="1"
-                           GridPane.rowIndex="0"/>
+                           GridPane.rowIndex="1"/>
 
                 <Label text="Employee Name"
                        GridPane.columnIndex="2"
-                       GridPane.rowIndex="0"/>
+                       GridPane.rowIndex="1"/>
 
                 <TextField fx:id="employeeNameField"
                            editable="false"
                            GridPane.columnIndex="3"
-                           GridPane.rowIndex="0"/>
+                           GridPane.rowIndex="1"/>
 
                 <Label text="Basic Salary"
                        GridPane.columnIndex="0"
-                       GridPane.rowIndex="1"/>
+                       GridPane.rowIndex="2"/>
 
                 <TextField fx:id="basicSalaryField"
                            GridPane.columnIndex="1"
-                           GridPane.rowIndex="1"/>
+                           GridPane.rowIndex="2"/>
 
                 <Label text="Bonus"
                        GridPane.columnIndex="2"
-                       GridPane.rowIndex="1"/>
+                       GridPane.rowIndex="2"/>
 
                 <TextField fx:id="bonusField"
                            promptText="Bonus"
                            GridPane.columnIndex="3"
-                           GridPane.rowIndex="1"/>
+                           GridPane.rowIndex="2"/>
 
                 <Label text="Deduction"
                        GridPane.columnIndex="0"
-                       GridPane.rowIndex="2"/>
+                       GridPane.rowIndex="3"/>
 
                 <TextField fx:id="deductionField"
                            promptText="Deduction"
                            GridPane.columnIndex="1"
-                           GridPane.rowIndex="2"/>
+                           GridPane.rowIndex="3"/>
 
                 <Label text="Payment Date"
                        GridPane.columnIndex="2"
-                       GridPane.rowIndex="2"/>
+                       GridPane.rowIndex="3"/>
 
                 <DatePicker fx:id="paymentDatePicker"
                             GridPane.columnIndex="3"
-                            GridPane.rowIndex="2"/>
+                            GridPane.rowIndex="3"/>
 
                 <Label text="Net Salary"
                        GridPane.columnIndex="0"
-                       GridPane.rowIndex="3"/>
+                       GridPane.rowIndex="4"/>
 
                 <TextField fx:id="netSalaryField"
                            editable="false"
                            GridPane.columnIndex="1"
-                           GridPane.rowIndex="3"/>
+                           GridPane.rowIndex="4"/>
 
             </GridPane>
 
@@ -131,17 +139,21 @@
 
                         <columns>
 
+                            <TableColumn fx:id="payrollIdColumn"
+                                         text="Payroll ID"
+                                         prefWidth="90"/>
+
                             <TableColumn fx:id="employeeIdColumn"
                                          text="Employee ID"
                                          prefWidth="100"/>
 
                             <TableColumn fx:id="employeeNameColumn"
                                          text="Employee Name"
-                                         prefWidth="170"/>
+                                         prefWidth="160"/>
 
                             <TableColumn fx:id="basicSalaryColumn"
                                          text="Basic Salary"
-                                         prefWidth="120"/>
+                                         prefWidth="110"/>
 
                             <TableColumn fx:id="bonusColumn"
                                          text="Bonus"

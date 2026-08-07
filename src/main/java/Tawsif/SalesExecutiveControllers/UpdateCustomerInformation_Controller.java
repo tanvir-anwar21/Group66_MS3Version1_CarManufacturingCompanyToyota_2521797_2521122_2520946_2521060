@@ -1,40 +1,239 @@
 package Tawsif.SalesExecutiveControllers;
 
+import Tawsif.Models.Customer;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 
 public class UpdateCustomerInformation_Controller {
-    @javafx.fxml.FXML
+
+
+    @FXML
     private Button searchButton;
-    @javafx.fxml.FXML
-    private TextField emailField;
-    @javafx.fxml.FXML
-    private ComboBox vehicleComboBox;
-    @javafx.fxml.FXML
-    private TableView customerTableView;
-    @javafx.fxml.FXML
-    private TableColumn phoneColumn;
-    @javafx.fxml.FXML
-    private Label statusLabel;
-    @javafx.fxml.FXML
-    private TextField phoneField;
-    @javafx.fxml.FXML
-    private TableColumn vehicleColumn;
-    @javafx.fxml.FXML
-    private Button cancelButton;
-    @javafx.fxml.FXML
-    private Button clearButton;
-    @javafx.fxml.FXML
-    private TextField customerNameField;
-    @javafx.fxml.FXML
-    private TableColumn nameColumn;
-    @javafx.fxml.FXML
+
+    @FXML
     private Button updateButton;
-    @javafx.fxml.FXML
+
+    @FXML
+    private Button clearButton;
+
+    @FXML
+    private Button cancelButton;
+
+
+    @FXML
     private TextField customerIdField;
-    @javafx.fxml.FXML
+
+    @FXML
+    private TextField customerNameField;
+
+    @FXML
+    private TextField phoneField;
+
+    @FXML
+    private TextField emailField;
+
+    @FXML
     private TextField addressField;
-    @javafx.fxml.FXML
-    private TableColumn idColumn;
-    @javafx.fxml.FXML
-    private TableColumn emailColumn;
+
+
+    @FXML
+    private ComboBox<String> vehicleComboBox;
+
+
+    @FXML
+    private TableView<Customer> customerTableView;
+
+
+    @FXML
+    private TableColumn<Customer, String> idColumn;
+
+    @FXML
+    private TableColumn<Customer, String> nameColumn;
+
+    @FXML
+    private TableColumn<Customer, String> phoneColumn;
+
+    @FXML
+    private TableColumn<Customer, String> emailColumn;
+
+    @FXML
+    private TableColumn<Customer, String> vehicleColumn;
+
+
+    @FXML
+    private Label statusLabel;
+
+
+    private ObservableList<Customer> customerList;
+
+
+
+    @FXML
+    public void initialize() {
+
+
+        customerList = FXCollections.observableArrayList();
+
+        customerTableView.setItems(customerList);
+
+
+        idColumn.setCellValueFactory(
+                data -> new SimpleStringProperty(
+                        data.getValue().getCustomerId()
+                )
+        );
+
+
+        nameColumn.setCellValueFactory(
+                data -> new SimpleStringProperty(
+                        data.getValue().getCustomerName()
+                )
+        );
+
+
+        phoneColumn.setCellValueFactory(
+                data -> new SimpleStringProperty(
+                        data.getValue().getPhone()
+                )
+        );
+
+
+        emailColumn.setCellValueFactory(
+                data -> new SimpleStringProperty(
+                        data.getValue().getEmail()
+                )
+        );
+
+
+        vehicleColumn.setCellValueFactory(
+                data -> new SimpleStringProperty(
+                        "Toyota Vehicle"
+                )
+        );
+
+
+        vehicleComboBox.getItems().addAll(
+                "Toyota Corolla",
+                "Toyota Axio",
+                "Toyota Premio",
+                "Toyota Camry"
+        );
+
+
+        statusLabel.setText("Ready");
+
+
+    }
+
+
+
+    @FXML
+    private void searchCustomer() {
+
+
+        String id = customerIdField.getText().trim();
+
+
+        if(id.isEmpty()) {
+
+            statusLabel.setText("Enter Customer ID");
+            return;
+
+        }
+
+
+        // Temporary data
+        Customer customer = new Customer(
+                id,
+                "Rahim Motors",
+                "01700000000",
+                "rahim@gmail.com",
+                "Dhaka",
+                3,
+                "Toyota Corolla",
+                "Active"
+        );
+
+
+        customerNameField.setText(customer.getCustomerName());
+
+        phoneField.setText(customer.getPhone());
+
+        emailField.setText(customer.getEmail());
+
+        addressField.setText(customer.getAddress());
+
+
+        customerList.clear();
+
+        customerList.add(customer);
+
+
+        statusLabel.setText("Customer Found");
+
+
+    }
+
+
+
+    @FXML
+    private void updateCustomer() {
+
+
+        if(customerIdField.getText().isEmpty()) {
+
+            statusLabel.setText("Search customer first");
+            return;
+
+        }
+
+
+        statusLabel.setText(
+                "Customer information updated successfully"
+        );
+
+
+    }
+
+
+
+    @FXML
+    private void clearFields() {
+
+
+        customerIdField.clear();
+
+        customerNameField.clear();
+
+        phoneField.clear();
+
+        emailField.clear();
+
+        addressField.clear();
+
+        vehicleComboBox.setValue(null);
+
+
+        statusLabel.setText("Cleared");
+
+
+    }
+
+
+
+    @FXML
+    private void cancelUpdate() {
+
+
+        Stage stage =
+                (Stage) cancelButton.getScene().getWindow();
+
+        stage.close();
+
+    }
+
 }

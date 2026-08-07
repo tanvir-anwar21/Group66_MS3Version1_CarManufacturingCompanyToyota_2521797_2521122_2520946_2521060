@@ -1,63 +1,151 @@
 package Tawsif.HumanResourcesManagerControllers;
 
+import Tawsif.Models.Attendance;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class AttendanceManagement_Controller {
-    @javafx.fxml.FXML
-    private TableView attendanceTableView;
-    @javafx.fxml.FXML
-    private Label userLabel;
-    @javafx.fxml.FXML
-    private ComboBox attendanceStatusComboBox;
-    @javafx.fxml.FXML
+
+    @FXML
+    private TableView<Attendance> attendanceTableView;
+
+    @FXML
+    private TableColumn<Attendance, String> employeeIdColumn;
+
+    @FXML
+    private TableColumn<Attendance, String> employeeNameColumn;
+
+    @FXML
+    private TableColumn<Attendance, String> departmentColumn;
+
+    @FXML
+    private TableColumn<Attendance, LocalDate> dateColumn;
+
+    @FXML
+    private TableColumn<Attendance, LocalTime> checkInColumn;
+
+    @FXML
+    private TableColumn<Attendance, LocalTime> checkOutColumn;
+
+    @FXML
+    private TableColumn<Attendance, Double> hoursWorkedColumn;
+
+    @FXML
+    private TableColumn<Attendance, String> statusColumn;
+
+    @FXML
     private TextField employeeIdField;
-    @javafx.fxml.FXML
-    private Label absentCountLabel;
-    @javafx.fxml.FXML
-    private Label presentCountLabel;
-    @javafx.fxml.FXML
-    private TableColumn checkOutColumn;
-    @javafx.fxml.FXML
-    private ComboBox departmentComboBox;
-    @javafx.fxml.FXML
-    private Label statusLabel;
-    @javafx.fxml.FXML
-    private Label lateCountLabel;
-    @javafx.fxml.FXML
+
+    @FXML
+    private ComboBox<String> departmentComboBox;
+
+    @FXML
+    private ComboBox<String> designationComboBox;
+
+    @FXML
+    private ComboBox<String> attendanceStatusComboBox;
+
+    @FXML
     private DatePicker attendanceDatePicker;
-    @javafx.fxml.FXML
-    private TableColumn employeeIdColumn;
-    @javafx.fxml.FXML
-    private TableColumn statusColumn;
-    @javafx.fxml.FXML
-    private TableColumn departmentColumn;
-    @javafx.fxml.FXML
-    private TableColumn checkInColumn;
-    @javafx.fxml.FXML
-    private TableColumn employeeNameColumn;
-    @javafx.fxml.FXML
-    private TableColumn dateColumn;
-    @javafx.fxml.FXML
-    private TableColumn hoursWorkedColumn;
 
-    @javafx.fxml.FXML
-    public void handleSearch(ActionEvent actionEvent) {
+    @FXML
+    private Label presentCountLabel;
+
+    @FXML
+    private Label absentCountLabel;
+
+    @FXML
+    private Label lateCountLabel;
+
+    @FXML
+    private Label userLabel;
+
+    @FXML
+    private Label statusLabel;
+
+    private ObservableList<Attendance> attendanceList =
+            FXCollections.observableArrayList();
+
+    @FXML
+    public void initialize() {
+
+        departmentComboBox.getItems().addAll(
+                "Executive Office",
+                "Production",
+                "Sales",
+                "Human Resources",
+                "Engineering",
+                "Quality Control",
+                "Procurement"
+        );
+
+        designationComboBox.getItems().addAll(
+                "Chief Executive Officer",
+                "Production Manager",
+                "Sales Executive",
+                "Human Resources Manager",
+                "Automotive Engineer",
+                "Vehicle Inspector",
+                "Quality Control Manager",
+                "Procurement Officer"
+        );
+
+        attendanceStatusComboBox.getItems().addAll(
+                "Present",
+                "Absent",
+                "Late",
+                "Leave"
+        );
+
+        employeeIdColumn.setCellValueFactory(new PropertyValueFactory<>("employeeId"));
+        employeeNameColumn.setCellValueFactory(new PropertyValueFactory<>("employeeName"));
+        departmentColumn.setCellValueFactory(new PropertyValueFactory<>("department"));
+        dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
+        checkInColumn.setCellValueFactory(new PropertyValueFactory<>("checkIn"));
+        checkOutColumn.setCellValueFactory(new PropertyValueFactory<>("checkOut"));
+        hoursWorkedColumn.setCellValueFactory(new PropertyValueFactory<>("hoursWorked"));
+        statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
+
+        attendanceTableView.setItems(attendanceList);
+
+        presentCountLabel.setText("0");
+        absentCountLabel.setText("0");
+        lateCountLabel.setText("0");
+
+        userLabel.setText("HR Manager");
+        statusLabel.setText("Ready");
     }
 
-    @javafx.fxml.FXML
-    public void handleBack(ActionEvent actionEvent) {
+    @FXML
+    public void handleSearch(ActionEvent event) {
+
     }
 
-    @javafx.fxml.FXML
-    public void handleClear(ActionEvent actionEvent) {
+    @FXML
+    public void handleBack(ActionEvent event) {
+
     }
 
-    @javafx.fxml.FXML
-    public void handleUpdate(ActionEvent actionEvent) {
+    @FXML
+    public void handleClear(ActionEvent event) {
+
     }
 
-    @javafx.fxml.FXML
-    public void handleMarkAttendance(ActionEvent actionEvent) {
+    @FXML
+    public void handleUpdate(ActionEvent event) {
+
     }
+
+    @FXML
+    public void handleMarkAttendance(ActionEvent event) {
+
+    }
+
 }

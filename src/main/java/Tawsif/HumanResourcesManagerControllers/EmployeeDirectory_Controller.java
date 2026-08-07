@@ -1,59 +1,131 @@
 package Tawsif.HumanResourcesManagerControllers;
 
+import Tawsif.Models.Employee;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+
+import java.time.LocalDate;
 
 public class EmployeeDirectory_Controller {
-    @javafx.fxml.FXML
-    private Label userLabel;
-    @javafx.fxml.FXML
+
+    @FXML
+    private TableView<Employee> employeeDirectoryTableView;
+
+    @FXML
+    private TableColumn<Employee, String> employeeIdColumn;
+
+    @FXML
+    private TableColumn<Employee, String> employeeNameColumn;
+
+    @FXML
+    private TableColumn<Employee, String> departmentColumn;
+
+    @FXML
+    private TableColumn<Employee, String> designationColumn;
+
+    @FXML
+    private TableColumn<Employee, String> phoneColumn;
+
+    @FXML
+    private TableColumn<Employee, String> emailColumn;
+
+    @FXML
+    private TableColumn<Employee, LocalDate> joiningDateColumn;
+
+    @FXML
     private TextField employeeIdField;
-    @javafx.fxml.FXML
+
+    @FXML
     private TextField employeeNameField;
-    @javafx.fxml.FXML
+
+    @FXML
+    private ComboBox<String> departmentComboBox;
+
+    @FXML
+    private ComboBox<String> designationComboBox;
+
+    @FXML
     private Label totalEmployeesLabel;
-    @javafx.fxml.FXML
-    private ComboBox departmentComboBox;
-    @javafx.fxml.FXML
-    private TableView employeeDirectoryTableView;
-    @javafx.fxml.FXML
-    private TableColumn phoneColumn;
-    @javafx.fxml.FXML
-    private Label statusLabel;
-    @javafx.fxml.FXML
-    private ComboBox designationComboBox;
-    @javafx.fxml.FXML
-    private TableColumn joiningDateColumn;
-    @javafx.fxml.FXML
+
+    @FXML
     private Label departmentCountLabel;
-    @javafx.fxml.FXML
-    private TableColumn employeeIdColumn;
-    @javafx.fxml.FXML
-    private TableColumn departmentColumn;
-    @javafx.fxml.FXML
-    private TableColumn employeeNameColumn;
-    @javafx.fxml.FXML
-    private TableColumn designationColumn;
-    @javafx.fxml.FXML
-    private TableColumn emailColumn;
 
-    @javafx.fxml.FXML
-    public void handleSearch(ActionEvent actionEvent) {
+    @FXML
+    private Label userLabel;
+
+    @FXML
+    private Label statusLabel;
+
+    private ObservableList<Employee> employeeList =
+            FXCollections.observableArrayList();
+
+    @FXML
+    public void initialize() {
+
+        departmentComboBox.getItems().addAll(
+                "Executive Office",
+                "Production",
+                "Sales",
+                "Human Resources",
+                "Engineering",
+                "Quality Control",
+                "Procurement"
+        );
+
+        designationComboBox.getItems().addAll(
+                "Chief Executive Officer",
+                "Production Manager",
+                "Sales Executive",
+                "Human Resources Manager",
+                "Automotive Engineer",
+                "Vehicle Inspector",
+                "Quality Control Manager",
+                "Procurement Officer"
+        );
+
+        employeeIdColumn.setCellValueFactory(new PropertyValueFactory<>("employeeId"));
+        employeeNameColumn.setCellValueFactory(new PropertyValueFactory<>("employeeName"));
+        departmentColumn.setCellValueFactory(new PropertyValueFactory<>("department"));
+        designationColumn.setCellValueFactory(new PropertyValueFactory<>("designation"));
+        phoneColumn.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
+        joiningDateColumn.setCellValueFactory(new PropertyValueFactory<>("joiningDate"));
+
+        employeeDirectoryTableView.setItems(employeeList);
+
+        totalEmployeesLabel.setText("0");
+        departmentCountLabel.setText("0");
+        userLabel.setText("HR Manager");
+        statusLabel.setText("Ready");
     }
 
-    @javafx.fxml.FXML
-    public void handleBack(ActionEvent actionEvent) {
+    @FXML
+    public void handleSearch(ActionEvent event) {
+
     }
 
-    @javafx.fxml.FXML
-    public void handleClear(ActionEvent actionEvent) {
+    @FXML
+    public void handleBack(ActionEvent event) {
+
     }
 
-    @javafx.fxml.FXML
-    public void handleViewDetails(ActionEvent actionEvent) {
+    @FXML
+    public void handleClear(ActionEvent event) {
+
     }
 
-    @javafx.fxml.FXML
-    public void handleRefresh(ActionEvent actionEvent) {
+    @FXML
+    public void handleViewDetails(ActionEvent event) {
+
     }
+
+    @FXML
+    public void handleRefresh(ActionEvent event) {
+
+    }
+
 }

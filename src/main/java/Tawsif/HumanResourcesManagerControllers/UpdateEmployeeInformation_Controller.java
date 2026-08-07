@@ -1,61 +1,140 @@
 package Tawsif.HumanResourcesManagerControllers;
 
+import Tawsif.Models.Employee;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 public class UpdateEmployeeInformation_Controller {
-    @javafx.fxml.FXML
+
+    @FXML
     private Label userLabel;
-    @javafx.fxml.FXML
+
+    @FXML
     private TextField employeeIdField;
-    @javafx.fxml.FXML
+
+    @FXML
     private TextField employeeNameField;
-    @javafx.fxml.FXML
+
+    @FXML
     private TextField emailField;
-    @javafx.fxml.FXML
-    private ComboBox departmentComboBox;
-    @javafx.fxml.FXML
-    private TableColumn phoneColumn;
-    @javafx.fxml.FXML
-    private Label statusLabel;
-    @javafx.fxml.FXML
+
+    @FXML
     private TextField phoneField;
-    @javafx.fxml.FXML
-    private TableView employeeTableView;
-    @javafx.fxml.FXML
-    private ComboBox designationComboBox;
-    @javafx.fxml.FXML
-    private TableColumn employeeIdColumn;
-    @javafx.fxml.FXML
-    private TableColumn departmentColumn;
-    @javafx.fxml.FXML
-    private TableColumn salaryColumn;
-    @javafx.fxml.FXML
-    private TableColumn employeeNameColumn;
-    @javafx.fxml.FXML
+
+    @FXML
     private TextField salaryField;
-    @javafx.fxml.FXML
-    private TableColumn designationColumn;
-    @javafx.fxml.FXML
-    private TableColumn emailColumn;
 
-    @javafx.fxml.FXML
-    public void handleSearch(ActionEvent actionEvent) {
+    @FXML
+    private ComboBox<String> departmentComboBox;
+
+    @FXML
+    private ComboBox<String> designationComboBox;
+
+    @FXML
+    private TableView<Employee> employeeTableView;
+
+    @FXML
+    private TableColumn<Employee, String> employeeIdColumn;
+
+    @FXML
+    private TableColumn<Employee, String> employeeNameColumn;
+
+    @FXML
+    private TableColumn<Employee, String> departmentColumn;
+
+    @FXML
+    private TableColumn<Employee, String> designationColumn;
+
+    @FXML
+    private TableColumn<Employee, String> emailColumn;
+
+    @FXML
+    private TableColumn<Employee, String> phoneColumn;
+
+    @FXML
+    private TableColumn<Employee, Double> salaryColumn;
+
+    @FXML
+    private Label statusLabel;
+
+    private final ObservableList<Employee> employeeList =
+            FXCollections.observableArrayList();
+
+    @FXML
+    public void initialize() {
+
+        departmentComboBox.getItems().addAll(
+                "Executive Office",
+                "Production",
+                "Sales",
+                "Human Resources",
+                "Engineering",
+                "Quality Control",
+                "Procurement"
+        );
+
+        designationComboBox.getItems().addAll(
+                "Chief Executive Officer",
+                "Production Manager",
+                "Sales Executive",
+                "Human Resources Manager",
+                "Automotive Engineer",
+                "Vehicle Inspector",
+                "Quality Control Manager",
+                "Procurement Officer"
+        );
+
+        employeeIdColumn.setCellValueFactory(new PropertyValueFactory<>("employeeId"));
+        employeeNameColumn.setCellValueFactory(new PropertyValueFactory<>("employeeName"));
+        departmentColumn.setCellValueFactory(new PropertyValueFactory<>("department"));
+        designationColumn.setCellValueFactory(new PropertyValueFactory<>("designation"));
+        emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
+        phoneColumn.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        salaryColumn.setCellValueFactory(new PropertyValueFactory<>("salary"));
+
+        employeeTableView.setItems(employeeList);
+
+        userLabel.setText("HR Manager");
+        statusLabel.setText("Ready");
     }
 
-    @javafx.fxml.FXML
-    public void handleBack(ActionEvent actionEvent) {
+    @FXML
+    public void handleSearch(ActionEvent event) {
+
     }
 
-    @javafx.fxml.FXML
-    public void handleClear(ActionEvent actionEvent) {
+    @FXML
+    public void handleBack(ActionEvent event) {
+
     }
 
-    @javafx.fxml.FXML
-    public void handleUpdate(ActionEvent actionEvent) {
+    @FXML
+    public void handleClear(ActionEvent event) {
+
+        employeeIdField.clear();
+        employeeNameField.clear();
+        emailField.clear();
+        phoneField.clear();
+        salaryField.clear();
+
+        departmentComboBox.setValue(null);
+        designationComboBox.setValue(null);
+
+        statusLabel.setText("Fields cleared.");
     }
 
-    @javafx.fxml.FXML
-    public void handleRefresh(ActionEvent actionEvent) {
+    @FXML
+    public void handleUpdate(ActionEvent event) {
+
     }
+
+    @FXML
+    public void handleRefresh(ActionEvent event) {
+
+    }
+
 }

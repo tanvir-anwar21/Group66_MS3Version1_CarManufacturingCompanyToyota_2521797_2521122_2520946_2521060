@@ -1,69 +1,143 @@
 package Tawsif.HumanResourcesManagerControllers;
 
+import Tawsif.Models.Employee;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+
+import java.time.LocalDate;
 
 public class EmployeeRegistration_Controller {
-    @javafx.fxml.FXML
+
+    @FXML
     private Label userLabel;
-    @javafx.fxml.FXML
-    private Button searchButton;
-    @javafx.fxml.FXML
-    private Button deleteButton;
-    @javafx.fxml.FXML
-    private TextField employeeIdField;
-    @javafx.fxml.FXML
-    private TextField employeeNameField;
-    @javafx.fxml.FXML
-    private TextField emailField;
-    @javafx.fxml.FXML
-    private DatePicker joiningDatePicker;
-    @javafx.fxml.FXML
-    private ComboBox departmentComboBox;
-    @javafx.fxml.FXML
-    private TableColumn phoneColumn;
-    @javafx.fxml.FXML
+
+    @FXML
     private Label statusLabel;
-    @javafx.fxml.FXML
+
+    @FXML
+    private TextField employeeIdField;
+
+    @FXML
+    private TextField employeeNameField;
+
+    @FXML
+    private TextField emailField;
+
+    @FXML
     private TextField phoneField;
-    @javafx.fxml.FXML
-    private TableView employeeTableView;
-    @javafx.fxml.FXML
-    private Button clearButton;
-    @javafx.fxml.FXML
-    private ComboBox designationComboBox;
-    @javafx.fxml.FXML
-    private TableColumn nameColumn;
-    @javafx.fxml.FXML
-    private Button registerButton;
-    @javafx.fxml.FXML
-    private TableColumn departmentColumn;
-    @javafx.fxml.FXML
-    private TableColumn salaryColumn;
-    @javafx.fxml.FXML
+
+    @FXML
     private TextField salaryField;
-    @javafx.fxml.FXML
-    private TableColumn designationColumn;
-    @javafx.fxml.FXML
-    private TableColumn idColumn;
 
-    @javafx.fxml.FXML
-    public void handleSearch(ActionEvent actionEvent) {
+    @FXML
+    private DatePicker joiningDatePicker;
+
+    @FXML
+    private ComboBox<String> departmentComboBox;
+
+    @FXML
+    private ComboBox<String> designationComboBox;
+
+    @FXML
+    private Button registerButton;
+
+    @FXML
+    private Button searchButton;
+
+    @FXML
+    private Button deleteButton;
+
+    @FXML
+    private Button clearButton;
+
+    @FXML
+    private TableView<Employee> employeeTableView;
+
+    @FXML
+    private TableColumn<Employee, String> idColumn;
+
+    @FXML
+    private TableColumn<Employee, String> nameColumn;
+
+    @FXML
+    private TableColumn<Employee, String> departmentColumn;
+
+    @FXML
+    private TableColumn<Employee, String> designationColumn;
+
+    @FXML
+    private TableColumn<Employee, String> phoneColumn;
+
+    @FXML
+    private TableColumn<Employee, Double> salaryColumn;
+
+    private ObservableList<Employee> employeeList =
+            FXCollections.observableArrayList();
+
+    @FXML
+    public void initialize() {
+
+        departmentComboBox.getItems().addAll(
+                "Executive Office",
+                "Production",
+                "Sales",
+                "Human Resources",
+                "Engineering",
+                "Quality Control",
+                "Procurement"
+        );
+
+        designationComboBox.getItems().addAll(
+                "Chief Executive Officer",
+                "Production Manager",
+                "Sales Executive",
+                "Human Resources Manager",
+                "Automotive Engineer",
+                "Vehicle Inspector",
+                "Quality Control Manager",
+                "Procurement Officer"
+        );
+
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("employeeId"));
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("employeeName"));
+        departmentColumn.setCellValueFactory(new PropertyValueFactory<>("department"));
+        designationColumn.setCellValueFactory(new PropertyValueFactory<>("designation"));
+        phoneColumn.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        salaryColumn.setCellValueFactory(new PropertyValueFactory<>("salary"));
+
+        employeeTableView.setItems(employeeList);
+
+        userLabel.setText("HR Manager");
+        statusLabel.setText("Ready");
     }
 
-    @javafx.fxml.FXML
-    public void handleBack(ActionEvent actionEvent) {
+    @FXML
+    public void handleSearch(ActionEvent event) {
+
     }
 
-    @javafx.fxml.FXML
-    public void handleClear(ActionEvent actionEvent) {
+    @FXML
+    public void handleBack(ActionEvent event) {
+
     }
 
-    @javafx.fxml.FXML
-    public void handleRegister(ActionEvent actionEvent) {
+    @FXML
+    public void handleClear(ActionEvent event) {
+
     }
 
-    @javafx.fxml.FXML
-    public void handleDelete(ActionEvent actionEvent) {
+    @FXML
+    public void handleRegister(ActionEvent event) {
+
     }
+
+    @FXML
+    public void handleDelete(ActionEvent event) {
+
+    }
+
 }
