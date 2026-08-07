@@ -128,11 +128,44 @@ public class NewVehicleOrder_Controller {
         statusLabel.setText("Ready");
     }
 
+    private void showAlert(String title, String message, Alert.AlertType type) {
+
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    private void clearFields() {
+
+        customerIdField.clear();
+        customerNameField.clear();
+        phoneField.clear();
+        emailField.clear();
+        addressField.clear();
+
+        vehicleModelComboBox.getSelectionModel().clearSelection();
+        colorComboBox.getSelectionModel().clearSelection();
+        transmissionComboBox.getSelectionModel().clearSelection();
+
+        quantitySpinner.getValueFactory().setValue(1);
+
+        deliveryDatePicker.setValue(null);
+
+        totalPriceLabel.setText("0.00");
+
+        orderTableView.getSelectionModel().clearSelection();
+    }
+
     @FXML
     public void handleCalculatePrice(ActionEvent event) {
 
         if (vehicleModelComboBox.getValue() == null) {
-            statusLabel.setText("Select a vehicle model.");
+
+            showAlert("Vehicle Model",
+                    "Please select a vehicle model.",
+                    Alert.AlertType.WARNING);
             return;
         }
 
@@ -167,9 +200,9 @@ public class NewVehicleOrder_Controller {
 
         int quantity = quantitySpinner.getValue();
 
-        double total = unitPrice * quantity;
+        double totalPrice = unitPrice * quantity;
 
-        totalPriceLabel.setText(String.format("%.2f", total));
+        totalPriceLabel.setText(String.format("%.2f", totalPrice));
 
         statusLabel.setText("Price calculated successfully.");
     }
@@ -179,25 +212,32 @@ public class NewVehicleOrder_Controller {
 
         if (customerIdField.getText().isEmpty()
                 || customerNameField.getText().isEmpty()
+                || phoneField.getText().isEmpty()
+                || emailField.getText().isEmpty()
+                || addressField.getText().isEmpty()
                 || vehicleModelComboBox.getValue() == null
                 || colorComboBox.getValue() == null
                 || transmissionComboBox.getValue() == null
                 || deliveryDatePicker.getValue() == null) {
 
-            statusLabel.setText("Please complete all required fields.");
+            showAlert("Validation",
+                    "Please complete all required fields.",
+                    Alert.AlertType.WARNING);
             return;
         }
 
-        double totalPrice;
+        if (totalPriceLabel.getText().equals("0.00")) {
 
-        try {
-            totalPrice = Double.parseDouble(totalPriceLabel.getText());
-        } catch (Exception e) {
-            statusLabel.setText("Calculate price first.");
+            showAlert("Price",
+                    "Please calculate the total price first.",
+                    Alert.AlertType.WARNING);
             return;
         }
+
+        double totalPrice = Double.parseDouble(totalPriceLabel.getText());
 
         VehicleOrder order = new VehicleOrder(
+
                 "ORD" + (orderList.size() + 1),
                 customerIdField.getText(),
                 customerNameField.getText(),
@@ -209,33 +249,107 @@ public class NewVehicleOrder_Controller {
                 LocalDate.now(),
                 deliveryDatePicker.getValue(),
                 "Pending"
+
         );
 
         orderList.add(order);
 
+        orderTableView.refresh();
+
         statusLabel.setText("Vehicle order confirmed successfully.");
+
+        showAlert(
+                "Success",
+                "Vehicle order has been placed successfully.",
+                Alert.AlertType.INFORMATION
+        );
+
+        clearFields();
+    }
+
+    @FXML
+    public void handleSearch(ActionEvent event) {
+
+        String customerId = customerIdField.getText().trim();
+
+        if (customerId.isEmpty()) {
+
+            showAlert("Search",
+                    "Please enter Customer ID.",
+                    Alert.AlertType.WARNING);
+            return;
+        }
+
+        for (VehicleOrder order : orderList) {
+
+            if (order.getCustomerId().equalsIgnoreCase(customerId)) {
+
+                customerNameField.setText(order.getCustomerName());
+                vehicleModelComboBox.setValue(order.getVehicleModel());
+                colorComboBox.setValue(order.getColor());
+                transmissionComboBox.setValue(order.getTransmission());
+
+                quantitySpinner.getValueFactory().setValue(order.getQuantity());
+
+                deliveryDatePicker.setValue(order.getDeliveryDate());
+
+                totalPriceLabel.setText(
+                        String.format("%.2f", order.getTotalPrice())
+                );
+
+                orderTableView.getSelectionModel().select(order);
+
+                statusLabel.setText("Order found.");
+
+                return;
+            }
+        }
+
+        showAlert("Search",
+                "No order found for this Customer ID.",
+                Alert.AlertType.INFORMATION);
+    }
+
+    @FXML
+    public void handleDelete(ActionEvent event) {
+
+        VehicleOrder selectedOrder =
+                orderTableView.getSelectionModel().getSelectedItem();
+
+        if (selectedOrder == null) {
+
+            showAlert("Delete",
+                    "Please select an order from the table.",
+                    Alert.AlertType.WARNING);
+            return;
+        }
+
+        orderList.remove(selectedOrder);
+
+        orderTableView.refresh();
+
+        clearFields();
+
+        statusLabel.setText("Order deleted successfully.");
+
+        showAlert("Success",
+                "Vehicle order deleted successfully.",
+                Alert.AlertType.INFORMATION);
+    }
+
+    @FXML
+    public void handleRefresh(ActionEvent event) {
+
+        orderTableView.refresh();
+
+        statusLabel.setText("Table refreshed.");
     }
 
     @FXML
     public void handleClear(ActionEvent event) {
 
-        customerIdField.clear();
-        customerNameField.clear();
-        phoneField.clear();
-        emailField.clear();
-        addressField.clear();
-
-        vehicleModelComboBox.getSelectionModel().clearSelection();
-        colorComboBox.getSelectionModel().clearSelection();
-        transmissionComboBox.getSelectionModel().clearSelection();
-
-        quantitySpinner.getValueFactory().setValue(1);
-
-        deliveryDatePicker.setValue(null);
-
-        totalPriceLabel.setText("0.00");
+        clearFields();
 
         statusLabel.setText("Ready");
     }
-
 }

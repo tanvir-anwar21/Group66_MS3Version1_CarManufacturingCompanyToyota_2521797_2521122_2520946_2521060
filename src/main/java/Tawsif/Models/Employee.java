@@ -21,8 +21,7 @@ public class Employee {
                     String phone,
                     String email,
                     double salary,
-                    LocalDate joiningDate,
-                    String status) {
+                    LocalDate joiningDate) {
 
         this.employeeId = employeeId;
         this.employeeName = employeeName;
@@ -32,7 +31,7 @@ public class Employee {
         this.email = email;
         this.salary = salary;
         this.joiningDate = joiningDate;
-        this.status = status;
+        this.status = "Active";
     }
 
     public String getEmployeeId() {

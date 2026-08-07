@@ -2,7 +2,13 @@ package Tawsif.SalesExecutiveControllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class SalesExecutiveDashboard_Controller {
 
@@ -14,48 +20,83 @@ public class SalesExecutiveDashboard_Controller {
         userLabel.setText("Sales Executive");
     }
 
+    private void openPage(String fxml) {
+
+        try {
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
+
+            Scene scene = new Scene(loader.load());
+
+            Stage stage = (Stage) userLabel.getScene().getWindow();
+
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (IOException e) {
+
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("FXML Error");
+            alert.setHeaderText(null);
+            alert.setContentText("Cannot open:\n" + fxml);
+            alert.showAndWait();
+
+            e.printStackTrace();
+        }
+    }
+
     @FXML
     public void handleNewOrder(ActionEvent event) {
-        System.out.println("Opening New Vehicle Order...");
+
+        openPage("/com/example/group66_ms3version1_carmanufacturingcompanytoyota_2521797_2521122_2520946_2521060/Tawsif/SalesExecutive/NewVehicleOrderView.fxml");
     }
 
     @FXML
     public void handleInventory(ActionEvent event) {
-        System.out.println("Opening Vehicle Inventory...");
+
+        openPage("/com/example/group66_ms3version1_carmanufacturingcompanytoyota_2521797_2521122_2520946_2521060/Tawsif/SalesExecutive/VehicleInventoryView.fxml");
     }
 
     @FXML
     public void handleSalesReport(ActionEvent event) {
-        System.out.println("Opening Sales Report...");
+
+        openPage("/com/example/group66_ms3version1_carmanufacturingcompanytoyota_2521797_2521122_2520946_2521060/Tawsif/SalesExecutive/SalesReportView.fxml");
     }
 
     @FXML
     public void handleTrackOrder(ActionEvent event) {
-        System.out.println("Opening Track Order...");
+
+        openPage("/com/example/group66_ms3version1_carmanufacturingcompanytoyota_2521797_2521122_2520946_2521060/Tawsif/SalesExecutive/TrackVehicleOrderView.fxml");
     }
 
     @FXML
     public void handleInvoice(ActionEvent event) {
-        System.out.println("Opening Generate Invoice...");
+
+        openPage("/com/example/group66_ms3version1_carmanufacturingcompanytoyota_2521797_2521122_2520946_2521060/Tawsif/SalesExecutive/GenerateInvoiceView.fxml");
     }
 
     @FXML
     public void handleUpdateCustomer(ActionEvent event) {
-        System.out.println("Opening Update Customer...");
+
+        openPage("/com/example/group66_ms3version1_carmanufacturingcompanytoyota_2521797_2521122_2520946_2521060/Tawsif/SalesExecutive/UpdateCustomerInformationView.fxml");
     }
 
     @FXML
     public void handleCustomer(ActionEvent event) {
-        System.out.println("Opening Customer Management...");
+
+        openPage("/com/example/group66_ms3version1_carmanufacturingcompanytoyota_2521797_2521122_2520946_2521060/Tawsif/SalesExecutive/CustomerManagementView.fxml");
     }
 
     @FXML
     public void handleConfirmation(ActionEvent event) {
-        System.out.println("Opening Send Confirmation...");
+
+        openPage("/com/example/group66_ms3version1_carmanufacturingcompanytoyota_2521797_2521122_2520946_2521060/Tawsif/SalesExecutive/SendOrderConfirmationView.fxml");
     }
 
     @FXML
     public void handleLogout(ActionEvent event) {
-        System.out.println("Logging out...");
+
+        openPage("/com/example/group66_ms3version1_carmanufacturingcompanytoyota_2521797_2521122_2520946_2521060/Utility/LogInView.fxml");
     }
+
 }
