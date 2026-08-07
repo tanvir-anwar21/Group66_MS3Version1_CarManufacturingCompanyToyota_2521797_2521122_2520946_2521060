@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/26"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="Utility.LogInController">
+
+    <children>
+
+        <VBox spacing="15.0"
+              AnchorPane.topAnchor="15.0"
+              AnchorPane.bottomAnchor="15.0"
+              AnchorPane.leftAnchor="15.0"
+              AnchorPane.rightAnchor="15.0">
+
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+
+            <Label text="Toyota Car Manufacturing Company"
+                   style="-fx-font-size:22px; -fx-font-weight:bold;"/>
+
+            <Separator/>
+
+            <Label text="System Login"
+                   style="-fx-font-size:16px; -fx-font-weight:bold;"/>
+
+            <GridPane hgap="10" vgap="10">
+
+                <columnConstraints>
+                    <ColumnConstraints/>
+                    <ColumnConstraints/>
+                </columnConstraints>
+
+                <rowConstraints>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                </rowConstraints>
+
+                <Label text="Employee ID"
+                       GridPane.rowIndex="0"
+                       GridPane.columnIndex="0"/>
+
+                <TextField fx:id="employeeIdField"
+                           promptText="Enter Employee ID"
+                           GridPane.rowIndex="0"
+                           GridPane.columnIndex="1"/>
+
+                <Label text="Password"
+                       GridPane.rowIndex="1"
+                       GridPane.columnIndex="0"/>
+
+                <PasswordField fx:id="passwordField"
+                               promptText="Enter Password"
+                               GridPane.rowIndex="1"
+                               GridPane.columnIndex="1"/>
+
+                <Label text="User Role"
+                       GridPane.rowIndex="2"
+                       GridPane.columnIndex="0"/>
+
+                <ComboBox fx:id="roleComboBox"
+                          prefWidth="220"
+                          promptText="Select User Role"
+                          GridPane.rowIndex="2"
+                          GridPane.columnIndex="1"/>
+
+            </GridPane>
+
+            <Separator/>
+
+            <HBox spacing="15">
+
+                <Button fx:id="loginButton"
+                        text="Login"
+                        prefWidth="120"
+                        onAction="#handleLogin"/>
+
+                <Button fx:id="clearButton"
+                        text="Clear"
+                        prefWidth="120"
+                        onAction="#handleClear"/>
+
+            </HBox>
+
+            <Separator/>
+
+            <Label text="Available Users"
+                   style="-fx-font-size:16px; -fx-font-weight:bold;"/>
+
+            <TextArea editable="false"
+                      wrapText="true"
+                      prefHeight="180"
+                      text="Chief Executive Officer (CEO)&#10;Production Manager&#10;Sales Executive&#10;Human Resources Manager&#10;Automotive Engineer&#10;Vehicle Inspector&#10;Quality Control Manager&#10;Procurement Officer"/>
+
+            <Label fx:id="statusLabel"
+                   text="Please enter your login credentials."
+                   style="-fx-text-fill:green; -fx-font-weight:bold;"/>
+
+        </VBox>
+
+    </children>
+
+</AnchorPane>

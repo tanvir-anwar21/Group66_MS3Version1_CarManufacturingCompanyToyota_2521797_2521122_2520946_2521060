@@ -1,4 +1,4 @@
-package Utiliy;
+package Utility;
 
 public class UserView_Controller
 {

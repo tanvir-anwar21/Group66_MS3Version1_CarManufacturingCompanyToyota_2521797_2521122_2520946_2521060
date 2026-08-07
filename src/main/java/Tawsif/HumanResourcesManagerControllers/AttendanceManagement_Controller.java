@@ -11,6 +11,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+
 public class AttendanceManagement_Controller {
 
     @FXML
@@ -70,11 +71,13 @@ public class AttendanceManagement_Controller {
     @FXML
     private Label statusLabel;
 
-    private ObservableList<Attendance> attendanceList =
+    private final ObservableList<Attendance> attendanceList =
             FXCollections.observableArrayList();
 
     @FXML
     public void initialize() {
+
+        System.out.println("Initialize is running");
 
         departmentComboBox.getItems().addAll(
                 "Executive Office",
@@ -115,37 +118,343 @@ public class AttendanceManagement_Controller {
 
         attendanceTableView.setItems(attendanceList);
 
-        presentCountLabel.setText("0");
-        absentCountLabel.setText("0");
-        lateCountLabel.setText("0");
-
         userLabel.setText("HR Manager");
-        statusLabel.setText("Ready");
+        attendanceDatePicker.setValue(LocalDate.now());
+
+        updateStatistics();
+
+        statusLabel.setText("Attendance system ready.");
+    }
+    private void updateStatistics() {
+
+        int present = 0;
+        int absent = 0;
+        int late = 0;
+
+        for (Attendance attendance : attendanceList) {
+
+            if (attendance.getStatus().equalsIgnoreCase("Present")) {
+                present++;
+            }
+
+            else if (attendance.getStatus().equalsIgnoreCase("Absent")) {
+                absent++;
+            }
+
+            else if (attendance.getStatus().equalsIgnoreCase("Late")) {
+                late++;
+            }
+
+        }
+
+        presentCountLabel.setText(String.valueOf(present));
+        absentCountLabel.setText(String.valueOf(absent));
+        lateCountLabel.setText(String.valueOf(late));
     }
 
-    @FXML
-    public void handleSearch(ActionEvent event) {
+    private void clearFields() {
+
+        employeeIdField.clear();
+
+        departmentComboBox.getSelectionModel().clearSelection();
+
+        designationComboBox.getSelectionModel().clearSelection();
+
+        attendanceStatusComboBox.getSelectionModel().clearSelection();
+
+        attendanceDatePicker.setValue(LocalDate.now());
 
     }
 
-    @FXML
-    public void handleBack(ActionEvent event) {
+    private void showAlert(String title,
+                           String message,
+                           Alert.AlertType type) {
+
+        Alert alert = new Alert(type);
+
+        alert.setTitle(title);
+
+        alert.setHeaderText(null);
+
+        alert.setContentText(message);
+
+        alert.showAndWait();
+    }
+        @FXML
+        public void handleSearch(ActionEvent event) {
+
+            try {
+
+                String employeeId = employeeIdField.getText().trim();
+
+                if (employeeId.isEmpty()) {
+                    showAlert("Validation Error",
+                            "Please enter an Employee ID.",
+                            Alert.AlertType.WARNING);
+                    return;
+                }
+
+                Attendance found = null;
+
+                for (Attendance attendance : attendanceList) {
+
+                    if (attendance.getEmployeeId().equalsIgnoreCase(employeeId)) {
+                        found = attendance;
+                        break;
+                    }
+
+                }
+
+                if (found == null) {
+
+                    statusLabel.setText("Employee not found.");
+
+                    showAlert(
+                            "Search",
+                            "No attendance record found.",
+                            Alert.AlertType.INFORMATION
+                    );
+
+                    return;
+
+                }
+
+                employeeIdField.setText(found.getEmployeeId());
+
+                departmentComboBox.setValue(found.getDepartment());
+
+                attendanceDatePicker.setValue(found.getDate());
+
+                attendanceStatusComboBox.setValue(found.getStatus());
+
+                statusLabel.setText("Attendance record found.");
+
+            }
+
+            catch (Exception e) {
+
+                showAlert(
+                        "Error",
+                        "Unable to search attendance.",
+                        Alert.AlertType.ERROR
+                );
+
+            }
+
+        }
+
+        @FXML
+        public void handleMarkAttendance(ActionEvent event) {
+
+            try {
+
+                if (employeeIdField.getText().trim().isEmpty()
+                        || departmentComboBox.getValue() == null
+                        || attendanceStatusComboBox.getValue() == null
+                        || attendanceDatePicker.getValue() == null) {
+
+                    showAlert(
+                            "Validation",
+                            "Please complete all required fields.",
+                            Alert.AlertType.WARNING
+                    );
+
+                    return;
+
+                }
+
+                String employeeId = employeeIdField.getText().trim();
+
+                String employeeName = "Employee " + employeeId;
+
+                String department = departmentComboBox.getValue();
+
+                LocalDate date = attendanceDatePicker.getValue();
+
+                String status = attendanceStatusComboBox.getValue();
+
+                LocalTime checkIn = null;
+                LocalTime checkOut = null;
+                double hoursWorked = 0;
+
+                if (status.equalsIgnoreCase("Present")) {
+
+                    checkIn = LocalTime.of(9, 0);
+                    checkOut = LocalTime.of(17, 0);
+                    hoursWorked = 8;
+
+                }
+
+                else if (status.equalsIgnoreCase("Late")) {
+
+                    checkIn = LocalTime.of(10, 0);
+                    checkOut = LocalTime.of(17, 0);
+                    hoursWorked = 7;
+
+                }
+
+                Attendance attendance = new Attendance(
+
+                        "ATT-" + (attendanceList.size() + 1),
+
+                        employeeId,
+
+                        employeeName,
+
+                        department,
+
+                        date,
+
+                        checkIn,
+
+                        checkOut,
+
+                        hoursWorked,
+
+                        status
+
+                );
+
+                attendanceList.add(attendance);
+
+                attendanceTableView.refresh();
+
+                updateStatistics();
+
+                statusLabel.setText("Attendance marked successfully.");
+
+                showAlert(
+                        "Success",
+                        "Attendance has been recorded.",
+                        Alert.AlertType.INFORMATION
+                );
+
+                clearFields();
+
+            }
+
+            catch (Exception e) {
+
+                showAlert(
+                        "Error",
+                        "Unable to mark attendance.",
+                        Alert.AlertType.ERROR
+                );
+
+            }
+
+        }
+        @FXML
+        public void handleUpdate(ActionEvent event) {
+
+            try {
+
+                Attendance selectedAttendance =
+                        attendanceTableView.getSelectionModel().getSelectedItem();
+
+                if (selectedAttendance == null) {
+
+                    showAlert(
+                            "Update",
+                            "Please select an attendance record first.",
+                            Alert.AlertType.WARNING
+                    );
+
+                    return;
+                }
+
+                if (attendanceStatusComboBox.getValue() == null
+                        || attendanceDatePicker.getValue() == null
+                        || departmentComboBox.getValue() == null) {
+
+                    showAlert(
+                            "Validation",
+                            "Complete all required fields.",
+                            Alert.AlertType.WARNING
+                    );
+
+                    return;
+                }
+
+                selectedAttendance.setDepartment(
+                        departmentComboBox.getValue());
+
+                selectedAttendance.setDate(
+                        attendanceDatePicker.getValue());
+
+                selectedAttendance.setStatus(
+                        attendanceStatusComboBox.getValue());
+
+                if (attendanceStatusComboBox.getValue().equalsIgnoreCase("Present")) {
+
+                    selectedAttendance.setCheckIn(LocalTime.of(9, 0));
+                    selectedAttendance.setCheckOut(LocalTime.of(17, 0));
+                    selectedAttendance.setHoursWorked(8);
+
+                }
+
+                else if (attendanceStatusComboBox.getValue().equalsIgnoreCase("Late")) {
+
+                    selectedAttendance.setCheckIn(LocalTime.of(10, 0));
+                    selectedAttendance.setCheckOut(LocalTime.of(17, 0));
+                    selectedAttendance.setHoursWorked(7);
+
+                }
+
+                else {
+
+                    selectedAttendance.setCheckIn(null);
+                    selectedAttendance.setCheckOut(null);
+                    selectedAttendance.setHoursWorked(0);
+
+                }
+
+                attendanceTableView.refresh();
+
+                updateStatistics();
+
+                statusLabel.setText("Attendance updated successfully.");
+
+                showAlert(
+                        "Success",
+                        "Attendance record updated successfully.",
+                        Alert.AlertType.INFORMATION
+                );
+
+                clearFields();
+
+            }
+
+            catch (Exception e) {
+
+                showAlert(
+                        "Error",
+                        "Unable to update attendance.",
+                        Alert.AlertType.ERROR
+                );
+
+            }
+
+        }
+
+        @FXML
+        public void handleClear(ActionEvent event) {
+
+            clearFields();
+
+            attendanceTableView.getSelectionModel().clearSelection();
+
+            statusLabel.setText("Form cleared.");
+
+        }
+
+        @FXML
+        public void handleBack(ActionEvent event) {
+
+            statusLabel.setText("Returning to HR Dashboard...");
+
+
+
+        }
 
     }
-
-    @FXML
-    public void handleClear(ActionEvent event) {
-
-    }
-
-    @FXML
-    public void handleUpdate(ActionEvent event) {
-
-    }
-
-    @FXML
-    public void handleMarkAttendance(ActionEvent event) {
-
-    }
-
-}
