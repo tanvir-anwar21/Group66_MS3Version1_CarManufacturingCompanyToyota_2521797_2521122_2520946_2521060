@@ -21,7 +21,7 @@
             <padding>
                 <Insets top="20" right="20" bottom="20" left="20"/>
             </padding>
-
+            <Button mnemonicParsing="false" onAction="#handleBackToSalesExecutiveDashboard" text="Back to Sales Executive Dashboard" />
             <Label text="Vehicle Inventory"
                    style="-fx-font-size:22px; -fx-font-weight:bold;"/>
 
@@ -105,6 +105,7 @@
                     <TableColumn fx:id="transmissionColumn"
                                  text="Transmission"
                                  prefWidth="130"/>
+                    <TableColumn fx:id="priceColumn" text="Price"/>
 
                     <TableColumn fx:id="quantityColumn"
                                  text="Quantity"

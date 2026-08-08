@@ -29,6 +29,12 @@ public class LogInController {
     @FXML
     private Label statusLabel;
 
+    @FXML
+    private CheckBox showPasswordCheckBox;
+
+    @FXML
+    private TextArea availableUsersTextArea;
+
 
     @FXML
     public void initialize() {
@@ -44,32 +50,112 @@ public class LogInController {
                 "Procurement Officer"
         );
 
-        statusLabel.setText("Please enter your login credentials.");
+        statusLabel.setText(
+                "Please enter your login credentials."
+        );
+
+        statusLabel.setStyle(
+                "-fx-text-fill: green; -fx-font-weight: bold;"
+        );
+
+
+        showPasswordCheckBox.setOnAction(event -> {
+
+            if (showPasswordCheckBox.isSelected()) {
+
+                statusLabel.setText(
+                        "Password visibility enabled."
+                );
+
+            } else {
+
+                statusLabel.setText(
+                        "Password is hidden."
+                );
+            }
+        });
     }
 
 
     @FXML
-    public void handleLogin(ActionEvent actionEvent) throws IOException {
+    public void handleLogin(ActionEvent event) throws IOException {
 
-        String employeeId = employeeIdField.getText();
-        String password = passwordField.getText();
-        String role = roleComboBox.getValue();
+        String employeeId =
+                employeeIdField.getText().trim();
+
+        String password =
+                passwordField.getText();
+
+        String role =
+                roleComboBox.getValue();
 
 
-        if (employeeId.isEmpty() || password.isEmpty() || role == null) {
+        // =========================
+        // VALIDATION
+        // =========================
 
-            statusLabel.setText("Please fill all fields.");
-            statusLabel.setStyle("-fx-text-fill:red;");
+        if (employeeId.isEmpty()) {
+
+            statusLabel.setText(
+                    "Please enter Employee ID."
+            );
+
+            statusLabel.setStyle(
+                    "-fx-text-fill: red; -fx-font-weight: bold;"
+            );
+
+            employeeIdField.requestFocus();
+
             return;
         }
 
 
-        // Temporary login validation
-        if (employeeId.equals("admin") && password.equals("1234")) {
+        if (password.isEmpty()) {
+
+            statusLabel.setText(
+                    "Please enter Password."
+            );
+
+            statusLabel.setStyle(
+                    "-fx-text-fill: red; -fx-font-weight: bold;"
+            );
+
+            passwordField.requestFocus();
+
+            return;
+        }
+
+
+        if (role == null) {
+
+            statusLabel.setText(
+                    "Please select a User Role."
+            );
+
+            statusLabel.setStyle(
+                    "-fx-text-fill: red; -fx-font-weight: bold;"
+            );
+
+            roleComboBox.requestFocus();
+
+            return;
+        }
+
+
+        // =========================
+        // LOGIN VALIDATION
+        // =========================
+
+        if (employeeId.equals("admin")
+                && password.equals("1234")) {
 
 
             String dashboardPath = null;
 
+
+            // =========================
+            // SELECT DASHBOARD
+            // =========================
 
             switch (role) {
 
@@ -90,64 +176,125 @@ public class LogInController {
 
 
                 case "Automotive Engineer":
+
                     dashboardPath =
                             "/com/example/group66_ms3version1_carmanufacturingcompanytoyota_2521797_2521122_2520946_2521060/AutomotiveEngineer/AutomotiveEngineerDashboard.fxml";
+
                     break;
 
 
                 case "Production Manager":
+
                     dashboardPath =
                             "/com/example/group66_ms3version1_carmanufacturingcompanytoyota_2521797_2521122_2520946_2521060/ProductionManager/ProductionManagerDashboard.fxml";
+
                     break;
 
 
                 default:
-                    statusLabel.setText("Dashboard not created yet.");
-                    statusLabel.setStyle("-fx-text-fill:orange;");
+
+                    statusLabel.setText(
+                            "Dashboard not created yet."
+                    );
+
+                    statusLabel.setStyle(
+                            "-fx-text-fill: orange; -fx-font-weight: bold;"
+                    );
+
                     return;
             }
 
 
-            FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource(dashboardPath)
-            );
+            // =========================
+            // LOAD DASHBOARD
+            // =========================
 
+            FXMLLoader loader =
+                    new FXMLLoader(
+                            getClass().getResource(
+                                    dashboardPath
+                            )
+                    );
+
+
+            // Check if FXML exists
 
             if (loader.getLocation() == null) {
-                statusLabel.setText("Dashboard FXML not found.");
-                statusLabel.setStyle("-fx-text-fill:red;");
+
+                statusLabel.setText(
+                        "Dashboard FXML not found."
+                );
+
+                statusLabel.setStyle(
+                        "-fx-text-fill: red; -fx-font-weight: bold;"
+                );
+
                 return;
             }
 
 
-            Scene scene = new Scene(loader.load());
+            // Load FXML
+
+            Scene scene =
+                    new Scene(loader.load());
 
 
-            Stage stage = (Stage) loginButton.getScene().getWindow();
+            // Get current window
 
-            stage.setTitle(role + " Dashboard");
+            Stage stage =
+                    (Stage) loginButton
+                            .getScene()
+                            .getWindow();
+
+
+            // Change scene
+
+            stage.setTitle(
+                    role + " Dashboard"
+            );
+
             stage.setScene(scene);
+
             stage.show();
 
 
         } else {
 
-            statusLabel.setText("Invalid Employee ID or Password.");
-            statusLabel.setStyle("-fx-text-fill:red;");
+            statusLabel.setText(
+                    "Invalid Employee ID or Password."
+            );
+
+            statusLabel.setStyle(
+                    "-fx-text-fill: red; -fx-font-weight: bold;"
+            );
         }
     }
 
 
+    // =========================
+    // CLEAR BUTTON
+    // =========================
+
     @FXML
-    public void handleClear(ActionEvent actionEvent) {
+    public void handleClear(ActionEvent event) {
 
         employeeIdField.clear();
 
         passwordField.clear();
 
-        roleComboBox.getSelectionModel().clearSelection();
+        roleComboBox.getSelectionModel()
+                .clearSelection();
 
-        statusLabel.setText("Fields cleared.");
-        statusLabel.setStyle("-fx-text-fill:green;");
+        showPasswordCheckBox.setSelected(false);
+
+        statusLabel.setText(
+                "Fields cleared."
+        );
+
+        statusLabel.setStyle(
+                "-fx-text-fill: green; -fx-font-weight: bold;"
+        );
+
+        employeeIdField.requestFocus();
     }
 }

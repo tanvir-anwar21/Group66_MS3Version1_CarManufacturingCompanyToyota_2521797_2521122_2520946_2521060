@@ -3,10 +3,14 @@ package Tawsif.SalesExecutiveControllers;
 import Tawsif.Models.VehicleOrder;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.time.LocalDate;
 
 public class TrackVehicleOrder_Controller {
@@ -173,4 +177,45 @@ public class TrackVehicleOrder_Controller {
 
     }
 
+
+    @FXML
+    public void handleBackToSalesExecutiveDashboard(ActionEvent event) {
+
+        try {
+
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource(
+                            "/com/example/group66_ms3version1_carmanufacturingcompanytoyota_2521797_2521122_2520946_2521060/Tawsif/SalesExecutive/SalesExecutiveDashboardView.fxml"
+                    )
+            );
+
+            if (loader.getLocation() == null) {
+                throw new IOException("SalesExecutiveDashboardView.fxml not found!");
+            }
+
+            Scene scene = new Scene(loader.load());
+
+            Stage stage = (Stage) ((javafx.scene.Node) event.getSource())
+                    .getScene()
+                    .getWindow();
+
+            stage.setScene(scene);
+            stage.setTitle("Sales Executive Dashboard");
+            stage.show();
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
+
+            showAlert(
+                    "Error",
+                    "Could not open Sales Executive Dashboard.\n\n"
+                            + e.getMessage(),
+                    Alert.AlertType.ERROR
+            );
+        }
+    }
+
+    private void showAlert(String error, String s, Alert.AlertType alertType) {
+    }
 }
