@@ -5,8 +5,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class UpdateEmployeeInformation_Controller {
 
@@ -100,20 +105,35 @@ public class UpdateEmployeeInformation_Controller {
 
         userLabel.setText("HR Manager");
         statusLabel.setText("Ready");
+
+        employeeTableView.getSelectionModel().selectedItemProperty().addListener((obs, oldEmployee, employee) -> {
+
+            if (employee != null) {
+
+                employeeIdField.setText(employee.getEmployeeId());
+                employeeNameField.setText(employee.getEmployeeName());
+                emailField.setText(employee.getEmail());
+                phoneField.setText(employee.getPhone());
+                salaryField.setText(String.valueOf(employee.getSalary()));
+
+                departmentComboBox.setValue(employee.getDepartment());
+                designationComboBox.setValue(employee.getDesignation());
+            }
+
+        });
     }
 
-    @FXML
-    public void handleSearch(ActionEvent event) {
+    private void showAlert(String title, String message, Alert.AlertType type) {
+
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
 
     }
 
-    @FXML
-    public void handleBack(ActionEvent event) {
-
-    }
-
-    @FXML
-    public void handleClear(ActionEvent event) {
+    private void clearFields() {
 
         employeeIdField.clear();
         employeeNameField.clear();
@@ -121,20 +141,134 @@ public class UpdateEmployeeInformation_Controller {
         phoneField.clear();
         salaryField.clear();
 
-        departmentComboBox.setValue(null);
-        designationComboBox.setValue(null);
+        departmentComboBox.getSelectionModel().clearSelection();
+        designationComboBox.getSelectionModel().clearSelection();
 
-        statusLabel.setText("Fields cleared.");
+        employeeTableView.getSelectionModel().clearSelection();
+
     }
+    @FXML
+    public void handleSearch(ActionEvent event) {
 
+        String id = employeeIdField.getText().trim();
+
+        if (id.isEmpty()) {
+            showAlert("Search", "Please enter Employee ID.", Alert.AlertType.WARNING);
+            return;
+        }
+
+        for (Employee employee : employeeList) {
+
+            if (employee.getEmployeeId().equalsIgnoreCase(id)) {
+
+                employeeTableView.getSelectionModel().select(employee);
+
+                employeeNameField.setText(employee.getEmployeeName());
+                emailField.setText(employee.getEmail());
+                phoneField.setText(employee.getPhone());
+                salaryField.setText(String.valueOf(employee.getSalary()));
+
+                departmentComboBox.setValue(employee.getDepartment());
+                designationComboBox.setValue(employee.getDesignation());
+
+                statusLabel.setText("Employee Found");
+
+                return;
+            }
+        }
+
+        showAlert("Search", "Employee not found.", Alert.AlertType.INFORMATION);
+    }
     @FXML
     public void handleUpdate(ActionEvent event) {
 
-    }
+        Employee employee =
+                employeeTableView.getSelectionModel().getSelectedItem();
 
+        if (employee == null) {
+
+            showAlert("Update",
+                    "Please search or select an employee first.",
+                    Alert.AlertType.WARNING);
+            return;
+        }
+
+        try {
+
+            if (employeeNameField.getText().isEmpty()
+                    || emailField.getText().isEmpty()
+                    || phoneField.getText().isEmpty()
+                    || salaryField.getText().isEmpty()
+                    || departmentComboBox.getValue() == null
+                    || designationComboBox.getValue() == null) {
+
+                showAlert("Validation",
+                        "Please complete all fields.",
+                        Alert.AlertType.WARNING);
+                return;
+            }
+
+            employee.setEmployeeName(employeeNameField.getText());
+            employee.setEmail(emailField.getText());
+            employee.setPhone(phoneField.getText());
+            employee.setDepartment(departmentComboBox.getValue());
+            employee.setDesignation(designationComboBox.getValue());
+            employee.setSalary(Double.parseDouble(salaryField.getText()));
+
+            employeeTableView.refresh();
+
+            statusLabel.setText("Employee Updated Successfully");
+
+            showAlert("Success",
+                    "Employee information updated successfully.",
+                    Alert.AlertType.INFORMATION);
+
+        } catch (NumberFormatException e) {
+
+            showAlert("Error",
+                    "Salary must be numeric.",
+                    Alert.AlertType.ERROR);
+        }
+    }
     @FXML
     public void handleRefresh(ActionEvent event) {
 
-    }
+        employeeTableView.refresh();
 
+        statusLabel.setText("Table Refreshed");
+    }
+    @FXML
+    public void handleClear(ActionEvent event) {
+
+        clearFields();
+
+        statusLabel.setText("Fields Cleared");
+    }
+    @FXML
+    public void handleBack(ActionEvent event) {
+
+        try {
+
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource(
+                            "/com/example/group66_ms3version1_carmanufacturingcompanytoyota_2521797_2521122_2520946_2521060/Tawsif/HumanResourcesManager/HumanResourcesManagerDashboardView.fxml"
+                    )
+            );
+
+            Scene scene = new Scene(loader.load());
+
+            Stage stage = (Stage) statusLabel.getScene().getWindow();
+
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (IOException e) {
+
+            showAlert("Navigation Error",
+                    "Unable to return to HR Dashboard.",
+                    Alert.AlertType.ERROR);
+
+            e.printStackTrace();
+        }
+    }
 }

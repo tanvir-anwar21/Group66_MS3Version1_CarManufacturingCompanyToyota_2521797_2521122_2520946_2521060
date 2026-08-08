@@ -5,7 +5,16 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
+<<<<<<< HEAD:src/main/java/Tanvir/CEO_Controller/ChiefExecutiveOfficerView_Controller.java
 public class ChiefExecutiveOfficerView_Controller
+=======
+import javafx.event.ActionEvent;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+
+public class ChiefExecutiveOffierView_Controller
+>>>>>>> 834ff281ac3f1d9ec52727e1082b82b799c0eb1e:src/main/java/Tanvir/CEO_Controller/ChiefExecutiveOffierView_Controller.java
 {
     @javafx.fxml.FXML
     private TextField revenueField;

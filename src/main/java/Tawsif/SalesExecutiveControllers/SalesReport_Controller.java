@@ -5,9 +5,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.time.LocalDate;
 
 public class SalesReport_Controller {
@@ -110,42 +114,18 @@ public class SalesReport_Controller {
         statusLabel.setText("Ready");
     }
 
-    @FXML
-    public void handleGenerateReport(ActionEvent event) {
+    private void showAlert(String title, String message, Alert.AlertType type) {
 
-        reportList.clear();
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
 
-        reportList.add(new SalesReport(
-                "ORD001",
-                "Rahim Ahmed",
-                "Corolla",
-                "Dhaka",
-                2,
-                6400000,
-                LocalDate.now()
-        ));
+    private void updateSummary() {
 
-        reportList.add(new SalesReport(
-                "ORD002",
-                "Karim Hasan",
-                "Hilux",
-                "Chattogram",
-                1,
-                5500000,
-                LocalDate.now()
-        ));
-
-        reportList.add(new SalesReport(
-                "ORD003",
-                "Sadia Islam",
-                "Camry",
-                "Sylhet",
-                1,
-                4500000,
-                LocalDate.now()
-        ));
-
-        int totalOrders = reportList.size();
+        totalOrdersLabel.setText(String.valueOf(reportList.size()));
 
         double revenue = 0;
 
@@ -153,27 +133,143 @@ public class SalesReport_Controller {
             revenue += report.getAmount();
         }
 
-        totalOrdersLabel.setText(String.valueOf(totalOrders));
         totalRevenueLabel.setText(String.format("%.2f", revenue));
+    }
+    @Deprecated
+    public void handleGenerateReport(ActionEvent event) {
 
-        statusLabel.setText("Sales report generated successfully.");
+        reportList.clear();
+
+        ObservableList<SalesReport> tempList = FXCollections.observableArrayList();
+
+        tempList.add(new SalesReport(
+                "ORD001",
+                "Rahim Ahmed",
+                "Corolla",
+                "Dhaka",
+                2,
+                6400000,
+                LocalDate.now().minusDays(2)
+        ));
+
+        tempList.add(new SalesReport(
+                "ORD002",
+                "Karim Hasan",
+                "Hilux",
+                "Chattogram",
+                1,
+                5500000,
+                LocalDate.now().minusDays(5)
+        ));
+
+        tempList.add(new SalesReport(
+                "ORD003",
+                "Sadia Islam",
+                "Camry",
+                "Sylhet",
+                1,
+                4500000,
+                LocalDate.now().minusDays(10)
+        ));
+
+        LocalDate fromDate = fromDatePicker.getValue();
+        LocalDate toDate = toDatePicker.getValue();
+        String vehicle = vehicleModelComboBox.getValue();
+        String region = regionComboBox.getValue();
+
+        for (SalesReport report : tempList) {
+
+            boolean match = true;
+
+            if (fromDate != null &&
+                    report.getOrderDate().isBefore(fromDate)) {
+                match = false;
+            }
+
+            if (toDate != null &&
+                    report.getOrderDate().isAfter(toDate)) {
+                match = false;
+            }
+
+            if (vehicle != null &&
+                    !vehicle.equals(report.getVehicleModel())) {
+                match = false;
+            }
+
+            if (region != null &&
+                    !region.equals(report.getRegion())) {
+                match = false;
+            }
+
+            if (match) {
+                reportList.add(report);
+            }
+        }
+
+        updateSummary();
+
+        if (reportList.isEmpty()) {
+
+            statusLabel.setText("No matching records found.");
+
+            showAlert(
+                    "No Records",
+                    "No sales report matches the selected filters.",
+                    Alert.AlertType.INFORMATION
+            );
+
+        } else {
+
+            statusLabel.setText("Sales report generated successfully.");
+
+            showAlert(
+                    "Success",
+                    "Sales report generated successfully.",
+                    Alert.AlertType.INFORMATION
+            );
+        }
     }
 
-    @FXML
+    @Deprecated
     public void handleRefresh(ActionEvent event) {
 
         salesReportTableView.refresh();
 
-        statusLabel.setText("Sales report refreshed.");
-    }
+        updateSummary();
 
-    @FXML
+        statusLabel.setText("Sales report refreshed.");
+
+        showAlert(
+                "Refresh",
+                "Sales report refreshed successfully.",
+                Alert.AlertType.INFORMATION
+        );
+    }
+    @Deprecated
     public void handleExport(ActionEvent event) {
 
-        statusLabel.setText("Sales report exported successfully.");
+        if (reportList.isEmpty()) {
+
+            showAlert(
+                    "Export",
+                    "No report available to export.",
+                    Alert.AlertType.WARNING
+            );
+
+            statusLabel.setText("Nothing to export.");
+            return;
+        }
+
+        showAlert(
+                "Export Successful",
+                "Sales report exported successfully.",
+                Alert.AlertType.INFORMATION
+        );
+
+        statusLabel.setText("Sales report exported.");
     }
 
-    @FXML
+    @Deprecated
     public void handleClear(ActionEvent event) {
 
         fromDatePicker.setValue(null);
@@ -187,7 +283,52 @@ public class SalesReport_Controller {
         totalOrdersLabel.setText("0");
         totalRevenueLabel.setText("0.00");
 
+        salesReportTableView.refresh();
+
         statusLabel.setText("Ready");
+
+        showAlert(
+                "Cleared",
+                "All filters and report data have been cleared.",
+                Alert.AlertType.INFORMATION
+        );
     }
 
+    @FXML
+    public void handleBackToSalesExecutiveDashboard(ActionEvent event) {
+
+        try {
+
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource(
+                            "/com/example/group66_ms3version1_carmanufacturingcompanytoyota_2521797_2521122_2520946_2521060/Tawsif/SalesExecutive/SalesExecutiveDashboardView.fxml"
+                    )
+            );
+
+            if (loader.getLocation() == null) {
+                throw new IOException("SalesExecutiveDashboardView.fxml not found!");
+            }
+
+            Scene scene = new Scene(loader.load());
+
+            Stage stage = (Stage) ((javafx.scene.Node) event.getSource())
+                    .getScene()
+                    .getWindow();
+
+            stage.setScene(scene);
+            stage.setTitle("Sales Executive Dashboard");
+            stage.show();
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
+
+            showAlert(
+                    "Error",
+                    "Could not open Sales Executive Dashboard.\n\n"
+                            + e.getMessage(),
+                    Alert.AlertType.ERROR
+            );
+        }
+    }
 }

@@ -1,5 +1,9 @@
 package Tawsif.HumanResourcesManagerControllers;
 
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import java.io.IOException;
 import Tawsif.Models.Attendance;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -447,14 +451,36 @@ public class AttendanceManagement_Controller {
             statusLabel.setText("Form cleared.");
 
         }
-
         @FXML
         public void handleBack(ActionEvent event) {
 
-            statusLabel.setText("Returning to HR Dashboard...");
+            try {
 
+                FXMLLoader loader = new FXMLLoader(
+                        getClass().getResource(
+                                "/com/example/group66_ms3version1_carmanufacturingcompanytoyota_2521797_2521122_2520946_2521060/Tawsif/HumanResourcesManager/HumanResourcesManagerDashboardView.fxml"
+                     )
+                );
 
+                Scene scene = new Scene(loader.load());
 
+                Stage stage = (Stage) statusLabel.getScene().getWindow();
+
+                stage.setScene(scene);
+             stage.show();
+
+            }
+            catch (IOException e) {
+            showAlert(
+                    "Navigation Error",
+                    "Unable to return to HR Dashboard.",
+                    Alert.AlertType.ERROR
+            );
+
+            e.printStackTrace();
         }
+    }
+
+
 
     }

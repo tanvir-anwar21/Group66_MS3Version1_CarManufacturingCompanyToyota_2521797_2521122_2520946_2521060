@@ -21,7 +21,7 @@
             <padding>
                 <Insets top="20" right="20" bottom="20" left="20"/>
             </padding>
-
+            <Button mnemonicParsing="false" onAction="#handleBackToSalesExecutiveDashboard" text="Back to Sales Executive Dashboard" />
             <Label text="Update Customer Information"
                    style="-fx-font-size:22px; -fx-font-weight:bold;"/>
 

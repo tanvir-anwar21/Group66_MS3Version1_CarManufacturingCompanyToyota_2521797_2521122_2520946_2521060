@@ -5,9 +5,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.time.LocalDate;
 
 public class PayrollManagement_Controller {
@@ -99,32 +103,39 @@ public class PayrollManagement_Controller {
         userLabel.setText("HR Manager");
         totalPayrollLabel.setText("0.00");
         paidEmployeesLabel.setText("0");
-        statusLabel.setText("Ready");
+        statusLabel.setText("Payroll Management Ready");
     }
 
     @FXML
     public void handleSearch(ActionEvent event) {
 
-    }
+        String payrollId = payrollIdField.getText().trim();
 
-    @FXML
-    public void handleBack(ActionEvent event) {
+        if (payrollId.isEmpty()) {
+            statusLabel.setText("Enter Payroll ID.");
+            return;
+        }
 
-    }
+        for (Payroll payroll : payrollList) {
 
-    @FXML
-    public void handleClear(ActionEvent event) {
+            if (payroll.getPayrollId().equalsIgnoreCase(payrollId)) {
 
-        payrollIdField.clear();
-        employeeIdField.clear();
-        employeeNameField.clear();
-        basicSalaryField.clear();
-        bonusField.clear();
-        deductionField.clear();
-        netSalaryField.clear();
-        paymentDatePicker.setValue(null);
+                employeeIdField.setText(payroll.getEmployeeId());
+                employeeNameField.setText(payroll.getEmployeeName());
+                basicSalaryField.setText(String.valueOf(payroll.getBasicSalary()));
+                bonusField.setText(String.valueOf(payroll.getBonus()));
+                deductionField.setText(String.valueOf(payroll.getDeduction()));
+                netSalaryField.setText(String.valueOf(payroll.getNetSalary()));
+                paymentDatePicker.setValue(payroll.getPaymentDate());
 
-        statusLabel.setText("Fields cleared.");
+                payrollTableView.getSelectionModel().select(payroll);
+
+                statusLabel.setText("Payroll Record Found.");
+                return;
+            }
+        }
+
+        statusLabel.setText("Payroll Record Not Found.");
     }
 
     @FXML
@@ -140,18 +151,108 @@ public class PayrollManagement_Controller {
 
             netSalaryField.setText(String.format("%.2f", netSalary));
 
-            statusLabel.setText("Salary calculated.");
+            statusLabel.setText("Salary Calculated.");
 
         } catch (NumberFormatException e) {
 
             statusLabel.setText("Please enter valid salary values.");
-
         }
     }
 
     @FXML
     public void handleSave(ActionEvent event) {
 
+        try {
+
+            if (payrollIdField.getText().isEmpty()
+                    || employeeIdField.getText().isEmpty()
+                    || employeeNameField.getText().isEmpty()
+                    || basicSalaryField.getText().isEmpty()
+                    || bonusField.getText().isEmpty()
+                    || deductionField.getText().isEmpty()
+                    || netSalaryField.getText().isEmpty()
+                    || paymentDatePicker.getValue() == null) {
+
+                statusLabel.setText("Please complete all fields.");
+                return;
+            }
+
+            Payroll payroll = new Payroll(
+                    payrollIdField.getText(),
+                    employeeIdField.getText(),
+                    employeeNameField.getText(),
+                    Double.parseDouble(basicSalaryField.getText()),
+                    Double.parseDouble(bonusField.getText()),
+                    Double.parseDouble(deductionField.getText()),
+                    Double.parseDouble(netSalaryField.getText()),
+                    paymentDatePicker.getValue(),
+                    "Paid"
+            );
+
+            payrollList.add(payroll);
+
+            payrollTableView.refresh();
+
+            double total = 0;
+
+            for (Payroll p : payrollList) {
+                total += p.getNetSalary();
+            }
+
+            totalPayrollLabel.setText(String.format("%.2f", total));
+            paidEmployeesLabel.setText(String.valueOf(payrollList.size()));
+
+            statusLabel.setText("Payroll Saved Successfully.");
+
+            handleClear(null);
+
+        } catch (NumberFormatException e) {
+
+            statusLabel.setText("Invalid numeric values.");
+        }
     }
 
+    @FXML
+    public void handleClear(ActionEvent event) {
+
+        payrollIdField.clear();
+        employeeIdField.clear();
+        employeeNameField.clear();
+        basicSalaryField.clear();
+        bonusField.clear();
+        deductionField.clear();
+        netSalaryField.clear();
+
+        paymentDatePicker.setValue(null);
+
+        payrollTableView.getSelectionModel().clearSelection();
+
+        statusLabel.setText("Fields Cleared.");
+    }
+
+    @FXML
+    public void handleBack(ActionEvent event) {
+
+        try {
+
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource(
+                            "/com/example/group66_ms3version1_carmanufacturingcompanytoyota_2521797_2521122_2520946_2521060/Tawsif/HumanResourcesManager/HumanResourcesManagerDashboardView.fxml"
+                    )
+            );
+
+            Scene scene = new Scene(loader.load());
+
+            Stage stage = (Stage) statusLabel.getScene().getWindow();
+
+            stage.setScene(scene);
+            stage.setTitle("Human Resources Dashboard");
+            stage.show();
+
+        } catch (IOException e) {
+
+            statusLabel.setText("Unable to open Dashboard.");
+            e.printStackTrace();
+        }
+    }
 }

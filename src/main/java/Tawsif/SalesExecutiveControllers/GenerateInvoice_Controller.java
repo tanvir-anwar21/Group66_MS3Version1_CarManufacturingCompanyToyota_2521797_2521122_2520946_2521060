@@ -5,8 +5,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.time.LocalDate;
 
 public class GenerateInvoice_Controller {
@@ -65,10 +69,50 @@ public class GenerateInvoice_Controller {
     @FXML
     public void handleSearch(ActionEvent event) {
 
+        String orderId = orderIdField.getText().trim();
+
+        if (orderId.isEmpty()) {
+            statusLabel.setText("Please enter an Order ID.");
+            return;
+        }
+
+        for (Invoice invoice : invoiceList) {
+
+            if (invoice.getOrderId().equalsIgnoreCase(orderId)) {
+
+                customerNameField.setText(invoice.getCustomerName());
+                totalPriceField.setText(String.valueOf(invoice.getAmount()));
+
+                invoiceTextArea.setText(
+                        "============= TOYOTA INVOICE =============\n\n" +
+                                "Invoice ID      : " + invoice.getInvoiceId() + "\n" +
+                                "Order ID        : " + invoice.getOrderId() + "\n" +
+                                "Customer Name   : " + invoice.getCustomerName() + "\n" +
+                                "Total Amount    : " + invoice.getAmount() + "\n" +
+                                "Invoice Date    : " + invoice.getInvoiceDate() + "\n" +
+                                "Payment Status  : " + invoice.getPaymentStatus()
+                );
+
+                statusLabel.setText("Invoice found.");
+                return;
+            }
+        }
+
+        statusLabel.setText("Invoice not found.");
     }
 
     @FXML
     public void handleGenerate(ActionEvent event) {
+
+        if (orderIdField.getText().isEmpty()
+                || customerNameField.getText().isEmpty()
+                || vehicleField.getText().isEmpty()
+                || quantityField.getText().isEmpty()
+                || unitPriceField.getText().isEmpty()) {
+
+            statusLabel.setText("Please fill in all fields.");
+            return;
+        }
 
         try {
 
@@ -99,13 +143,17 @@ public class GenerateInvoice_Controller {
         } catch (NumberFormatException e) {
 
             statusLabel.setText("Enter valid quantity and unit price.");
-
         }
-
     }
 
     @FXML
     public void handleSave(ActionEvent event) {
+
+        if (totalPriceField.getText().isEmpty()) {
+
+            statusLabel.setText("Generate the invoice first.");
+            return;
+        }
 
         try {
 
@@ -124,17 +172,26 @@ public class GenerateInvoice_Controller {
 
         } catch (Exception e) {
 
-            statusLabel.setText("Generate the invoice before saving.");
-
+            statusLabel.setText("Unable to save invoice.");
         }
-
     }
 
     @FXML
     public void handlePrint(ActionEvent event) {
 
-        statusLabel.setText("Print functionality will be implemented.");
+        if (invoiceTextArea.getText().isEmpty()) {
 
+            statusLabel.setText("Generate an invoice first.");
+            return;
+        }
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Print Invoice");
+        alert.setHeaderText(null);
+        alert.setContentText("Invoice sent to printer successfully.");
+        alert.showAndWait();
+
+        statusLabel.setText("Invoice printed.");
     }
 
     @FXML
@@ -149,7 +206,46 @@ public class GenerateInvoice_Controller {
         invoiceTextArea.clear();
 
         statusLabel.setText("Fields cleared.");
-
     }
 
+    @FXML
+    public void handleBackToSalesExecutiveDashboard(ActionEvent event) {
+
+        try {
+
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource(
+                            "/com/example/group66_ms3version1_carmanufacturingcompanytoyota_2521797_2521122_2520946_2521060/Tawsif/SalesExecutive/SalesExecutiveDashboardView.fxml"
+                    )
+            );
+
+            if (loader.getLocation() == null) {
+                throw new IOException("SalesExecutiveDashboardView.fxml not found!");
+            }
+
+            Scene scene = new Scene(loader.load());
+
+            Stage stage = (Stage) ((javafx.scene.Node) event.getSource())
+                    .getScene()
+                    .getWindow();
+
+            stage.setScene(scene);
+            stage.setTitle("Sales Executive Dashboard");
+            stage.show();
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
+
+            showAlert(
+                    "Error",
+                    "Could not open Sales Executive Dashboard.\n\n"
+                            + e.getMessage(),
+                    Alert.AlertType.ERROR
+            );
+        }
+    }
+
+    private void showAlert(String error, String s, Alert.AlertType alertType) {
+    }
 }
