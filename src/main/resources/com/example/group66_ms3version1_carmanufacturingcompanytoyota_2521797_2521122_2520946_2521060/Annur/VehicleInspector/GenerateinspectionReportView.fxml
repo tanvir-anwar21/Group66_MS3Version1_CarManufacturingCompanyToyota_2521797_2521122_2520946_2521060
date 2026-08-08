@@ -15,20 +15,25 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="650.0" prefWidth="900.0"
-            xmlns="http://javafx.com/javafx/26"
-            xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="Annur.VehicleInspector_Controller.GenerateInspectionReportView_Controller"
+            prefWidth="1000.0"
+            prefHeight="650.0">
 
     <children>
 
-        <VBox spacing="15"
-              AnchorPane.topAnchor="15"
-              AnchorPane.leftAnchor="15"
-              AnchorPane.rightAnchor="15"
-              AnchorPane.bottomAnchor="15">
+        <VBox spacing="15.0"
+              AnchorPane.topAnchor="15.0"
+              AnchorPane.leftAnchor="15.0"
+              AnchorPane.rightAnchor="15.0"
+              AnchorPane.bottomAnchor="15.0">
 
             <padding>
-                <Insets top="20" right="20" bottom="20" left="20"/>
+                <Insets top="20.0"
+                        right="20.0"
+                        bottom="20.0"
+                        left="20.0"/>
             </padding>
 
             <Label text="Inspection Reports"
@@ -36,7 +41,8 @@
 
             <Separator/>
 
-            <GridPane hgap="12" vgap="12">
+            <GridPane hgap="12.0"
+                      vgap="12.0">
 
                 <columnConstraints>
                     <ColumnConstraints/>
@@ -56,7 +62,7 @@
 
                 <ComboBox fx:id="reportTypeComboBox"
                           promptText="Select Report Type"
-                          prefWidth="280"
+                          prefWidth="280.0"
                           GridPane.columnIndex="1"
                           GridPane.rowIndex="0"/>
 
@@ -89,33 +95,34 @@
             <Label text="Inspection Report List"
                    style="-fx-font-size:16px; -fx-font-weight:bold;"/>
 
-            <TableView fx:id="reportTable" prefHeight="260">
+            <TableView fx:id="reportTable"
+                       prefHeight="260.0">
 
                 <columns>
 
                     <TableColumn fx:id="reportIdColumn"
                                  text="Report ID"
-                                 prefWidth="100"/>
+                                 prefWidth="100.0"/>
 
                     <TableColumn fx:id="inspectionIdColumn"
                                  text="Inspection ID"
-                                 prefWidth="120"/>
+                                 prefWidth="120.0"/>
 
                     <TableColumn fx:id="vehicleColumn"
                                  text="Vehicle"
-                                 prefWidth="180"/>
+                                 prefWidth="180.0"/>
 
                     <TableColumn fx:id="inspectorColumn"
                                  text="Inspector"
-                                 prefWidth="150"/>
+                                 prefWidth="150.0"/>
 
                     <TableColumn fx:id="resultColumn"
                                  text="Result"
-                                 prefWidth="110"/>
+                                 prefWidth="110.0"/>
 
                     <TableColumn fx:id="dateColumn"
                                  text="Date"
-                                 prefWidth="140"/>
+                                 prefWidth="140.0"/>
 
                 </columns>
 
@@ -123,7 +130,7 @@
 
             <Separator/>
 
-            <HBox spacing="15">
+            <HBox spacing="15.0">
 
                 <Button fx:id="generateButton"
                         text="Generate"

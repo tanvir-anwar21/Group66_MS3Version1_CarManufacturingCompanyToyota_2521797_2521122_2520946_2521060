@@ -15,20 +15,22 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="650.0" prefWidth="900.0"
-            xmlns="http://javafx.com/javafx/26"
-            xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="Annur.VehicleInspector_Controller.ReportVehicleDefectsView_Controller"
+            prefWidth="1000.0"
+            prefHeight="650.0">
 
     <children>
 
-        <VBox spacing="15"
-              AnchorPane.topAnchor="15"
-              AnchorPane.leftAnchor="15"
-              AnchorPane.rightAnchor="15"
-              AnchorPane.bottomAnchor="15">
+        <VBox spacing="15.0"
+              AnchorPane.topAnchor="15.0"
+              AnchorPane.leftAnchor="15.0"
+              AnchorPane.rightAnchor="15.0"
+              AnchorPane.bottomAnchor="15.0">
 
             <padding>
-                <Insets top="20" right="20" bottom="20" left="20"/>
+                <Insets top="20.0" right="20.0" bottom="20.0" left="20.0"/>
             </padding>
 
             <Label text="Defect Reports"
@@ -36,7 +38,7 @@
 
             <Separator/>
 
-            <GridPane hgap="12" vgap="12">
+            <GridPane hgap="12.0" vgap="12.0">
 
                 <columnConstraints>
                     <ColumnConstraints/>
@@ -55,7 +57,7 @@
                        GridPane.rowIndex="0"/>
 
                 <ComboBox fx:id="vehicleIdComboBox"
-                          prefWidth="280"
+                          prefWidth="280.0"
                           promptText="Select Vehicle"
                           GridPane.columnIndex="1"
                           GridPane.rowIndex="0"/>
@@ -65,7 +67,7 @@
                        GridPane.rowIndex="1"/>
 
                 <ComboBox fx:id="defectCategoryComboBox"
-                          prefWidth="280"
+                          prefWidth="280.0"
                           promptText="Select Category"
                           GridPane.columnIndex="1"
                           GridPane.rowIndex="1"/>
@@ -91,33 +93,34 @@
             <Label text="Defect Report List"
                    style="-fx-font-size:16px; -fx-font-weight:bold;"/>
 
-            <TableView fx:id="defectTable" prefHeight="260">
+            <TableView fx:id="defectTable"
+                       prefHeight="260.0">
 
                 <columns>
 
                     <TableColumn fx:id="defectIdColumn"
                                  text="Defect ID"
-                                 prefWidth="100"/>
+                                 prefWidth="100.0"/>
 
                     <TableColumn fx:id="vehicleColumn"
                                  text="Vehicle"
-                                 prefWidth="140"/>
+                                 prefWidth="140.0"/>
 
                     <TableColumn fx:id="categoryColumn"
                                  text="Category"
-                                 prefWidth="150"/>
+                                 prefWidth="150.0"/>
 
                     <TableColumn fx:id="severityColumn"
                                  text="Severity"
-                                 prefWidth="120"/>
+                                 prefWidth="120.0"/>
 
                     <TableColumn fx:id="statusColumn"
                                  text="Status"
-                                 prefWidth="120"/>
+                                 prefWidth="120.0"/>
 
                     <TableColumn fx:id="descriptionColumn"
                                  text="Description"
-                                 prefWidth="220"/>
+                                 prefWidth="220.0"/>
 
                 </columns>
 
@@ -125,7 +128,7 @@
 
             <Separator/>
 
-            <HBox spacing="15">
+            <HBox spacing="15.0">
 
                 <Button fx:id="viewButton"
                         text="View"

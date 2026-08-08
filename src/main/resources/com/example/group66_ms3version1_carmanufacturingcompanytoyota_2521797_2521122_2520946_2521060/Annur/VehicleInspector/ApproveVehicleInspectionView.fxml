@@ -6,7 +6,7 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/17"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="controller.VehicleInspectorController"
+            fx:controller="Annur.VehicleInspector_Controller.ApproveVehicleInspectionView_Controller"
             prefWidth="1100" prefHeight="700">
 
     <top>
