@@ -1,5 +1,6 @@
 package Tanvir.CEO_Controller;
 
+import Tanvir.Model_Class.EmployeeStatistics;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 
@@ -8,21 +9,21 @@ public class EmployeeStatisticsView_Controller
     @javafx.fxml.FXML
     private TextField performanceField;
     @javafx.fxml.FXML
-    private TableColumn performanceColumn;
+    private TableColumn<EmployeeStatistics, Float> performanceColumn;
     @javafx.fxml.FXML
-    private TableColumn remarksColumn;
+    private TableColumn<EmployeeStatistics, String> remarksColumn;
     @javafx.fxml.FXML
     private TextArea notesArea;
     @javafx.fxml.FXML
-    private TableView employeeTable;
+    private TableView<EmployeeStatistics> employeeTable;
     @javafx.fxml.FXML
-    private TableColumn employeeCountColumn;
+    private TableColumn<EmployeeStatistics, Integer> employeeCountColumn;
     @javafx.fxml.FXML
     private TextField totalEmployeesField;
     @javafx.fxml.FXML
-    private TableColumn attendanceColumn;
+    private TableColumn<EmployeeStatistics, Float> attendanceColumn;
     @javafx.fxml.FXML
-    private TableColumn departmentColumn;
+    private TableColumn<EmployeeStatistics, String> departmentColumn;
     @javafx.fxml.FXML
     private TextField attendanceField;
     @javafx.fxml.FXML

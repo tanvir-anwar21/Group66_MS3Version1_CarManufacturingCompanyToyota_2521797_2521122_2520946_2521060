@@ -1,48 +1,71 @@
 package Tanvir.CEO_Controller;
 
+import Tanvir.Model_Class.FinancialSummary;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 
-public class FinancialSummaryView_Controller
-{
+
+public class FinancialSummaryView_Controller {
+
     @javafx.fxml.FXML
     private TextField revenueField;
+
+    // FinancialSummary, Float
     @javafx.fxml.FXML
-    private TableColumn incomeColumn;
+    private TableColumn<FinancialSummary, Float> incomeColumn;
+
     @javafx.fxml.FXML
     private TextField expensesField;
+
+    // FinancialSummary, String
     @javafx.fxml.FXML
-    private TableColumn remarksColumn;
+    private TableColumn<FinancialSummary, String> remarksColumn;
+
     @javafx.fxml.FXML
     private TextField profitField;
+
     @javafx.fxml.FXML
     private TextArea notesArea;
+
+    // FinancialSummary, Float
     @javafx.fxml.FXML
-    private TableColumn expenseColumn;
+    private TableColumn<FinancialSummary, Float> expenseColumn;
+
     @javafx.fxml.FXML
     private TextField marginField;
+
     @javafx.fxml.FXML
-    private TableView financialTable;
+    private TableView<FinancialSummary> financialTable;
+
+    // FinancialSummary, String
     @javafx.fxml.FXML
-    private TableColumn categoryColumn;
+    private TableColumn<FinancialSummary, String> categoryColumn;
+
+    // FinancialSummary, Float
     @javafx.fxml.FXML
-    private TableColumn balanceColumn;
+    private TableColumn<FinancialSummary, Float> balanceColumn;
+
     @javafx.fxml.FXML
     private Label statusLabel;
 
+
     @javafx.fxml.FXML
     public void initialize() {
+
     }
 
     @javafx.fxml.FXML
     public void refreshButton(ActionEvent actionEvent) {
+
     }
 
     @javafx.fxml.FXML
     public void backButton(ActionEvent actionEvent) {
+
     }
 
     @javafx.fxml.FXML
     public void loadButton(ActionEvent actionEvent) {
+
     }
 }

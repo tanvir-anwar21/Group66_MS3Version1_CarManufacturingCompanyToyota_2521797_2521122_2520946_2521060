@@ -1,32 +1,55 @@
 package Tanvir.CEO_Controller;
 
+import Tanvir.Model_Class.SalesPerformance;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 
 public class SalesPerformanceView_Controller
 {
     @javafx.fxml.FXML
-    private TextField monthlySalesField;
+    private TextField totalSalesField;
+
     @javafx.fxml.FXML
-    private TableColumn quantityColumn;
-    @javafx.fxml.FXML
-    private TableColumn performanceColumn;
-    @javafx.fxml.FXML
-    private TextArea notesArea;
+    private TextField revenueField;
+
     @javafx.fxml.FXML
     private TextField growthField;
+
     @javafx.fxml.FXML
-    private TextField topProductField;
+    private TextField topModelField;
+
     @javafx.fxml.FXML
-    private TableView salesTable;
+    private TextField dealershipField;
+
     @javafx.fxml.FXML
-    private TextField totalSalesField;
+    private TableView<SalesPerformance> salesTable;
+
+    // SalesPerformance, String
     @javafx.fxml.FXML
-    private TableColumn productColumn;
+    private TableColumn<SalesPerformance, String> dealershipColumn;
+
+    // SalesPerformance, String
+    @javafx.fxml.FXML
+    private TableColumn<SalesPerformance, String> modelColumn;
+
+    // SalesPerformance, Integer
+    @javafx.fxml.FXML
+    private TableColumn<SalesPerformance, Integer> vehiclesSoldColumn;
+
+    // SalesPerformance, Float
+    @javafx.fxml.FXML
+    private TableColumn<SalesPerformance, Float> revenueColumn;
+
+    // SalesPerformance, Float
+    @javafx.fxml.FXML
+    private TableColumn<SalesPerformance, Float> growthColumn;
+
+    // SalesPerformance, String
+    @javafx.fxml.FXML
+    private TableColumn<SalesPerformance, String> remarksColumn;
+
     @javafx.fxml.FXML
     private Label statusLabel;
-    @javafx.fxml.FXML
-    private TableColumn revenueColumn;
 
     @javafx.fxml.FXML
     public void initialize() {

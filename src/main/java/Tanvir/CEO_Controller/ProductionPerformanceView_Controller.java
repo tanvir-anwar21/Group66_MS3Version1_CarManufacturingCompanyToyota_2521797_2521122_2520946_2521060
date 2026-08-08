@@ -1,52 +1,86 @@
 package Tanvir.CEO_Controller;
 
+import Tanvir.Model_Class.ProductionPerformance;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 
-public class ProductionPerformanceView_Controller
-{
+public class ProductionPerformanceView_Controller {
+
+    @javafx.fxml.FXML
+    private TextField completedField;
+
+    @javafx.fxml.FXML
+    private TextField pendingField;
+
+    @javafx.fxml.FXML
+    private TextField defectiveField;
+
     @javafx.fxml.FXML
     private TextField efficiencyField;
-    @javafx.fxml.FXML
-    private TableColumn actualColumn;
+
     @javafx.fxml.FXML
     private TextField targetField;
+
     @javafx.fxml.FXML
-    private TableView productionTable;
+    private TextField lineStatusField;
+
     @javafx.fxml.FXML
-    private TableColumn plannedColumn;
+    private TableView<ProductionPerformance> productionTable;
+
+    // ProductionPerformance, String
     @javafx.fxml.FXML
-    private TableColumn statusColumn;
+    private TableColumn<ProductionPerformance, String> modelColumn;
+
+    // ProductionPerformance, String
     @javafx.fxml.FXML
-    private TextField defectRateField;
+    private TableColumn<ProductionPerformance, String> assemblyLineColumn;
+
+    // ProductionPerformance, Integer
     @javafx.fxml.FXML
-    private TextArea remarksArea;
+    private TableColumn<ProductionPerformance, Integer> completedColumn;
+
+    // ProductionPerformance, Integer
     @javafx.fxml.FXML
-    private TableColumn productColumn;
+    private TableColumn<ProductionPerformance, Integer> pendingColumn;
+
+    // ProductionPerformance, Integer
     @javafx.fxml.FXML
-    private TextField totalUnitsField;
+    private TableColumn<ProductionPerformance, Integer> defectiveColumn;
+
+    // ProductionPerformance, Float
+    @javafx.fxml.FXML
+    private TableColumn<ProductionPerformance, Float> efficiencyColumn;
+
+    // ProductionPerformance, String
+    @javafx.fxml.FXML
+    private TableColumn<ProductionPerformance, String> statusColumn;
+
     @javafx.fxml.FXML
     private Label statusLabel;
-    @javafx.fxml.FXML
-    private TableColumn efficiencyColumn;
+
 
     @javafx.fxml.FXML
     public void initialize() {
-    }
 
-    @javafx.fxml.FXML
-    public void exportButton(ActionEvent actionEvent) {
     }
 
     @javafx.fxml.FXML
     public void refreshButton(ActionEvent actionEvent) {
+
     }
 
     @javafx.fxml.FXML
     public void backButton(ActionEvent actionEvent) {
+
     }
 
     @javafx.fxml.FXML
     public void loadButton(ActionEvent actionEvent) {
+
+    }
+
+    @javafx.fxml.FXML
+    public void generateReportButton(ActionEvent actionEvent) {
+
     }
 }
