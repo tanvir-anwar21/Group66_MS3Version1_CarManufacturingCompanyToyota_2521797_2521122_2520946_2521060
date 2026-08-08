@@ -1,160 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="650.0" prefWidth="900.0"
-            xmlns="http://javafx.com/javafx/26"
-            xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.AutomotiveEngineerController"
+            prefWidth="1100" prefHeight="700">
 
-    <children>
+    <top>
+        <HBox spacing="20" alignment="CENTER_LEFT" style="-fx-background-color:#2c3e50;" prefHeight="80">
+            <padding><Insets top="15" right="25" bottom="15" left="20"/></padding>
+            <Button text="Back" onAction="#handleBack"/>
+            <Label text="User 5 - Goal 7: Track Engineering Projects" style="-fx-font-size:24px; -fx-font-weight:bold; -fx-text-fill:white;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label text="Automotive Engineer" style="-fx-text-fill:white;"/>
+        </HBox>
+    </top>
 
-        <VBox spacing="15"
-              AnchorPane.topAnchor="15"
-              AnchorPane.leftAnchor="15"
-              AnchorPane.rightAnchor="15"
-              AnchorPane.bottomAnchor="15">
+    <center>
+        <VBox spacing="18">
+            <padding><Insets top="25" right="25" bottom="25" left="25"/></padding>
 
-            <padding>
-                <Insets top="20" right="20" bottom="20" left="20"/>
-            </padding>
+            <GridPane hgap="15" vgap="15">
+                <Label text="Project" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <ComboBox fx:id="projectComboBox" promptText="Select project" prefWidth="260" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
 
-            <Label text="Engineering Project Tracking"
-                   style="-fx-font-size:22px; -fx-font-weight:bold;"/>
+                <Label text="Project Status" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <ComboBox fx:id="projectStatusComboBox" promptText="Select status" prefWidth="260" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
 
-            <Separator/>
-
-            <GridPane hgap="12" vgap="12">
-
-                <columnConstraints>
-                    <ColumnConstraints/>
-                    <ColumnConstraints hgrow="ALWAYS"/>
-                </columnConstraints>
-
-                <rowConstraints>
-                    <RowConstraints/>
-                    <RowConstraints/>
-                    <RowConstraints/>
-                    <RowConstraints/>
-                </rowConstraints>
-
-                <Label text="Project ID"
-                       GridPane.columnIndex="0"
-                       GridPane.rowIndex="0"/>
-
-                <ComboBox fx:id="projectIdComboBox"
-                          promptText="Select Project"
-                          prefWidth="280"
-                          GridPane.columnIndex="1"
-                          GridPane.rowIndex="0"/>
-
-                <Label text="Project Status"
-                       GridPane.columnIndex="0"
-                       GridPane.rowIndex="1"/>
-
-                <ComboBox fx:id="projectStatusComboBox"
-                          promptText="Select Status"
-                          prefWidth="280"
-                          GridPane.columnIndex="1"
-                          GridPane.rowIndex="1"/>
-
-                <Label text="Start Date"
-                       GridPane.columnIndex="0"
-                       GridPane.rowIndex="2"/>
-
-                <DatePicker fx:id="startDatePicker"
-                            GridPane.columnIndex="1"
-                            GridPane.rowIndex="2"/>
-
-                <Button fx:id="searchProjectButton"
-                        text="Search Project"
-                        onAction="#searchProject"
-                        GridPane.columnIndex="1"
-                        GridPane.rowIndex="3"/>
-
+                <Label text="Completion Percentage" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                <Spinner fx:id="completionSpinner" min="0" max="100" initialValue="50" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
             </GridPane>
 
-            <Separator/>
+            <TextArea fx:id="projectNotesArea" promptText="Enter project progress and milestone information..." prefRowCount="5"/>
 
-            <Label text="Project Details"
-                   style="-fx-font-size:16px; -fx-font-weight:bold;"/>
-
-            <TableView fx:id="projectTable" prefHeight="260">
-
-                <columns>
-
-                    <TableColumn fx:id="projectIdColumn"
-                                 text="Project ID"
-                                 prefWidth="100"/>
-
-                    <TableColumn fx:id="projectNameColumn"
-                                 text="Project Name"
-                                 prefWidth="180"/>
-
-                    <TableColumn fx:id="teamLeadColumn"
-                                 text="Team Lead"
-                                 prefWidth="140"/>
-
-                    <TableColumn fx:id="progressColumn"
-                                 text="Progress (%)"
-                                 prefWidth="120"/>
-
-                    <TableColumn fx:id="deadlineColumn"
-                                 text="Deadline"
-                                 prefWidth="120"/>
-
-                    <TableColumn fx:id="statusColumn"
-                                 text="Status"
-                                 prefWidth="120"/>
-
-                </columns>
-
-            </TableView>
-
-            <Separator/>
-
-            <HBox spacing="15">
-
-                <Button fx:id="refreshButton"
-                        text="Refresh"
-                        onAction="#refreshProjects"/>
-
-                <Button fx:id="updateButton"
-                        text="Update Status"
-                        onAction="#updateProjectStatus"/>
-
-                <Button fx:id="exportButton"
-                        text="Export"
-                        onAction="#exportProjects"/>
-
-                <Button fx:id="clearButton"
-                        text="Clear"
-                        onAction="#clearFields"/>
-
-                <Button fx:id="backButton"
-                        text="Back"
-                        onAction="#backToDashboard"/>
-
+            <HBox spacing="12">
+                <Button text="Load Project" onAction="#handleLoadProject"/>
+                <Button text="Update Progress" onAction="#handleUpdateProject"/>
+                <Button text="Save Tracking" onAction="#handleSaveProject"/>
             </HBox>
 
-            <Label fx:id="statusLabel"
-                   text="Select a project to track."
-                   style="-fx-font-weight:bold; -fx-text-fill:green;"/>
+            <TitledPane text="Engineering Project Status" expanded="true">
+                <content>
+                    <TableView fx:id="projectTable" prefHeight="230">
+                        <columns>
+                            <TableColumn fx:id="projectIdColumn" text="Project ID" prefWidth="130"/>
+                            <TableColumn fx:id="projectNameColumn" text="Project" prefWidth="230"/>
+                            <TableColumn fx:id="milestoneColumn" text="Milestone" prefWidth="200"/>
+                            <TableColumn fx:id="completionColumn" text="Completion" prefWidth="150"/>
+                            <TableColumn fx:id="projectStatusColumn" text="Status" prefWidth="160"/>
+                        </columns>
+                    </TableView>
+                </content>
+            </TitledPane>
 
+            <Label fx:id="projectStatusLabel" text="Ready"/>
         </VBox>
-
-    </children>
-
-</AnchorPane>
+    </center>
+</BorderPane>

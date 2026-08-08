@@ -1,146 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="650.0" prefWidth="900.0"
-            xmlns="http://javafx.com/javafx/26"
-            xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.AutomotiveEngineerController"
+            prefWidth="1100" prefHeight="700">
 
-    <children>
+    <top>
+        <HBox spacing="20" alignment="CENTER_LEFT" style="-fx-background-color:#2c3e50;" prefHeight="80">
+            <padding><Insets top="15" right="25" bottom="15" left="20"/></padding>
+            <Button text="Back" onAction="#handleBack"/>
+            <Label text="User 5 - Goal 5: Monitor Production Quality" style="-fx-font-size:24px; -fx-font-weight:bold; -fx-text-fill:white;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label text="Automotive Engineer" style="-fx-text-fill:white;"/>
+        </HBox>
+    </top>
 
-        <VBox spacing="15"
-              AnchorPane.topAnchor="15"
-              AnchorPane.leftAnchor="15"
-              AnchorPane.rightAnchor="15"
-              AnchorPane.bottomAnchor="15">
+    <center>
+        <VBox spacing="18">
+            <padding><Insets top="25" right="25" bottom="25" left="25"/></padding>
 
-            <padding>
-                <Insets top="20" right="20" bottom="20" left="20"/>
-            </padding>
+            <GridPane hgap="15" vgap="15">
+                <Label text="Production Batch" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <ComboBox fx:id="qualityBatchComboBox" promptText="Select batch" prefWidth="250" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
 
-            <Label text="Production Quality Monitoring"
-                   style="-fx-font-size:22px; -fx-font-weight:bold;"/>
+                <Label text="Inspection Date" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <DatePicker fx:id="qualityDatePicker" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
 
-            <Separator/>
-
-            <GridPane hgap="12" vgap="12">
-
-                <columnConstraints>
-                    <ColumnConstraints/>
-                    <ColumnConstraints hgrow="ALWAYS"/>
-                </columnConstraints>
-
-                <rowConstraints>
-                    <RowConstraints/>
-                    <RowConstraints/>
-                    <RowConstraints/>
-                </rowConstraints>
-
-                <Label text="Production Batch"
-                       GridPane.columnIndex="0"
-                       GridPane.rowIndex="0"/>
-
-                <ComboBox fx:id="batchComboBox"
-                          promptText="Select Production Batch"
-                          prefWidth="280"
-                          GridPane.columnIndex="1"
-                          GridPane.rowIndex="0"/>
-
-                <Label text="Vehicle Model"
-                       GridPane.columnIndex="0"
-                       GridPane.rowIndex="1"/>
-
-                <ComboBox fx:id="vehicleComboBox"
-                          promptText="Select Vehicle"
-                          prefWidth="280"
-                          GridPane.columnIndex="1"
-                          GridPane.rowIndex="1"/>
-
-                <Button fx:id="loadQualityButton"
-                        text="Load Quality Data"
-                        onAction="#loadQualityData"
-                        GridPane.columnIndex="1"
-                        GridPane.rowIndex="2"/>
-
+                <Label text="Quality Standard" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                <ComboBox fx:id="qualityStandardComboBox" promptText="Select standard" prefWidth="250" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
             </GridPane>
 
-            <Separator/>
-
-            <Label text="Quality Inspection Results"
-                   style="-fx-font-size:16px; -fx-font-weight:bold;"/>
-
-            <TableView fx:id="qualityTable" prefHeight="260">
-
-                <columns>
-
-                    <TableColumn fx:id="componentColumn"
-                                 text="Component"
-                                 prefWidth="170"/>
-
-                    <TableColumn fx:id="inspectionColumn"
-                                 text="Inspection Result"
-                                 prefWidth="170"/>
-
-                    <TableColumn fx:id="qualityScoreColumn"
-                                 text="Quality Score"
-                                 prefWidth="130"/>
-
-                    <TableColumn fx:id="defectColumn"
-                                 text="Defects"
-                                 prefWidth="150"/>
-
-                    <TableColumn fx:id="remarksColumn"
-                                 text="Remarks"
-                                 prefWidth="200"/>
-
-                </columns>
-
-            </TableView>
-
-            <Separator/>
-
-            <HBox spacing="15">
-
-                <Button fx:id="refreshButton"
-                        text="Refresh"
-                        onAction="#refreshQualityData"/>
-
-                <Button fx:id="generateReportButton"
-                        text="Generate Report"
-                        onAction="#generateQualityReport"/>
-
-                <Button fx:id="exportButton"
-                        text="Export"
-                        onAction="#exportQualityData"/>
-
-                <Button fx:id="clearButton"
-                        text="Clear"
-                        onAction="#clearFields"/>
-
-                <Button fx:id="backButton"
-                        text="Back"
-                        onAction="#backToDashboard"/>
-
+            <HBox spacing="20">
+                <CheckBox fx:id="engineQualityCheckBox" text="Engine"/>
+                <CheckBox fx:id="bodyQualityCheckBox" text="Body"/>
+                <CheckBox fx:id="paintQualityCheckBox" text="Paint"/>
+                <CheckBox fx:id="brakeQualityCheckBox" text="Brakes"/>
+                <CheckBox fx:id="safetyQualityCheckBox" text="Safety"/>
             </HBox>
 
-            <Label fx:id="statusLabel"
-                   text="Select a production batch to monitor quality."
-                   style="-fx-font-weight:bold; -fx-text-fill:green;"/>
+            <TextArea fx:id="qualityNotesArea" promptText="Enter quality monitoring notes..." prefRowCount="4"/>
 
+            <HBox spacing="12">
+                <Button text="Analyze Quality" onAction="#handleAnalyzeQuality"/>
+                <Button text="Save Report" onAction="#handleSaveQualityReport"/>
+                <Button text="Clear" onAction="#handleClear"/>
+            </HBox>
+
+            <TitledPane text="Quality Monitoring Results" expanded="true">
+                <content>
+                    <TableView fx:id="qualityTable" prefHeight="230">
+                        <columns>
+                            <TableColumn fx:id="batchIdColumn" text="Batch ID" prefWidth="130"/>
+                            <TableColumn fx:id="qualityVehicleColumn" text="Vehicle Model" prefWidth="180"/>
+                            <TableColumn fx:id="defectRateColumn" text="Defect %" prefWidth="130"/>
+                            <TableColumn fx:id="qualityScoreColumn" text="Quality Score" prefWidth="150"/>
+                            <TableColumn fx:id="qualityStatusColumn" text="Status" prefWidth="160"/>
+                        </columns>
+                    </TableView>
+                </content>
+            </TitledPane>
+
+            <Label fx:id="qualityStatusLabel" text="Ready"/>
         </VBox>
-
-    </children>
-
-</AnchorPane>
+    </center>
+</BorderPane>

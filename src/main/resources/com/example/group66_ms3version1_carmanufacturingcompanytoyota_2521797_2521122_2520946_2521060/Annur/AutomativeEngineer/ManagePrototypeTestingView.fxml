@@ -1,156 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="650.0" prefWidth="900.0"
-            xmlns="http://javafx.com/javafx/26"
-            xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.AutomotiveEngineerController"
+            prefWidth="1100" prefHeight="700">
 
-    <children>
+    <top>
+        <HBox spacing="20" alignment="CENTER_LEFT" style="-fx-background-color:#2c3e50;" prefHeight="80">
+            <padding><Insets top="15" right="25" bottom="15" left="20"/></padding>
+            <Button text="Back" onAction="#handleBack"/>
+            <Label text="User 5 - Goal 6: Manage Prototype Testing" style="-fx-font-size:24px; -fx-font-weight:bold; -fx-text-fill:white;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label text="Automotive Engineer" style="-fx-text-fill:white;"/>
+        </HBox>
+    </top>
 
-        <VBox spacing="15"
-              AnchorPane.topAnchor="15"
-              AnchorPane.leftAnchor="15"
-              AnchorPane.rightAnchor="15"
-              AnchorPane.bottomAnchor="15">
+    <center>
+        <VBox spacing="18">
+            <padding><Insets top="25" right="25" bottom="25" left="25"/></padding>
 
-            <padding>
-                <Insets top="20" right="20" bottom="20" left="20"/>
-            </padding>
+            <GridPane hgap="15" vgap="15">
+                <Label text="Prototype" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <ComboBox fx:id="prototypeComboBox" promptText="Select prototype" prefWidth="250" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
 
-            <Label text="Prototype Testing Management"
-                   style="-fx-font-size:22px; -fx-font-weight:bold;"/>
+                <Label text="Test Date" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <DatePicker fx:id="prototypeDatePicker" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
 
-            <Separator/>
-
-            <GridPane hgap="12" vgap="12">
-
-                <columnConstraints>
-                    <ColumnConstraints/>
-                    <ColumnConstraints hgrow="ALWAYS"/>
-                </columnConstraints>
-
-                <rowConstraints>
-                    <RowConstraints/>
-                    <RowConstraints/>
-                    <RowConstraints/>
-                    <RowConstraints/>
-                </rowConstraints>
-
-                <Label text="Prototype ID"
-                       GridPane.columnIndex="0"
-                       GridPane.rowIndex="0"/>
-
-                <ComboBox fx:id="prototypeIdComboBox"
-                          promptText="Select Prototype"
-                          prefWidth="280"
-                          GridPane.columnIndex="1"
-                          GridPane.rowIndex="0"/>
-
-                <Label text="Vehicle Model"
-                       GridPane.columnIndex="0"
-                       GridPane.rowIndex="1"/>
-
-                <ComboBox fx:id="vehicleModelComboBox"
-                          promptText="Select Vehicle"
-                          prefWidth="280"
-                          GridPane.columnIndex="1"
-                          GridPane.rowIndex="1"/>
-
-                <Label text="Test Date"
-                       GridPane.columnIndex="0"
-                       GridPane.rowIndex="2"/>
-
-                <DatePicker fx:id="testDatePicker"
-                            GridPane.columnIndex="1"
-                            GridPane.rowIndex="2"/>
-
-                <Button fx:id="loadTestButton"
-                        text="Load Test Data"
-                        onAction="#loadTestData"
-                        GridPane.columnIndex="1"
-                        GridPane.rowIndex="3"/>
-
+                <Label text="Test Type" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                <ComboBox fx:id="prototypeTestTypeComboBox" promptText="Select test type" prefWidth="250" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
             </GridPane>
 
-            <Separator/>
+            <TextArea fx:id="prototypeResultsArea" promptText="Enter prototype testing results..." prefRowCount="6"/>
 
-            <Label text="Prototype Test Results"
-                   style="-fx-font-size:16px; -fx-font-weight:bold;"/>
-
-            <TableView fx:id="prototypeTestTable" prefHeight="260">
-
-                <columns>
-
-                    <TableColumn fx:id="testCategoryColumn"
-                                 text="Test Category"
-                                 prefWidth="170"/>
-
-                    <TableColumn fx:id="expectedValueColumn"
-                                 text="Expected Value"
-                                 prefWidth="150"/>
-
-                    <TableColumn fx:id="actualValueColumn"
-                                 text="Actual Value"
-                                 prefWidth="150"/>
-
-                    <TableColumn fx:id="resultColumn"
-                                 text="Result"
-                                 prefWidth="120"/>
-
-                    <TableColumn fx:id="remarksColumn"
-                                 text="Remarks"
-                                 prefWidth="210"/>
-
-                </columns>
-
-            </TableView>
-
-            <Separator/>
-
-            <HBox spacing="15">
-
-                <Button fx:id="startTestButton"
-                        text="Start Test"
-                        onAction="#startTest"/>
-
-                <Button fx:id="saveResultButton"
-                        text="Save Results"
-                        onAction="#saveResults"/>
-
-                <Button fx:id="generateReportButton"
-                        text="Generate Report"
-                        onAction="#generateReport"/>
-
-                <Button fx:id="clearButton"
-                        text="Clear"
-                        onAction="#clearFields"/>
-
-                <Button fx:id="backButton"
-                        text="Back"
-                        onAction="#backToDashboard"/>
-
+            <HBox spacing="12">
+                <Button text="Validate Test" onAction="#handleValidatePrototype"/>
+                <Button text="Save Results" onAction="#handleSavePrototype"/>
+                <Button text="Generate Report" onAction="#handleGeneratePrototypeReport"/>
             </HBox>
 
-            <Label fx:id="statusLabel"
-                   text="Select a prototype to begin testing."
-                   style="-fx-font-weight:bold; -fx-text-fill:green;"/>
+            <TitledPane text="Prototype Testing History" expanded="true">
+                <content>
+                    <TableView fx:id="prototypeTable" prefHeight="230">
+                        <columns>
+                            <TableColumn fx:id="prototypeIdColumn" text="Prototype ID" prefWidth="140"/>
+                            <TableColumn fx:id="prototypeModelColumn" text="Model" prefWidth="180"/>
+                            <TableColumn fx:id="prototypeTestColumn" text="Test Type" prefWidth="180"/>
+                            <TableColumn fx:id="prototypeResultColumn" text="Result" prefWidth="180"/>
+                            <TableColumn fx:id="prototypeDateColumn" text="Date" prefWidth="150"/>
+                        </columns>
+                    </TableView>
+                </content>
+            </TitledPane>
 
+            <Label fx:id="prototypeStatusLabel" text="Ready"/>
         </VBox>
-
-    </children>
-
-</AnchorPane>
+    </center>
+</BorderPane>

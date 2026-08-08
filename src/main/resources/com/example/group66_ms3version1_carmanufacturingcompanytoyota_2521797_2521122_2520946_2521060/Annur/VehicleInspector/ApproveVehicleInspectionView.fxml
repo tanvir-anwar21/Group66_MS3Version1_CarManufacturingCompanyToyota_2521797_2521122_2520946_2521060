@@ -1,156 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="650.0" prefWidth="900.0"
-            xmlns="http://javafx.com/javafx/26"
-            xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.VehicleInspectorController"
+            prefWidth="1100" prefHeight="700">
 
-    <children>
+    <top>
+        <HBox spacing="20" alignment="CENTER_LEFT" style="-fx-background-color:#2c3e50;" prefHeight="80">
+            <padding><Insets top="15" right="25" bottom="15" left="20"/></padding>
+            <Button text="Back" onAction="#handleBack"/>
+            <Label text="User 6 - Goal 1: Inspect Vehicle Condition" style="-fx-font-size:24px; -fx-font-weight:bold; -fx-text-fill:white;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label text="Vehicle Inspector" style="-fx-text-fill:white;"/>
+        </HBox>
+    </top>
 
-        <VBox spacing="15"
-              AnchorPane.topAnchor="15"
-              AnchorPane.leftAnchor="15"
-              AnchorPane.rightAnchor="15"
-              AnchorPane.bottomAnchor="15">
+    <center>
+        <VBox spacing="18">
+            <padding><Insets top="25" right="25" bottom="25" left="25"/></padding>
 
-            <padding>
-                <Insets top="20" right="20" bottom="20" left="20"/>
-            </padding>
+            <GridPane hgap="15" vgap="15">
+                <Label text="Vehicle ID" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <TextField fx:id="inspectionVehicleIdField" promptText="Enter vehicle ID" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
 
-            <Label text="Inspection Approval"
-                   style="-fx-font-size:22px; -fx-font-weight:bold;"/>
+                <Label text="VIN" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <TextField fx:id="inspectionVinField" promptText="Enter VIN" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
 
-            <Separator/>
+                <Label text="Inspection Date" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                <DatePicker fx:id="inspectionDatePicker" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
 
-            <GridPane hgap="12" vgap="12">
-
-                <columnConstraints>
-                    <ColumnConstraints/>
-                    <ColumnConstraints hgrow="ALWAYS"/>
-                </columnConstraints>
-
-                <rowConstraints>
-                    <RowConstraints/>
-                    <RowConstraints/>
-                    <RowConstraints/>
-                </rowConstraints>
-
-                <Label text="Inspection ID"
-                       GridPane.columnIndex="0"
-                       GridPane.rowIndex="0"/>
-
-                <ComboBox fx:id="inspectionIdComboBox"
-                          promptText="Select Inspection"
-                          prefWidth="280"
-                          GridPane.columnIndex="1"
-                          GridPane.rowIndex="0"/>
-
-                <Label text="Approval Status"
-                       GridPane.columnIndex="0"
-                       GridPane.rowIndex="1"/>
-
-                <ComboBox fx:id="approvalStatusComboBox"
-                          promptText="Select Status"
-                          prefWidth="280"
-                          GridPane.columnIndex="1"
-                          GridPane.rowIndex="1"/>
-
-                <Button fx:id="loadInspectionButton"
-                        text="Load Inspection"
-                        onAction="#loadInspection"
-                        GridPane.columnIndex="1"
-                        GridPane.rowIndex="2"/>
-
+                <Label text="Vehicle Condition" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                <ComboBox fx:id="vehicleConditionComboBox" promptText="Select condition" prefWidth="240" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
             </GridPane>
 
-            <Separator/>
-
-            <Label text="Inspection Details"
-                   style="-fx-font-size:16px; -fx-font-weight:bold;"/>
-
-            <TableView fx:id="inspectionTable" prefHeight="220">
-
-                <columns>
-
-                    <TableColumn fx:id="vehicleIdColumn"
-                                 text="Vehicle ID"
-                                 prefWidth="120"/>
-
-                    <TableColumn fx:id="inspectionTypeColumn"
-                                 text="Inspection Type"
-                                 prefWidth="160"/>
-
-                    <TableColumn fx:id="inspectorColumn"
-                                 text="Inspector"
-                                 prefWidth="150"/>
-
-                    <TableColumn fx:id="resultColumn"
-                                 text="Result"
-                                 prefWidth="120"/>
-
-                    <TableColumn fx:id="dateColumn"
-                                 text="Inspection Date"
-                                 prefWidth="150"/>
-
-                    <TableColumn fx:id="remarksColumn"
-                                 text="Remarks"
-                                 prefWidth="180"/>
-
-                </columns>
-
-            </TableView>
-
-            <Label text="Approval Comments"
-                   style="-fx-font-size:16px; -fx-font-weight:bold;"/>
-
-            <TextArea fx:id="approvalRemarksArea"
-                      prefHeight="120"
-                      promptText="Enter approval comments..."/>
-
-            <HBox spacing="15">
-
-                <Button fx:id="approveButton"
-                        text="Approve"
-                        onAction="#approveInspection"/>
-
-                <Button fx:id="rejectButton"
-                        text="Reject"
-                        onAction="#rejectInspection"/>
-
-                <Button fx:id="saveButton"
-                        text="Save"
-                        onAction="#saveApproval"/>
-
-                <Button fx:id="clearButton"
-                        text="Clear"
-                        onAction="#clearFields"/>
-
-                <Button fx:id="backButton"
-                        text="Back"
-                        onAction="#backToDashboard"/>
-
+            <HBox spacing="18">
+                <CheckBox fx:id="engineInspectionCheckBox" text="Engine"/>
+                <CheckBox fx:id="bodyInspectionCheckBox" text="Body"/>
+                <CheckBox fx:id="paintInspectionCheckBox" text="Paint"/>
+                <CheckBox fx:id="brakeInspectionCheckBox" text="Brakes"/>
+                <CheckBox fx:id="safetyInspectionCheckBox" text="Safety"/>
             </HBox>
 
-            <Label fx:id="statusLabel"
-                   text="Select an inspection for approval."
-                   style="-fx-font-weight:bold; -fx-text-fill:green;"/>
+            <TextArea fx:id="inspectionFindingsArea" promptText="Enter inspection findings..." prefRowCount="5"/>
 
+            <HBox spacing="12">
+                <Button text="Validate Vehicle" onAction="#handleValidateVehicle"/>
+                <Button text="Save Inspection" onAction="#handleSaveInspection"/>
+                <Button text="Clear" onAction="#handleClear"/>
+            </HBox>
+
+            <TitledPane text="Inspection Records" expanded="true">
+                <content>
+                    <TableView fx:id="inspectionTable" prefHeight="230">
+                        <columns>
+                            <TableColumn fx:id="inspectionIdColumn" text="Inspection ID" prefWidth="140"/>
+                            <TableColumn fx:id="vehicleIdColumn" text="Vehicle ID" prefWidth="150"/>
+                            <TableColumn fx:id="inspectionConditionColumn" text="Condition" prefWidth="160"/>
+                            <TableColumn fx:id="inspectionResultColumn" text="Result" prefWidth="160"/>
+                            <TableColumn fx:id="inspectionDateColumn" text="Date" prefWidth="160"/>
+                        </columns>
+                    </TableView>
+                </content>
+            </TitledPane>
+
+            <Label fx:id="inspectionStatusLabel" text="Ready"/>
         </VBox>
-
-    </children>
-
-</AnchorPane>
+    </center>
+</BorderPane>
