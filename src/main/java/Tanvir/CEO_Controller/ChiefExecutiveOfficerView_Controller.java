@@ -1,6 +1,7 @@
 package Tanvir.CEO_Controller;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -10,41 +11,46 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 
 public class ChiefExecutiveOfficerView_Controller {
 
-    @javafx.fxml.FXML
+    @FXML
     private TextField revenueField;
 
-    @javafx.fxml.FXML
+    @FXML
     private TextArea activityArea;
 
-    @javafx.fxml.FXML
+    @FXML
     private TextField productionField;
 
-    @javafx.fxml.FXML
+    @FXML
     private TextArea budgetArea;
 
-    @javafx.fxml.FXML
+    @FXML
     private TextField salesField;
 
-    @javafx.fxml.FXML
+    @FXML
     private Label statusLabel;
 
-    @javafx.fxml.FXML
+    @FXML
     private TextField employeeField;
 
-
-    @javafx.fxml.FXML
+    @FXML
     public void initialize() {
 
-        // Dashboard summary values
+        loadDashboardData();
+
+        statusLabel.setText("Dashboard loaded successfully.");
+    }
+
+    private void loadDashboardData() {
+
         revenueField.setText("900000");
         productionField.setText("850");
         salesField.setText("320");
         employeeField.setText("150");
 
-        // Recent company activities
         activityArea.setText(
                 "• Monthly production target reviewed\n" +
                         "• Sales performance updated\n" +
@@ -52,117 +58,126 @@ public class ChiefExecutiveOfficerView_Controller {
                         "• Customer feedback analysed"
         );
 
-        // Pending budget information
         budgetArea.setText(
                 "Pending Budget Approvals:\n" +
                         "• Production Department\n" +
                         "• Sales Department"
         );
-
-        statusLabel.setText("Dashboard loaded successfully.");
     }
 
-
-    @javafx.fxml.FXML
+    @FXML
     public void executiveReportButton(ActionEvent actionEvent) {
-        openPage("/Tanvir/ExecutiveReportsView.fxml");
+
+        openPage(
+                "/com/example/group66_ms3version1_carmanufacturingcompanytoyota_2521797_2521122_2520946_2521060/Tanvir/ChiefExecutiveOfficer/FinancialSummary_view.fxml"
+        );
     }
 
-
-    @javafx.fxml.FXML
+    @FXML
     public void productionPerformanceButton(ActionEvent actionEvent) {
-        openPage("/Tanvir/ProductionPerformanceView.fxml");
+
+        openPage(
+                "/com/example/group66_ms3version1_carmanufacturingcompanytoyota_2521797_2521122_2520946_2521060/Tanvir/ChiefExecutiveOfficer/ProductionPerformance_view.fxml"
+        );
     }
 
-
-    @javafx.fxml.FXML
+    @FXML
     public void customerFeedbackButton(ActionEvent actionEvent) {
-        openPage("/Tanvir/CustomerFeedbackView.fxml");
+
+        openPage(
+                "/com/example/group66_ms3version1_carmanufacturingcompanytoyota_2521797_2521122_2520946_2521060/Tanvir/ChiefExecutiveOfficer/CustomerFeedback_view.fxml"
+        );
     }
 
-
-    @javafx.fxml.FXML
+    @FXML
     public void companyPerformanceButton(ActionEvent actionEvent) {
-        openPage("/Tanvir/CompanyPerformanceView.fxml");
+
+        openPage(
+                "/com/example/group66_ms3version1_carmanufacturingcompanytoyota_2521797_2521122_2520946_2521060/Tanvir/ChiefExecutiveOfficer/CompanyPerformance_view.fxml"
+        );
     }
 
+    @FXML
+    public void employeeStatisticsButton(ActionEvent actionEvent) {
 
-    @javafx.fxml.FXML
+        openPage(
+                "/com/example/group66_ms3version1_carmanufacturingcompanytoyota_2521797_2521122_2520946_2521060/Tanvir/ChiefExecutiveOfficer/EmployeeStatistics_view.fxml"
+        );
+    }
+
+    @FXML
+    public void budgetApprovalButton(ActionEvent actionEvent) {
+
+        openPage(
+                "/com/example/group66_ms3version1_carmanufacturingcompanytoyota_2521797_2521122_2520946_2521060/Tanvir/ChiefExecutiveOfficer/BudgetApproval_view.fxml"
+        );
+    }
+
+    @FXML
+    public void salesPerformanceButton(ActionEvent actionEvent) {
+
+        openPage(
+                "/com/example/group66_ms3version1_carmanufacturingcompanytoyota_2521797_2521122_2520946_2521060/Tanvir/ChiefExecutiveOfficer/SalesPerformane_view.fxml"
+        );
+    }
+
+    @FXML
+    public void financialSummaryButton(ActionEvent actionEvent) {
+
+        openPage(
+                "/com/example/group66_ms3version1_carmanufacturingcompanytoyota_2521797_2521122_2520946_2521060/Tanvir/ChiefExecutiveOfficer/FinancialSummary_view.fxml"
+        );
+    }
+
+    @FXML
     public void refreshButton(ActionEvent actionEvent) {
 
-        initialize();
+        loadDashboardData();
 
         statusLabel.setText("Dashboard refreshed successfully.");
     }
 
-
-    @javafx.fxml.FXML
-    public void employeeStatisticsButton(ActionEvent actionEvent) {
-        openPage("/Tanvir/EmployeeStatisticsView.fxml");
-    }
-
-
-    @javafx.fxml.FXML
-    public void budgetApprovalButton(ActionEvent actionEvent) {
-        openPage("/Tanvir/BudgetApprovalView.fxml");
-    }
-
-
-    @javafx.fxml.FXML
-    public void salesPerformanceButton(ActionEvent actionEvent) {
-        openPage("/Tanvir/SalesPerformanceView.fxml");
-    }
-
-
-    @javafx.fxml.FXML
+    @FXML
     public void logoutButton(ActionEvent actionEvent) {
 
-        try {
-
-            FXMLLoader loader =
-                    new FXMLLoader(getClass().getResource("/Tanvir/Login.fxml"));
-
-            Parent root = loader.load();
-
-            Stage stage = (Stage) statusLabel.getScene().getWindow();
-
-            stage.setScene(new Scene(root));
-            stage.setTitle("Login");
-            stage.show();
-
-        } catch (IOException e) {
-
-            statusLabel.setText("Unable to logout.");
-            e.printStackTrace();
-        }
+        openPage(
+                "/com/example/group66_ms3version1_carmanufacturingcompanytoyota_2521797_2521122_2520946_2521060/Utility/LogInView.fxml"
+        );
     }
-
-
-    @javafx.fxml.FXML
-    public void financialSummaryButton(ActionEvent actionEvent) {
-        openPage("/Tanvir/FinancialSummaryView.fxml");
-    }
-
-
-    // Common method for opening CEO pages
 
     private void openPage(String fxmlFile) {
 
         try {
 
-            FXMLLoader loader =
-                    new FXMLLoader(getClass().getResource(fxmlFile));
+            URL resource = getClass().getResource(fxmlFile);
+
+            if (resource == null) {
+
+                statusLabel.setText("FXML file not found.");
+
+                System.out.println("FXML FILE NOT FOUND: " + fxmlFile);
+
+                return;
+            }
+
+            FXMLLoader loader = new FXMLLoader(resource);
 
             Parent root = loader.load();
 
-            Stage stage = (Stage) statusLabel.getScene().getWindow();
+            Stage stage = (Stage) statusLabel
+                    .getScene()
+                    .getWindow();
 
-            stage.setScene(new Scene(root));
+            Scene scene = new Scene(root);
+
+            stage.setScene(scene);
+
             stage.show();
 
         } catch (IOException e) {
 
             statusLabel.setText("Unable to open page.");
+
             e.printStackTrace();
         }
     }

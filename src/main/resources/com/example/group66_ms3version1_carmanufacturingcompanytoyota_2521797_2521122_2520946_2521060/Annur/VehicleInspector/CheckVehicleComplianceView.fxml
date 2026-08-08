@@ -14,20 +14,25 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="650.0" prefWidth="900.0"
-            xmlns="http://javafx.com/javafx/26"
-            xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="Annur.VehicleInspector_Controller.CheckVehicleComplianceView_Controller"
+            prefWidth="1000.0"
+            prefHeight="650.0">
 
     <children>
 
-        <VBox spacing="15"
-              AnchorPane.topAnchor="15"
-              AnchorPane.leftAnchor="15"
-              AnchorPane.rightAnchor="15"
-              AnchorPane.bottomAnchor="15">
+        <VBox spacing="15.0"
+              AnchorPane.topAnchor="15.0"
+              AnchorPane.leftAnchor="15.0"
+              AnchorPane.rightAnchor="15.0"
+              AnchorPane.bottomAnchor="15.0">
 
             <padding>
-                <Insets top="20" right="20" bottom="20" left="20"/>
+                <Insets top="20.0"
+                        right="20.0"
+                        bottom="20.0"
+                        left="20.0"/>
             </padding>
 
             <Label text="Vehicle Compliance Check"
@@ -35,7 +40,8 @@
 
             <Separator/>
 
-            <GridPane hgap="12" vgap="12">
+            <GridPane hgap="12.0"
+                      vgap="12.0">
 
                 <columnConstraints>
                     <ColumnConstraints/>
@@ -54,7 +60,7 @@
 
                 <ComboBox fx:id="vehicleIdComboBox"
                           promptText="Select Vehicle"
-                          prefWidth="280"
+                          prefWidth="280.0"
                           GridPane.columnIndex="1"
                           GridPane.rowIndex="0"/>
 
@@ -64,7 +70,7 @@
 
                 <ComboBox fx:id="complianceStandardComboBox"
                           promptText="Select Standard"
-                          prefWidth="280"
+                          prefWidth="280.0"
                           GridPane.columnIndex="1"
                           GridPane.rowIndex="1"/>
 
@@ -81,29 +87,30 @@
             <Label text="Compliance Results"
                    style="-fx-font-size:16px; -fx-font-weight:bold;"/>
 
-            <TableView fx:id="complianceTable" prefHeight="260">
+            <TableView fx:id="complianceTable"
+                       prefHeight="260.0">
 
                 <columns>
 
                     <TableColumn fx:id="requirementColumn"
                                  text="Requirement"
-                                 prefWidth="220"/>
+                                 prefWidth="220.0"/>
 
                     <TableColumn fx:id="vehicleValueColumn"
                                  text="Vehicle Value"
-                                 prefWidth="170"/>
+                                 prefWidth="170.0"/>
 
                     <TableColumn fx:id="requiredValueColumn"
                                  text="Required Value"
-                                 prefWidth="170"/>
+                                 prefWidth="170.0"/>
 
                     <TableColumn fx:id="statusColumn"
                                  text="Status"
-                                 prefWidth="120"/>
+                                 prefWidth="120.0"/>
 
                     <TableColumn fx:id="remarksColumn"
                                  text="Remarks"
-                                 prefWidth="180"/>
+                                 prefWidth="180.0"/>
 
                 </columns>
 
@@ -111,7 +118,7 @@
 
             <Separator/>
 
-            <HBox spacing="15">
+            <HBox spacing="15.0">
 
                 <Button fx:id="verifyButton"
                         text="Verify"

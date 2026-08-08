@@ -1,155 +1,151 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.chart.BarChart?>
-<?import javafx.scene.chart.CategoryAxis?>
-<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="650.0" prefWidth="900.0"
-            xmlns="http://javafx.com/javafx/26"
-            xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="650.0" prefWidth="1000.0"
+            xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="Annur.AutomativeEngineer_Controller.AnalyzeVehiclePerformanceView_Controller">
 
-    <children>
-
-        <VBox spacing="15"
-              AnchorPane.topAnchor="15"
-              AnchorPane.leftAnchor="15"
-              AnchorPane.rightAnchor="15"
-              AnchorPane.bottomAnchor="15">
-
+    <top>
+        <HBox spacing="20.0" alignment="CENTER_LEFT"
+              prefHeight="80.0"
+              style="-fx-background-color: #2c3e50;">
             <padding>
-                <Insets top="20" right="20" bottom="20" left="20"/>
+                <Insets top="15.0" right="25.0" bottom="15.0" left="20.0"/>
             </padding>
 
-            <Label text="Analyze Vehicle Performance"
-                   style="-fx-font-size:22px; -fx-font-weight:bold;"/>
+            <Button text="Back" onAction="#handleBack"/>
 
-            <Separator/>
+            <Label text="User 5 - Goal 3: Analyze Vehicle Performance"
+                   style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: white;"/>
 
-            <GridPane hgap="12" vgap="12">
+            <Region HBox.hgrow="ALWAYS"/>
 
-                <columnConstraints>
-                    <ColumnConstraints/>
-                    <ColumnConstraints hgrow="ALWAYS"/>
-                </columnConstraints>
+            <Label text="Automotive Engineer"
+                   style="-fx-text-fill: white;"/>
+        </HBox>
+    </top>
 
-                <rowConstraints>
-                    <RowConstraints/>
-                    <RowConstraints/>
-                </rowConstraints>
+    <center>
+        <VBox spacing="18.0">
+            <padding>
+                <Insets top="25.0" right="25.0" bottom="25.0" left="25.0"/>
+            </padding>
+
+            <GridPane hgap="15.0" vgap="15.0">
 
                 <Label text="Vehicle Model"
-                       GridPane.columnIndex="0"
-                       GridPane.rowIndex="0"/>
+                       GridPane.rowIndex="0"
+                       GridPane.columnIndex="0"/>
 
-                <ComboBox fx:id="vehicleModelComboBox"
-                          promptText="Select Vehicle Model"
-                          prefWidth="280"
-                          GridPane.columnIndex="1"
-                          GridPane.rowIndex="0"/>
+                <ComboBox fx:id="performanceVehicleComboBox"
+                          promptText="Select vehicle"
+                          prefWidth="240.0"
+                          GridPane.rowIndex="0"
+                          GridPane.columnIndex="1"/>
 
-                <Label text="Test Data"
-                       GridPane.columnIndex="0"
-                       GridPane.rowIndex="1"/>
+                <Label text="Test Date"
+                       GridPane.rowIndex="1"
+                       GridPane.columnIndex="0"/>
 
-                <ComboBox fx:id="testDataComboBox"
-                          promptText="Select Test Data"
-                          prefWidth="280"
-                          GridPane.columnIndex="1"
-                          GridPane.rowIndex="1"/>
+                <DatePicker fx:id="performanceDatePicker"
+                            GridPane.rowIndex="1"
+                            GridPane.columnIndex="1"/>
+
+                <Label text="Test Type"
+                       GridPane.rowIndex="2"
+                       GridPane.columnIndex="0"/>
+
+                <ComboBox fx:id="performanceTestTypeComboBox"
+                          promptText="Select test type"
+                          prefWidth="240.0"
+                          GridPane.rowIndex="2"
+                          GridPane.columnIndex="1"/>
+
+                <Label text="Test Completed"
+                       GridPane.rowIndex="3"
+                       GridPane.columnIndex="0"/>
+
+                <CheckBox fx:id="testCompletedCheckBox"
+                          text="Test data verified"
+                          GridPane.rowIndex="3"
+                          GridPane.columnIndex="1"/>
 
             </GridPane>
 
-            <Separator/>
+            <TextArea fx:id="performanceDataArea"
+                      promptText="Enter engine, fuel efficiency, braking and emission test data..."
+                      prefRowCount="5"
+                      wrapText="true"/>
 
-            <Label text="Performance Summary"
-                   style="-fx-font-size:16px; -fx-font-weight:bold;"/>
+            <HBox spacing="12.0">
 
-            <TableView fx:id="performanceTable" prefHeight="180">
+                <Button text="Analyze"
+                        onAction="#handleAnalyzePerformance"/>
 
-                <columns>
+                <Button text="Generate Report"
+                        onAction="#handleGeneratePerformanceReport"/>
 
-                    <TableColumn fx:id="parameterColumn"
-                                 text="Parameter"
-                                 prefWidth="170"/>
-
-                    <TableColumn fx:id="valueColumn"
-                                 text="Value"
-                                 prefWidth="140"/>
-
-                    <TableColumn fx:id="standardColumn"
-                                 text="Standard"
-                                 prefWidth="150"/>
-
-                    <TableColumn fx:id="scoreColumn"
-                                 text="Score"
-                                 prefWidth="120"/>
-
-                    <TableColumn fx:id="remarksColumn"
-                                 text="Remarks"
-                                 prefWidth="220"/>
-
-                </columns>
-
-            </TableView>
-
-            <Label text="Performance Comparison"
-                   style="-fx-font-size:16px; -fx-font-weight:bold;"/>
-
-            <BarChart fx:id="performanceChart" prefHeight="180">
-
-                <xAxis>
-                    <CategoryAxis label="Performance Category"/>
-                </xAxis>
-
-                <yAxis>
-                    <NumberAxis label="Score"/>
-                </yAxis>
-
-            </BarChart>
-
-            <HBox spacing="15">
-
-                <Button fx:id="analyzeButton"
-                        text="Analyze"
-                        onAction="#analyzePerformance"/>
-
-                <Button fx:id="generateChartButton"
-                        text="Generate Chart"
-                        onAction="#generateChart"/>
-
-                <Button fx:id="saveButton"
-                        text="Save Analysis"
-                        onAction="#saveAnalysis"/>
-
-                <Button fx:id="clearButton"
-                        text="Clear"
-                        onAction="#clearFields"/>
-
-                <Button fx:id="backButton"
-                        text="Back"
-                        onAction="#backToDashboard"/>
+                <Button text="Clear"
+                        onAction="#handleClear"/>
 
             </HBox>
 
-            <Label fx:id="statusLabel"
-                   text="Select a vehicle and test data."
-                   style="-fx-font-weight:bold; -fx-text-fill:green;"/>
+            <TitledPane text="Performance Analysis Results"
+                        expanded="true">
+
+                <content>
+                    <TableView fx:id="performanceTable"
+                               prefHeight="230.0">
+
+                        <columns>
+
+                            <TableColumn fx:id="performanceVehicleColumn"
+                                         text="Vehicle"
+                                         prefWidth="180.0"/>
+
+                            <TableColumn fx:id="enginePerformanceColumn"
+                                         text="Engine Score"
+                                         prefWidth="150.0"/>
+
+                            <TableColumn fx:id="fuelPerformanceColumn"
+                                         text="Fuel Efficiency"
+                                         prefWidth="170.0"/>
+
+                            <TableColumn fx:id="brakingColumn"
+                                         text="Braking Score"
+                                         prefWidth="150.0"/>
+
+                            <TableColumn fx:id="overallPerformanceColumn"
+                                         text="Overall Score"
+                                         prefWidth="150.0"/>
+
+                        </columns>
+
+                    </TableView>
+                </content>
+
+            </TitledPane>
+
+            <Label fx:id="performanceStatusLabel"
+                   text="Ready"/>
 
         </VBox>
+    </center>
 
-    </children>
-
-</AnchorPane>
+</BorderPane>

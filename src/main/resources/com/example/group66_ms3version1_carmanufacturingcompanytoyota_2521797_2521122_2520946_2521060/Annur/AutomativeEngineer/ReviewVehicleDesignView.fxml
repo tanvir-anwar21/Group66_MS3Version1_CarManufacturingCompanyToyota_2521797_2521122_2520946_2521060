@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="Annur.AutomativeEngineer_Controller.UpdateVehicleSpecificationsView_Controller"
+            prefWidth="1100.0"
+            prefHeight="700.0">
+
+    <top>
+        <HBox spacing="20" alignment="CENTER_LEFT" style="-fx-background-color: #2c3e50;" prefHeight="80">
+            <padding><Insets top="15" right="25" bottom="15" left="20"/></padding>
+            <Button text="Back" onAction="#handleBack"/>
+            <Label text="User 5 - Goal 1: Review Vehicle Design" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label text="Automotive Engineer" style="-fx-text-fill: white; -fx-font-size: 15px;"/>
+        </HBox>
+    </top>
+
+    <center>
+        <VBox spacing="18">
+            <padding><Insets top="25" right="25" bottom="25" left="25"/></padding>
+
+            <GridPane hgap="15" vgap="15">
+                <Label text="Vehicle Model" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <ComboBox fx:id="vehicleModelComboBox" promptText="Select vehicle model" prefWidth="240" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                <Label text="Review Date" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <DatePicker fx:id="reviewDatePicker" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                <Label text="Engineering Standard" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                <ComboBox fx:id="standardComboBox" promptText="Select standard" prefWidth="240" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                <Label text="Design Approved" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                <CheckBox fx:id="designApprovedCheckBox" text="Meets approved engineering standard" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+            </GridPane>
+
+            <Label text="Design Specifications" style="-fx-font-weight: bold;"/>
+            <TextArea fx:id="designSpecificationsArea" promptText="Enter or review vehicle design specifications..." prefRowCount="5"/>
+
+            <HBox spacing="12">
+                <Button text="Review Design" onAction="#handleReviewDesign"/>
+                <Button text="Save Review" onAction="#handleSaveDesignReview"/>
+                <Button text="Clear" onAction="#handleClear"/>
+            </HBox>
+
+            <TitledPane text="Design Review History" expanded="true">
+                <content>
+                    <TableView fx:id="designReviewTable" prefHeight="230">
+                        <columns>
+                            <TableColumn fx:id="reviewIdColumn" text="Review ID" prefWidth="120"/>
+                            <TableColumn fx:id="modelColumn" text="Vehicle Model" prefWidth="180"/>
+                            <TableColumn fx:id="standardColumn" text="Standard" prefWidth="180"/>
+                            <TableColumn fx:id="reviewResultColumn" text="Result" prefWidth="160"/>
+                            <TableColumn fx:id="reviewDateColumn" text="Review Date" prefWidth="160"/>
+                        </columns>
+                    </TableView>
+                </content>
+            </TitledPane>
+
+            <Label fx:id="designStatusLabel" text="Ready"/>
+        </VBox>
+    </center>
+</BorderPane>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.AutomotiveEngineerController"
+            prefWidth="1100.0"
+            prefHeight="700.0">
+
+    <top>
+        <HBox spacing="20.0" alignment="CENTER_LEFT" style="-fx-background-color: #2c3e50;" prefHeight="80.0">
+            <padding>
+                <Insets top="15" right="25" bottom="15" left="20"/>
+            </padding>
+            <Button text="Back" onAction="#handleBack"/>
+            <Label text="Automotive Engineer Dashboard" style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label text="User 5 - Automotive Engineer" style="-fx-font-size: 15px; -fx-text-fill: white;"/>
+        </HBox>
+    </top>
+
+    <center>
+        <ScrollPane fitToWidth="true" fitToHeight="true">
+            <content>
+                <VBox spacing="18.0">
+                    <padding>
+                        <Insets top="25" right="25" bottom="25" left="25"/>
+                    </padding>
+
+                    <Label text="Engineering Operations" style="-fx-font-size: 22px; -fx-font-weight: bold;"/>
+
+                    <GridPane hgap="15.0" vgap="15.0">
+                        <Button text="Vehicle Design Review" onAction="#openVehicleDesignReview" GridPane.rowIndex="0" GridPane.columnIndex="0" prefWidth="240.0" prefHeight="55.0"/>
+                        <Button text="Update Specifications" onAction="#openUpdateSpecifications" GridPane.rowIndex="0" GridPane.columnIndex="1" prefWidth="240.0" prefHeight="55.0"/>
+                        <Button text="Performance Analysis" onAction="#openPerformanceAnalysis" GridPane.rowIndex="0" GridPane.columnIndex="2" prefWidth="240.0" prefHeight="55.0"/>
+                        <Button text="Engineering Changes" onAction="#openEngineeringChanges" GridPane.rowIndex="1" GridPane.columnIndex="0" prefWidth="240.0" prefHeight="55.0"/>
+                        <Button text="Quality Monitoring" onAction="#openQualityMonitoring" GridPane.rowIndex="1" GridPane.columnIndex="1" prefWidth="240.0" prefHeight="55.0"/>
+                        <Button text="Prototype Testing" onAction="#openPrototypeTesting" GridPane.rowIndex="1" GridPane.columnIndex="2" prefWidth="240.0" prefHeight="55.0"/>
+                        <Button text="Project Tracking" onAction="#openProjectTracking" GridPane.rowIndex="2" GridPane.columnIndex="0" prefWidth="240.0" prefHeight="55.0"/>
+                        <Button text="Engineering Reports" onAction="#openEngineeringReports" GridPane.rowIndex="2" GridPane.columnIndex="1" prefWidth="240.0" prefHeight="55.0"/>
+                        <Button text="Refresh Dashboard" onAction="#handleRefresh" GridPane.rowIndex="2" GridPane.columnIndex="2" prefWidth="240.0" prefHeight="55.0"/>
+                    </GridPane>
+
+                    <TitledPane text="Engineering Activity Summary" expanded="true">
+                        <content>
+                            <TableView fx:id="engineeringActivityTable" prefHeight="220.0">
+                                <columns>
+                                    <TableColumn fx:id="activityIdColumn" text="Activity ID" prefWidth="130.0"/>
+                                    <TableColumn fx:id="activityTypeColumn" text="Activity" prefWidth="240.0"/>
+                                    <TableColumn fx:id="vehicleColumn" text="Vehicle Model" prefWidth="200.0"/>
+                                    <TableColumn fx:id="statusColumn" text="Status" prefWidth="170.0"/>
+                                    <TableColumn fx:id="dateColumn" text="Date" prefWidth="170.0"/>
+                                </columns>
+                            </TableView>
+                        </content>
+                    </TitledPane>
+
+                    <Label fx:id="dashboardStatusLabel" text="Ready"/>
+                </VBox>
+            </content>
+        </ScrollPane>
+    </center>
+</BorderPane>

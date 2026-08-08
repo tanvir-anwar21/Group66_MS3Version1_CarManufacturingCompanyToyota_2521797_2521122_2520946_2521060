@@ -17,20 +17,22 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="650.0" prefWidth="900.0"
-            xmlns="http://javafx.com/javafx/26"
-            xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="Annur.VehicleInspector_Controller.InspectVehicleConditionView_Controller"
+            prefWidth="1000.0"
+            prefHeight="650.0">
 
     <children>
 
-        <VBox spacing="15"
-              AnchorPane.topAnchor="15"
-              AnchorPane.leftAnchor="15"
-              AnchorPane.rightAnchor="15"
-              AnchorPane.bottomAnchor="15">
+        <VBox spacing="15.0"
+              AnchorPane.topAnchor="15.0"
+              AnchorPane.leftAnchor="15.0"
+              AnchorPane.rightAnchor="15.0"
+              AnchorPane.bottomAnchor="15.0">
 
             <padding>
-                <Insets top="20" right="20" bottom="20" left="20"/>
+                <Insets top="20.0" right="20.0" bottom="20.0" left="20.0"/>
             </padding>
 
             <Label text="New Vehicle Inspection"
@@ -38,7 +40,7 @@
 
             <Separator/>
 
-            <GridPane hgap="12" vgap="12">
+            <GridPane hgap="12.0" vgap="12.0">
 
                 <columnConstraints>
                     <ColumnConstraints/>
@@ -69,7 +71,7 @@
 
                 <ComboBox fx:id="vehicleIdComboBox"
                           promptText="Select Vehicle"
-                          prefWidth="280"
+                          prefWidth="280.0"
                           GridPane.columnIndex="1"
                           GridPane.rowIndex="1"/>
 
@@ -79,7 +81,7 @@
 
                 <ComboBox fx:id="inspectorComboBox"
                           promptText="Select Inspector"
-                          prefWidth="280"
+                          prefWidth="280.0"
                           GridPane.columnIndex="1"
                           GridPane.rowIndex="2"/>
 
@@ -97,7 +99,7 @@
 
                 <ComboBox fx:id="inspectionTypeComboBox"
                           promptText="Select Type"
-                          prefWidth="280"
+                          prefWidth="280.0"
                           GridPane.columnIndex="1"
                           GridPane.rowIndex="4"/>
 
@@ -114,25 +116,26 @@
             <Label text="Inspection Checklist"
                    style="-fx-font-size:16px; -fx-font-weight:bold;"/>
 
-            <TableView fx:id="inspectionTable" prefHeight="220">
+            <TableView fx:id="inspectionTable"
+                       prefHeight="220.0">
 
                 <columns>
 
                     <TableColumn fx:id="itemColumn"
                                  text="Inspection Item"
-                                 prefWidth="220"/>
+                                 prefWidth="220.0"/>
 
                     <TableColumn fx:id="conditionColumn"
                                  text="Condition"
-                                 prefWidth="130"/>
+                                 prefWidth="130.0"/>
 
                     <TableColumn fx:id="statusColumn"
                                  text="Status"
-                                 prefWidth="120"/>
+                                 prefWidth="120.0"/>
 
                     <TableColumn fx:id="remarksColumn"
                                  text="Remarks"
-                                 prefWidth="280"/>
+                                 prefWidth="280.0"/>
 
                 </columns>
 
@@ -142,10 +145,10 @@
                    style="-fx-font-size:16px; -fx-font-weight:bold;"/>
 
             <TextArea fx:id="remarksTextArea"
-                      prefHeight="100"
+                      prefHeight="100.0"
                       promptText="Enter inspection remarks..."/>
 
-            <HBox spacing="15">
+            <HBox spacing="15.0">
 
                 <Button fx:id="saveButton"
                         text="Save"

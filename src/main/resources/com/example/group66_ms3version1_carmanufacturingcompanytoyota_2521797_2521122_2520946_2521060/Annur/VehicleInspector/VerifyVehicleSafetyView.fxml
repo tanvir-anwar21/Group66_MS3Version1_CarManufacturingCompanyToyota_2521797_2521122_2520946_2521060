@@ -14,20 +14,22 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="650.0" prefWidth="900.0"
-            xmlns="http://javafx.com/javafx/26"
-            xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="Annur.VehicleInspector_Controller.VerifyVehicleSafetyView_Controller"
+            prefWidth="1000.0"
+            prefHeight="650.0">
 
     <children>
 
-        <VBox spacing="15"
-              AnchorPane.topAnchor="15"
-              AnchorPane.leftAnchor="15"
-              AnchorPane.rightAnchor="15"
-              AnchorPane.bottomAnchor="15">
+        <VBox spacing="15.0"
+              AnchorPane.topAnchor="15.0"
+              AnchorPane.leftAnchor="15.0"
+              AnchorPane.rightAnchor="15.0"
+              AnchorPane.bottomAnchor="15.0">
 
             <padding>
-                <Insets top="20" right="20" bottom="20" left="20"/>
+                <Insets top="20.0" right="20.0" bottom="20.0" left="20.0"/>
             </padding>
 
             <Label text="Vehicle Safety Inspection"
@@ -35,7 +37,7 @@
 
             <Separator/>
 
-            <GridPane hgap="12" vgap="12">
+            <GridPane hgap="12.0" vgap="12.0">
 
                 <columnConstraints>
                     <ColumnConstraints/>
@@ -55,7 +57,7 @@
 
                 <ComboBox fx:id="vehicleIdComboBox"
                           promptText="Select Vehicle"
-                          prefWidth="280"
+                          prefWidth="280.0"
                           GridPane.columnIndex="1"
                           GridPane.rowIndex="0"/>
 
@@ -65,7 +67,7 @@
 
                 <ComboBox fx:id="inspectionCategoryComboBox"
                           promptText="Safety Inspection"
-                          prefWidth="280"
+                          prefWidth="280.0"
                           GridPane.columnIndex="1"
                           GridPane.rowIndex="1"/>
 
@@ -82,7 +84,7 @@
             <Label text="Safety Checklist"
                    style="-fx-font-size:16px; -fx-font-weight:bold;"/>
 
-            <GridPane hgap="25" vgap="10">
+            <GridPane hgap="25.0" vgap="10.0">
 
                 <CheckBox fx:id="brakeCheckBox"
                           text="Brake System"
@@ -142,10 +144,10 @@
                    style="-fx-font-size:16px; -fx-font-weight:bold;"/>
 
             <TextArea fx:id="remarksTextArea"
-                      prefHeight="140"
+                      prefHeight="140.0"
                       promptText="Enter safety inspection remarks..."/>
 
-            <HBox spacing="15">
+            <HBox spacing="15.0">
 
                 <Button fx:id="passButton"
                         text="Pass"
