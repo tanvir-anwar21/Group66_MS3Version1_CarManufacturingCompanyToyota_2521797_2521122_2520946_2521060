@@ -1,5 +1,6 @@
 package Tanvir.CEO_Controller;
 
+import Tanvir.Model_Class.Budget;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 
@@ -14,22 +15,23 @@ public class BudgetApprovalView_Controller
     @javafx.fxml.FXML
     private TextArea commentArea;
     @javafx.fxml.FXML
-    private TableColumn requestColumn;
+    private TableColumn<Budget, String> requestColumn;
     @javafx.fxml.FXML
-    private TableColumn statusColumn;
+    private TableColumn<Budget, String> statusColumn;
     @javafx.fxml.FXML
     private Button backButton;
     @javafx.fxml.FXML
-    private TableColumn departmentColumn;
+    private TableColumn<Budget, String> departmentColumn;
     @javafx.fxml.FXML
-    private TableColumn purposeColumn;
+    private TableColumn<Budget, String> purposeColumn;
     @javafx.fxml.FXML
     private Label statusLabel;
     @javafx.fxml.FXML
-    private TableView budgetTable;
+    private TableView<Budget> budgetTable;
 
     @javafx.fxml.FXML
     public void initialize() {
+
     }
 
     @javafx.fxml.FXML
