@@ -174,5 +174,6 @@ public class SendOrderConfirmation_Controller {
     }
 
     private void showAlert(String error, String s, Alert.AlertType alertType) {
+        
     }
 }

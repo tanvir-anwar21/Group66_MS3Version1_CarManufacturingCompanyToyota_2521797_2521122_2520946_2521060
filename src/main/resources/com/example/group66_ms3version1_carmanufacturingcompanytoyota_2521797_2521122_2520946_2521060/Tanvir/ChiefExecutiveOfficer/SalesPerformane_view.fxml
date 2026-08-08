@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="650.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Tanvir.CEO_Controller.EmployeeStatisticsView_Controller">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Tanvir.CEO_Controller.SalesPerformanceView_Controller">
 
     <children>
 
@@ -26,11 +26,11 @@
             </padding>
 
             <!-- Title -->
-            <Label style="-fx-font-size:24px; -fx-font-weight:bold;" text="Employee Statistics" />
+            <Label style="-fx-font-size:24px; -fx-font-weight:bold;" text="Sales Performance Dashboard" />
 
             <Separator />
 
-            <!-- Employee Summary -->
+            <!-- Sales Summary -->
             <GridPane hgap="15" vgap="15">
 
                 <columnConstraints>
@@ -41,23 +41,23 @@
                 </columnConstraints>
 
                 <VBox spacing="5" style="-fx-border-color:#BDBDBD; -fx-padding:10;">
-                    <Label text="Total Employees" />
-                    <TextField fx:id="totalEmployeesField" editable="false" />
+                    <Label text="Total Sales" />
+                    <TextField fx:id="totalSalesField" editable="false" />
                 </VBox>
 
                 <VBox spacing="5" style="-fx-border-color:#BDBDBD; -fx-padding:10;" GridPane.columnIndex="1">
-                    <Label text="Departments" />
-                    <TextField fx:id="departmentCountField" editable="false" />
+                    <Label text="Monthly Sales" />
+                    <TextField fx:id="monthlySalesField" editable="false" />
                 </VBox>
 
                 <VBox spacing="5" style="-fx-border-color:#BDBDBD; -fx-padding:10;" GridPane.columnIndex="2">
-                    <Label text="Average Attendance" />
-                    <TextField fx:id="attendanceField" editable="false" />
+                    <Label text="Top Product" />
+                    <TextField fx:id="topProductField" editable="false" />
                 </VBox>
 
                 <VBox spacing="5" style="-fx-border-color:#BDBDBD; -fx-padding:10;" GridPane.columnIndex="3">
-                    <Label text="Average Performance" />
-                    <TextField fx:id="performanceField" editable="false" />
+                    <Label text="Sales Growth" />
+                    <TextField fx:id="growthField" editable="false" />
                 </VBox>
             <rowConstraints>
                <RowConstraints />
@@ -67,22 +67,20 @@
 
             <Separator />
 
-            <!-- Employee Statistics Table -->
-            <Label style="-fx-font-size:18px; -fx-font-weight:bold;" text="Department-wise Employee Statistics" />
+            <!-- Sales Details -->
+            <Label style="-fx-font-size:18px; -fx-font-weight:bold;" text="Sales Records" />
 
-            <TableView fx:id="employeeTable" prefHeight="270">
+            <TableView fx:id="salesTable" prefHeight="250">
 
                 <columns>
 
-                    <TableColumn fx:id="departmentColumn" prefWidth="180" text="Department" />
+                    <TableColumn fx:id="productColumn" prefWidth="180" text="Product" />
 
-                    <TableColumn fx:id="employeeCountColumn" prefWidth="140" text="Employees" />
+                    <TableColumn fx:id="quantityColumn" prefWidth="140" text="Quantity Sold" />
 
-                    <TableColumn fx:id="attendanceColumn" prefWidth="150" text="Attendance %" />
+                    <TableColumn fx:id="revenueColumn" prefWidth="180" text="Revenue" />
 
-                    <TableColumn fx:id="performanceColumn" prefWidth="170" text="Performance" />
-
-                    <TableColumn fx:id="remarksColumn" prefWidth="220" text="Remarks" />
+                    <TableColumn fx:id="performanceColumn" prefWidth="160" text="Performance" />
 
                 </columns>
 
@@ -93,17 +91,17 @@
             <!-- CEO Notes -->
             <Label style="-fx-font-size:18px; -fx-font-weight:bold;" text="CEO Notes" />
 
-            <TextArea fx:id="notesArea" prefHeight="100" promptText="Enter observations regarding employee performance..." wrapText="true" />
+            <TextArea fx:id="notesArea" prefHeight="100" promptText="Write observations or recommendations..." wrapText="true" />
 
             <HBox spacing="15">
 
-                <Button onAction="#loadButton" prefWidth="140" text="Load Statistics" />
+                <Button onAction="#loadButton" prefWidth="130" text="Load Data" />
 
                 <Button onAction="#refreshButton" prefWidth="120" text="Refresh" />
 
-                <Button onAction="#refreshButton" prefWidth="150" text="Export Report" />
+                <Button onAction="#exportButton" prefWidth="150" text="Export Report" />
 
-                <Button onAction="#backButton" prefWidth="100" text="Back" />
+                <Button onAction="#backbutton" prefWidth="100" text="Back" />
 
             </HBox>
 
