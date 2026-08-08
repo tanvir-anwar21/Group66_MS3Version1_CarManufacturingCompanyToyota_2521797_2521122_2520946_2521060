@@ -1,103 +1,234 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 
 <BorderPane xmlns="http://javafx.com/javafx/17"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="Sohan.QualityControlManagerControllers.ReviewWorkerPerformanceView_Controller"
-            prefWidth="1100" prefHeight="700">
+            prefWidth="1000"
+            prefHeight="700">
 
     <top>
-        <HBox alignment="CENTER_LEFT" spacing="15" style="-fx-padding: 15 20; -fx-background-color: #2c3e50;">
-            <Button text="← Back to Dashboard" onAction="#handleBack" style="-fx-background-color: #34495e; -fx-text-fill: white;"/>
-            <Label text="👷 Review Worker Performance" style="-fx-text-fill: white; -fx-font-size: 20px; -fx-font-weight: bold;"/>
+        <HBox alignment="CENTER_LEFT"
+              spacing="15"
+              style="-fx-padding:15 20; -fx-background-color:#4A148C;">
+
+            <Label text="👷 Review Worker Performance"
+                   style="-fx-text-fill:white; -fx-font-size:22px; -fx-font-weight:bold;"/>
+
             <Region HBox.hgrow="ALWAYS"/>
-            <Label fx:id="userLabel" text="QC Manager: " style="-fx-text-fill: #bdc3c7;"/>
+
+            <Button text="⬅ Back to Dashboard"
+                    onAction="#handleBackToDashboard"
+                    style="-fx-background-color:#e74c3c; -fx-text-fill:white;"/>
+
         </HBox>
     </top>
 
     <center>
-        <VBox spacing="15" style="-fx-padding: 20;">
+        <VBox alignment="TOP_CENTER"
+              spacing="15"
+              style="-fx-padding:20;">
 
-            <GridPane hgap="15" vgap="10" style="-fx-padding: 15; -fx-background-color: #ecf0f1; -fx-border-color: #bdc3c7; -fx-border-radius: 5;">
-                <Label text="Worker ID:" GridPane.columnIndex="0" GridPane.rowIndex="0" style="-fx-font-weight: bold;"/>
-                <TextField fx:id="workerIdField" GridPane.columnIndex="1" GridPane.rowIndex="0" promptText="Enter Worker ID"/>
-                <Button text="🔍 Search" onAction="#handleSearch" GridPane.columnIndex="2" GridPane.rowIndex="0" style="-fx-background-color: #3498db; -fx-text-fill: white;"/>
+            <Label text="Worker Performance Review"
+                   style="-fx-font-size:24px; -fx-font-weight:bold;"/>
 
-                <Label text="OR Worker Name:" GridPane.columnIndex="3" GridPane.rowIndex="0" style="-fx-font-weight: bold;"/>
-                <TextField fx:id="workerNameField" GridPane.columnIndex="4" GridPane.rowIndex="0" promptText="Enter name"/>
-                <Button text="Search" onAction="#handleSearchByName" GridPane.columnIndex="5" GridPane.rowIndex="0" style="-fx-background-color: #2ecc71; -fx-text-fill: white;"/>
-            </GridPane>
+            <HBox spacing="15"
+                  alignment="CENTER_LEFT"
+                  style="-fx-padding:10; -fx-background-color:#f5f5f5; -fx-border-color:#ddd;">
 
-            <TitledPane text="Worker Profile" expanded="true">
-                <GridPane hgap="15" vgap="10" style="-fx-padding: 15;">
-                    <Label text="Worker ID:" GridPane.columnIndex="0" GridPane.rowIndex="0" style="-fx-font-weight: bold;"/>
-                    <Label fx:id="workerIdDisplay" text="-" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                <Label text="Worker ID:"
+                       style="-fx-font-weight:bold;"/>
 
-                    <Label text="Name:" GridPane.columnIndex="0" GridPane.rowIndex="1" style="-fx-font-weight: bold;"/>
-                    <Label fx:id="workerNameDisplay" text="-" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                <TextField fx:id="workerIdField"
+                           prefWidth="150"
+                           promptText="Enter Worker ID"/>
 
-                    <Label text="Department:" GridPane.columnIndex="2" GridPane.rowIndex="0" style="-fx-font-weight: bold;"/>
-                    <Label fx:id="departmentDisplay" text="-" GridPane.columnIndex="3" GridPane.rowIndex="0"/>
+                <Label text="Name:"
+                       style="-fx-font-weight:bold;"/>
 
-                    <Label text="Designation:" GridPane.columnIndex="2" GridPane.rowIndex="1" style="-fx-font-weight: bold;"/>
-                    <Label fx:id="designationDisplay" text="-" GridPane.columnIndex="3" GridPane.rowIndex="1"/>
+                <TextField fx:id="workerNameField"
+                           prefWidth="200"
+                           promptText="Enter Worker Name"/>
 
-                    <Label text="Join Date:" GridPane.columnIndex="0" GridPane.rowIndex="2" style="-fx-font-weight: bold;"/>
-                    <Label fx:id="joinDateDisplay" text="-" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                <Button text="🔍 Search"
+                        onAction="#handleSearch"
+                        style="-fx-background-color:#1976D2; -fx-text-fill:white;"/>
 
-                    <Label text="Experience:" GridPane.columnIndex="2" GridPane.rowIndex="2" style="-fx-font-weight: bold;"/>
-                    <Label fx:id="experienceDisplay" text="-" GridPane.columnIndex="3" GridPane.rowIndex="2"/>
-                </GridPane>
-            </TitledPane>
+                <Button text="📋 View All"
+                        onAction="#handleViewAll"
+                        style="-fx-background-color:#F57C00; -fx-text-fill:white;"/>
 
-            <TitledPane text="Performance Metrics" expanded="true">
-                <GridPane hgap="20" vgap="10" style="-fx-padding: 15;">
-                    <Label text="Quality Score:" GridPane.columnIndex="0" GridPane.rowIndex="0" style="-fx-font-weight: bold;"/>
-                    <Label fx:id="qualityScoreDisplay" text="-" GridPane.columnIndex="1" GridPane.rowIndex="0" style="-fx-font-weight: bold;"/>
+                <Separator orientation="VERTICAL"
+                           prefHeight="30"/>
 
-                    <Label text="Defect Rate:" GridPane.columnIndex="0" GridPane.rowIndex="1" style="-fx-font-weight: bold;"/>
-                    <Label fx:id="defectRateDisplay" text="-" GridPane.columnIndex="1" GridPane.rowIndex="1" style="-fx-font-weight: bold;"/>
+                <RadioButton fx:id="allWorkersRadio"
+                             text="All Workers"
+                             selected="true">
+                    <toggleGroup>
+                        <ToggleGroup fx:id="workerFilterGroup"/>
+                    </toggleGroup>
+                </RadioButton>
+                <RadioButton fx:id="topPerformersRadio"
+                             text="Top Performers"
+                             toggleGroup="$workerFilterGroup"/>
+                <RadioButton fx:id="needsImprovementRadio"
+                             text="Needs Improvement"
+                             toggleGroup="$workerFilterGroup"/>
 
-                    <Label text="Production Efficiency:" GridPane.columnIndex="2" GridPane.rowIndex="0" style="-fx-font-weight: bold;"/>
-                    <Label fx:id="efficiencyDisplay" text="-" GridPane.columnIndex="3" GridPane.rowIndex="0" style="-fx-font-weight: bold;"/>
-
-                    <Label text="Attendance Rate:" GridPane.columnIndex="2" GridPane.rowIndex="1" style="-fx-font-weight: bold;"/>
-                    <Label fx:id="attendanceDisplay" text="-" GridPane.columnIndex="3" GridPane.rowIndex="1" style="-fx-font-weight: bold;"/>
-
-                    <Label text="Performance Rating:" GridPane.columnIndex="0" GridPane.rowIndex="2" style="-fx-font-weight: bold;"/>
-                    <Label fx:id="performanceRatingDisplay" text="-" GridPane.columnIndex="1" GridPane.rowIndex="2" style="-fx-font-weight: bold; -fx-text-fill: #27ae60;"/>
-
-                    <Label text="Overall Status:" GridPane.columnIndex="2" GridPane.rowIndex="2" style="-fx-font-weight: bold;"/>
-                    <Label fx:id="overallStatusDisplay" text="-" GridPane.columnIndex="3" GridPane.rowIndex="2" style="-fx-font-weight: bold; -fx-text-fill: #f39c12;"/>
-                </GridPane>
-            </TitledPane>
-
-            <TitledPane text="Performance History" expanded="true">
-                <TableView fx:id="performanceHistoryTable" style="-fx-pref-height: 150;">
-                </TableView>
-            </TitledPane>
-
-            <TitledPane text="Review Comments" expanded="true">
-                <GridPane hgap="15" vgap="10" style="-fx-padding: 15;">
-                    <Label text="Review Date:" GridPane.columnIndex="0" GridPane.rowIndex="0" style="-fx-font-weight: bold;"/>
-                    <DatePicker fx:id="reviewDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
-
-                    <Label text="Comments:" GridPane.columnIndex="0" GridPane.rowIndex="1" style="-fx-font-weight: bold;"/>
-                    <TextField fx:id="reviewCommentsField" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.columnSpan="3" promptText="Enter review comments..." prefWidth="400"/>
-                </GridPane>
-            </TitledPane>
-
-            <HBox spacing="15" alignment="CENTER">
-                <Button text="💾 Save Review" onAction="#handleSaveReview" style="-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 30;"/>
-                <Button text="📊 Generate Performance Report" onAction="#handleGenerateReport" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-padding: 10 30;"/>
-                <Button text="📈 View Performance Trend" onAction="#handleViewTrend" style="-fx-background-color: #9b59b6; -fx-text-fill: white; -fx-padding: 10 30;"/>
-                <Button text="❌ Reset" onAction="#handleReset" style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-padding: 10 30;"/>
             </HBox>
 
-            <Label fx:id="statusMessage" text="" style="-fx-text-fill: #2c3e50; -fx-font-weight: bold;"/>
+            <!-- Performance Table -->
+            <TableView fx:id="performanceTableView"
+                       prefHeight="300"
+                       prefWidth="960">
+
+                <columns>
+                    <TableColumn text="Worker ID"
+                                 prefWidth="100">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="workerID"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Name"
+                                 prefWidth="150">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="name"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Department"
+                                 prefWidth="130">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="department"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Position"
+                                 prefWidth="130">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="position"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Quality Score"
+                                 prefWidth="120">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="qualityScore"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Products Checked"
+                                 prefWidth="130">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="productsChecked"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Defects Found"
+                                 prefWidth="120">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="defectsFound"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Performance"
+                                 prefWidth="120">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="performance"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                </columns>
+
+            </TableView>
+
+            <!-- Worker Details Section -->
+            <GridPane hgap="15"
+                      vgap="10"
+                      style="-fx-padding:10; -fx-background-color:#f3e5f5; -fx-border-color:#ce93d8;">
+
+                <Label text="Selected Worker Details:"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="0"
+                       style="-fx-font-weight:bold;"/>
+
+                <Label fx:id="selectedWorkerLabel"
+                       text="No worker selected"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="1"
+                       GridPane.columnSpan="3"/>
+
+                <Label text="Performance Rating:"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="2"
+                       style="-fx-font-weight:bold;"/>
+
+                <Label fx:id="performanceRatingLabel"
+                       text="N/A"
+                       GridPane.columnIndex="1"
+                       GridPane.rowIndex="2"
+                       style="-fx-font-weight:bold;"/>
+
+                <Button text="📊 View Full Report"
+                        onAction="#handleViewFullReport"
+                        GridPane.columnIndex="3"
+                        GridPane.rowIndex="1"
+                        style="-fx-background-color:#1976D2; -fx-text-fill:white;"/>
+
+                <Button text="🖨️ Print Report"
+                        onAction="#handlePrintReport"
+                        GridPane.columnIndex="3"
+                        GridPane.rowIndex="2"
+                        style="-fx-background-color:#388E3C; -fx-text-fill:white;"/>
+
+                <Button text="📝 Add Feedback"
+                        onAction="#handleAddFeedback"
+                        GridPane.columnIndex="3"
+                        GridPane.rowIndex="3"
+                        style="-fx-background-color:#FF9800; -fx-text-fill:white;"/>
+
+            </GridPane>
+
+            <!-- Feedback Section -->
+            <GridPane hgap="15"
+                      vgap="10"
+                      style="-fx-padding:10; -fx-background-color:#fff3e0; -fx-border-color:#ffb74d;">
+
+                <Label text="Performance Feedback"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="0"
+                       style="-fx-font-weight:bold;"/>
+
+                <TextArea fx:id="feedbackArea"
+                          prefWidth="800"
+                          prefHeight="50"
+                          promptText="Enter performance feedback comments..."
+                          GridPane.columnIndex="0"
+                          GridPane.rowIndex="1"
+                          GridPane.columnSpan="2"/>
+
+                <Button text="💾 Save Feedback"
+                        onAction="#handleSaveFeedback"
+                        prefWidth="150"
+                        prefHeight="35"
+                        GridPane.columnIndex="2"
+                        GridPane.rowIndex="1"
+                        style="-fx-background-color:#388E3C; -fx-text-fill:white;"/>
+
+            </GridPane>
+
+            <HBox spacing="15"
+                  alignment="CENTER_LEFT"
+                  style="-fx-padding:5 10;">
+
+                <Label fx:id="recordCountLabel"
+                       text="Total Workers: 0"/>
+
+                <Region HBox.hgrow="ALWAYS"/>
+
+                <Label fx:id="statusLabel"
+                       text="Ready"/>
+
+            </HBox>
+
         </VBox>
     </center>
+
 </BorderPane>

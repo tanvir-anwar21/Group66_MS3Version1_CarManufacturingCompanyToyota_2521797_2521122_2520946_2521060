@@ -7,78 +7,169 @@
 <BorderPane xmlns="http://javafx.com/javafx/17"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="Sohan.QualityControlManagerControllers.AddDefectInformationView_Controller"
-            prefWidth="1000" prefHeight="650">
+            prefWidth="900"
+            prefHeight="650">
 
     <top>
-        <HBox alignment="CENTER_LEFT" spacing="15" style="-fx-padding: 15 20; -fx-background-color: #2c3e50;">
-            <Button text="← Back to Dashboard" onAction="#handleBack" style="-fx-background-color: #34495e; -fx-text-fill: white;"/>
-            <Label text="⚠️ Add Defect Information" style="-fx-text-fill: white; -fx-font-size: 20px; -fx-font-weight: bold;"/>
+        <HBox alignment="CENTER_LEFT"
+              spacing="15"
+              style="-fx-padding:15 20; -fx-background-color:#4A148C;">
+
+            <Label text="⚠️ Add Defect Information"
+                   style="-fx-text-fill:white; -fx-font-size:22px; -fx-font-weight:bold;"/>
+
             <Region HBox.hgrow="ALWAYS"/>
-            <Label fx:id="userLabel" text="QC Manager: " style="-fx-text-fill: #bdc3c7;"/>
+
+            <Button text="⬅ Back to Dashboard"
+                    onAction="#handleBackToDashboard"
+                    style="-fx-background-color:#e74c3c; -fx-text-fill:white;"/>
+
         </HBox>
     </top>
 
     <center>
-        <VBox spacing="15" style="-fx-padding: 20;">
+        <VBox alignment="TOP_CENTER"
+              spacing="20"
+              style="-fx-padding:30;">
 
-            <GridPane hgap="15" vgap="12" style="-fx-padding: 20; -fx-background-color: #ecf0f1; -fx-border-color: #bdc3c7; -fx-border-radius: 5;">
+            <Label text="Report Vehicle Defect"
+                   style="-fx-font-size:24px; -fx-font-weight:bold;"/>
 
-                <Label text="Vehicle ID:" GridPane.columnIndex="0" GridPane.rowIndex="0" style="-fx-font-weight: bold;"/>
-                <TextField fx:id="vehicleIdField" GridPane.columnIndex="1" GridPane.rowIndex="0" promptText="Enter Vehicle ID"/>
-                <Button text="🔍 Verify" onAction="#handleVerify" GridPane.columnIndex="2" GridPane.rowIndex="0" style="-fx-background-color: #3498db; -fx-text-fill: white;"/>
+            <GridPane hgap="20"
+                      vgap="15"
+                      alignment="CENTER">
 
-                <Label text="Vehicle Model:" GridPane.columnIndex="0" GridPane.rowIndex="1" style="-fx-font-weight: bold;"/>
-                <Label fx:id="vehicleModelDisplay" text="[Auto-filled]" GridPane.columnIndex="1" GridPane.rowIndex="1" style="-fx-text-fill: #7f8c8d;"/>
+                <Label text="Vehicle ID: *"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="0"
+                       style="-fx-font-weight:bold;"/>
 
-                <Label text="Defect Category:" GridPane.columnIndex="0" GridPane.rowIndex="2" style="-fx-font-weight: bold;"/>
-                <ComboBox fx:id="defectCategoryCombo" GridPane.columnIndex="1" GridPane.rowIndex="2" promptText="Select category">
-                </ComboBox>
+                <TextField fx:id="vehicleIdField"
+                           prefWidth="300"
+                           promptText="Enter Vehicle ID"
+                           GridPane.columnIndex="1"
+                           GridPane.rowIndex="0"/>
 
-                <Label text="Part Affected:" GridPane.columnIndex="0" GridPane.rowIndex="3" style="-fx-font-weight: bold;"/>
-                <ComboBox fx:id="partAffectedCombo" GridPane.columnIndex="1" GridPane.rowIndex="3" promptText="Select part">
-                </ComboBox>
+                <Label text="Defect Category: *"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="1"
+                       style="-fx-font-weight:bold;"/>
 
-                <Label text="Defect Severity:" GridPane.columnIndex="0" GridPane.rowIndex="4" style="-fx-font-weight: bold;"/>
-                <RadioButton fx:id="criticalRadio" text="🔴 Critical" GridPane.columnIndex="1" GridPane.rowIndex="4">
-                    <toggleGroup><ToggleGroup fx:id="severityGroup"/></toggleGroup>
-                </RadioButton>
-                <RadioButton fx:id="majorRadio" text="🟠 Major" GridPane.columnIndex="2" GridPane.rowIndex="4">
-                    <toggleGroup><ToggleGroup fx:id="severityGroup"/></toggleGroup>
-                </RadioButton>
-                <RadioButton fx:id="minorRadio" text="🟡 Minor" GridPane.columnIndex="3" GridPane.rowIndex="4">
-                    <toggleGroup><ToggleGroup fx:id="severityGroup"/></toggleGroup>
-                </RadioButton>
+                <ComboBox fx:id="defectCategoryCombo"
+                          prefWidth="300"
+                          promptText="Select Defect Category"
+                          GridPane.columnIndex="1"
+                          GridPane.rowIndex="1"/>
 
-                <Label text="Defect Description:" GridPane.columnIndex="0" GridPane.rowIndex="5" style="-fx-font-weight: bold;"/>
-                <TextField fx:id="defectDescriptionField" GridPane.columnIndex="1" GridPane.rowIndex="5" GridPane.columnSpan="3" promptText="Describe the defect in detail..." prefWidth="500"/>
+                <Label text="Part Information: *"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="2"
+                       style="-fx-font-weight:bold;"/>
 
-                <Label text="Defect Location:" GridPane.columnIndex="0" GridPane.rowIndex="6" style="-fx-font-weight: bold;"/>
-                <TextField fx:id="defectLocationField" GridPane.columnIndex="1" GridPane.rowIndex="6" GridPane.columnSpan="2" promptText="e.g., Left front door, Engine bay"/>
+                <TextField fx:id="partInfoField"
+                           prefWidth="300"
+                           promptText="Enter Part Name or Number"
+                           GridPane.columnIndex="1"
+                           GridPane.rowIndex="2"/>
 
-                <Label text="Discovered By:" GridPane.columnIndex="0" GridPane.rowIndex="7" style="-fx-font-weight: bold;"/>
-                <TextField fx:id="discoveredByField" GridPane.columnIndex="1" GridPane.rowIndex="7" promptText="Inspector name"/>
+                <Label text="Defect Description: *"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="3"
+                       style="-fx-font-weight:bold;"/>
 
-                <Label text="Discovery Date:" GridPane.columnIndex="0" GridPane.rowIndex="8" style="-fx-font-weight: bold;"/>
-                <DatePicker fx:id="discoveryDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="8"/>
+                <TextArea fx:id="defectDescriptionArea"
+                          prefWidth="300"
+                          prefHeight="80"
+                          promptText="Describe the defect in detail..."
+                          GridPane.columnIndex="1"
+                          GridPane.rowIndex="3"/>
 
-                <Label text="Is this a recurring issue?" GridPane.columnIndex="0" GridPane.rowIndex="9" style="-fx-font-weight: bold;"/>
-                <CheckBox fx:id="recurringIssueCheck" text="Yes" GridPane.columnIndex="1" GridPane.rowIndex="9"/>
+                <Label text="Severity:"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="4"
+                       style="-fx-font-weight:bold;"/>
 
-                <Label text="Additional Notes:" GridPane.columnIndex="0" GridPane.rowIndex="10" style="-fx-font-weight: bold;"/>
-                <TextField fx:id="additionalNotesField" GridPane.columnIndex="1" GridPane.rowIndex="10" GridPane.columnSpan="3" promptText="Any additional notes..." prefWidth="500"/>
+                <HBox spacing="15"
+                      GridPane.columnIndex="1"
+                      GridPane.rowIndex="4">
+                    <RadioButton fx:id="lowSeverityRadio"
+                                 text="Low">
+                        <toggleGroup>
+                            <ToggleGroup fx:id="severityGroup"/>
+                        </toggleGroup>
+                    </RadioButton>
+                    <RadioButton fx:id="mediumSeverityRadio"
+                                 text="Medium"
+                                 selected="true"
+                                 toggleGroup="$severityGroup"/>
+                    <RadioButton fx:id="highSeverityRadio"
+                                 text="High"
+                                 toggleGroup="$severityGroup"/>
+                    <RadioButton fx:id="criticalSeverityRadio"
+                                 text="Critical"
+                                 toggleGroup="$severityGroup"/>
+                </HBox>
 
-                <Label text="Attach Photos:" GridPane.columnIndex="0" GridPane.rowIndex="11" style="-fx-font-weight: bold;"/>
-                <CheckBox fx:id="photoAttachedCheck" text="Yes, photos attached" GridPane.columnIndex="1" GridPane.rowIndex="11"/>
-                <Button text="📎 Browse Files" onAction="#handleBrowse" GridPane.columnIndex="2" GridPane.rowIndex="11" style="-fx-background-color: #95a5a6; -fx-text-fill: white;"/>
+                <Label text="Detected By:"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="5"
+                       style="-fx-font-weight:bold;"/>
+
+                <TextField fx:id="detectedByField"
+                           prefWidth="300"
+                           promptText="Enter Inspector Name"
+                           GridPane.columnIndex="1"
+                           GridPane.rowIndex="5"/>
+
+                <Label text="Detection Date:"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="6"
+                       style="-fx-font-weight:bold;"/>
+
+                <DatePicker fx:id="detectionDatePicker"
+                            prefWidth="300"
+                            promptText="Select Detection Date"
+                            GridPane.columnIndex="1"
+                            GridPane.rowIndex="6"/>
+
+                <Label text="Status:"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="7"
+                       style="-fx-font-weight:bold;"/>
+
+                <ComboBox fx:id="statusCombo"
+                          prefWidth="300"
+                          promptText="Select Status"
+                          GridPane.columnIndex="1"
+                          GridPane.rowIndex="7"/>
+
+                <CheckBox fx:id="urgentCheckBox"
+                          text="⚠ Mark as Urgent"
+                          GridPane.columnIndex="1"
+                          GridPane.rowIndex="8"/>
+
             </GridPane>
 
-            <HBox spacing="15" alignment="CENTER">
-                <Button text="💾 Save Defect Record" onAction="#handleSave" style="-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 30;"/>
-                <Button text="❌ Clear Form" onAction="#handleClear" style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-padding: 10 30;"/>
-                <Button text="📊 View Defect History" onAction="#handleViewHistory" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-padding: 10 30;"/>
+            <HBox spacing="20"
+                  alignment="CENTER">
+                <Button text="➕ Add Defect"
+                        onAction="#handleAddDefect"
+                        prefWidth="200"
+                        prefHeight="50"
+                        style="-fx-background-color:#388E3C; -fx-text-fill:white; -fx-font-size:14px; -fx-font-weight:bold;"/>
+
+                <Button text="🔄 Clear Form"
+                        onAction="#handleClear"
+                        prefWidth="150"
+                        prefHeight="50"
+                        style="-fx-background-color:#F57C00; -fx-text-fill:white; -fx-font-size:14px;"/>
             </HBox>
 
-            <Label fx:id="statusMessage" text="" style="-fx-text-fill: #2c3e50; -fx-font-weight: bold;"/>
+            <Label fx:id="statusLabel"
+                   style="-fx-font-size:14px; -fx-font-weight:bold;"
+                   text="Fill in the defect details and click Add Defect"/>
+
         </VBox>
     </center>
+
 </BorderPane>

@@ -6,14 +6,14 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/17"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="Sohan.ProcurementOfficerControllers.ProcurementOfficerView_Controller"
+            fx:controller="Sohan.QualityControlManagerControllers.QualityControlManagerView_Controller"
             prefWidth="1000"
             prefHeight="650">
 
     <top>
         <HBox alignment="CENTER_LEFT"
               spacing="15"
-              style="-fx-padding:15 20; -fx-background-color:#1B5E20;">
+              style="-fx-padding:15 20; -fx-background-color:#4A148C;">
 
             <Label text="🏢 Toyota Manufacturing System"
                    style="-fx-text-fill:white; -fx-font-size:22px; -fx-font-weight:bold;"/>
@@ -21,7 +21,7 @@
             <Region HBox.hgrow="ALWAYS"/>
 
             <Label fx:id="userLabel"
-                   text="Procurement Officer"
+                   text="Quality Control Manager"
                    style="-fx-text-fill:white;"/>
 
         </HBox>
@@ -33,74 +33,74 @@
               spacing="25"
               style="-fx-padding:30;">
 
-            <Label text="Procurement Officer Dashboard"
+            <Label text="Quality Control Manager Dashboard"
                    style="-fx-font-size:26px; -fx-font-weight:bold;"/>
 
             <GridPane hgap="25"
                       vgap="25"
                       alignment="CENTER">
 
-                <!-- Goal 1: Create Purchase Order -->
-                <Button text="📦&#10;Create Purchase Order"
+                <!-- Goal 1: Check Car Quality -->
+                <Button text="🔍&#10;Check Car Quality"
                         prefWidth="220"
                         prefHeight="90"
-                        onAction="#handleCreatePurchaseOrder"
+                        onAction="#handleCheckCarQuality"
                         GridPane.columnIndex="0"
                         GridPane.rowIndex="0"/>
 
-                <!-- Goal 2: View Supplier List -->
-                <Button text="📋&#10;View Supplier List"
+                <!-- Goal 2: Add Defect Information -->
+                <Button text="⚠️&#10;Add Defect Information"
                         prefWidth="220"
                         prefHeight="90"
-                        onAction="#handleViewSupplierList"
+                        onAction="#handleAddDefectInformation"
                         GridPane.columnIndex="1"
                         GridPane.rowIndex="0"/>
 
-                <!-- Goal 3: Add New Supplier -->
-                <Button text="➕&#10;Add New Supplier"
+                <!-- Goal 3: View Inspection Report -->
+                <Button text="📄&#10;View Inspection Report"
                         prefWidth="220"
                         prefHeight="90"
-                        onAction="#handleAddNewSupplier"
+                        onAction="#handleViewInspectionReport"
                         GridPane.columnIndex="2"
                         GridPane.rowIndex="0"/>
 
-                <!-- Goal 4: Update Supplier Information -->
-                <Button text="✏️&#10;Update Supplier"
+                <!-- Goal 4: Approve Cars for Delivery -->
+                <Button text="✅&#10;Approve Cars for Delivery"
                         prefWidth="220"
                         prefHeight="90"
-                        onAction="#handleUpdateSupplier"
+                        onAction="#handleApproveCarsForDelivery"
                         GridPane.columnIndex="0"
                         GridPane.rowIndex="1"/>
 
-                <!-- Goal 5: Order Raw Materials -->
-                <Button text="📦&#10;Order Raw Materials"
+                <!-- Goal 5: Monitor Quality Statistics -->
+                <Button text="📊&#10;Monitor Quality Statistics"
                         prefWidth="220"
                         prefHeight="90"
-                        onAction="#handleOrderRawMaterials"
+                        onAction="#handleMonitorQualityStatistics"
                         GridPane.columnIndex="1"
                         GridPane.rowIndex="1"/>
 
-                <!-- Goal 6: Check Pending Orders -->
-                <Button text="⏳&#10;Check Pending Orders"
+                <!-- Goal 6: Schedule Re-Inspection -->
+                <Button text="🔄&#10;Schedule Re-Inspection"
                         prefWidth="220"
                         prefHeight="90"
-                        onAction="#handleCheckPendingOrders"
+                        onAction="#handleScheduleReInspection"
                         GridPane.columnIndex="2"
                         GridPane.rowIndex="1"/>
 
-                <!-- Goal 7: Approve Material Delivery -->
-                <Button text="✅&#10;Approve Delivery"
+                <!-- Goal 7: Print Quality Report -->
+                <Button text="🖨️&#10;Print Quality Report"
                         prefWidth="220"
                         prefHeight="90"
-                        onAction="#handleApproveDelivery"
+                        onAction="#handlePrintQualityReport"
                         GridPane.columnIndex="0"
                         GridPane.rowIndex="2"/>
 
-                <!-- Goal 8: Monitor Material Usage -->
-                <Button text="📊&#10;Monitor Material Usage"
+                <!-- Goal 8: Review Worker Performance -->
+                <Button text="👷&#10;Review Worker Performance"
                         prefWidth="220"
                         prefHeight="90"
-                        onAction="#handleMonitorMaterialUsage"
+                        onAction="#handleReviewWorkerPerformance"
                         GridPane.columnIndex="1"
                         GridPane.rowIndex="2"/>
 

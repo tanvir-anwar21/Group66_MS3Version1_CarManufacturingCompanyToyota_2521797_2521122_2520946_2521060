@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.collections.FXCollections?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="Sohan.ProcurementOfficerControllers.AddNewSupplierView_Controller"
+            prefWidth="900"
+            prefHeight="650">
+
+    <top>
+        <HBox alignment="CENTER_LEFT"
+              spacing="15"
+              style="-fx-padding:15 20; -fx-background-color:#1B5E20;">
+
+            <Label text="➕ Add New Supplier"
+                   style="-fx-text-fill:white; -fx-font-size:22px; -fx-font-weight:bold;"/>
+
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <Button text="⬅ Back to Dashboard"
+                    onAction="#handleBackToDashboard"
+                    style="-fx-background-color:#e74c3c; -fx-text-fill:white;"/>
+
+        </HBox>
+    </top>
+
+    <center>
+        <VBox alignment="TOP_CENTER"
+              spacing="20"
+              style="-fx-padding:30;">
+
+            <Label text="Register New Supplier"
+                   style="-fx-font-size:24px; -fx-font-weight:bold;"/>
+
+            <GridPane hgap="20"
+                      vgap="15"
+                      alignment="CENTER">
+
+                <Label text="Supplier Name: *"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="0"
+                       style="-fx-font-weight:bold;"/>
+
+                <TextField fx:id="nameField"
+                           prefWidth="300"
+                           promptText="Enter Company Name"
+                           GridPane.columnIndex="1"
+                           GridPane.rowIndex="0"/>
+
+                <Label text="Contact Person: *"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="1"
+                       style="-fx-font-weight:bold;"/>
+
+                <TextField fx:id="contactPersonField"
+                           prefWidth="300"
+                           promptText="Enter Contact Person Name"
+                           GridPane.columnIndex="1"
+                           GridPane.rowIndex="1"/>
+
+                <Label text="Email:"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="2"
+                       style="-fx-font-weight:bold;"/>
+
+                <TextField fx:id="emailField"
+                           prefWidth="300"
+                           promptText="Enter Email Address"
+                           GridPane.columnIndex="1"
+                           GridPane.rowIndex="2"/>
+
+                <Label text="Phone:"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="3"
+                       style="-fx-font-weight:bold;"/>
+
+                <TextField fx:id="phoneField"
+                           prefWidth="300"
+                           promptText="Enter Phone Number"
+                           GridPane.columnIndex="1"
+                           GridPane.rowIndex="3"/>
+
+                <Label text="Address:"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="4"
+                       style="-fx-font-weight:bold;"/>
+
+                <TextArea fx:id="addressArea"
+                          prefWidth="300"
+                          prefHeight="60"
+                          promptText="Enter Full Address"
+                          GridPane.columnIndex="1"
+                          GridPane.rowIndex="4"/>
+
+                <Label text="Supplier Type:"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="5"
+                       style="-fx-font-weight:bold;"/>
+
+                <ComboBox fx:id="typeCombo"
+                          prefWidth="300"
+                          promptText="Select Type"
+                          GridPane.columnIndex="1"
+                          GridPane.rowIndex="5"/>
+
+                <Label text="Status:"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="6"
+                       style="-fx-font-weight:bold;"/>
+
+                <ComboBox fx:id="statusCombo"
+                          prefWidth="300"
+                          promptText="Select Status"
+                          GridPane.columnIndex="1"
+                          GridPane.rowIndex="6"/>
+
+                <Label text="Payment Terms:"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="7"
+                       style="-fx-font-weight:bold;"/>
+
+                <ComboBox fx:id="paymentTermsCombo"
+                          prefWidth="300"
+                          promptText="Select Payment Terms"
+                          GridPane.columnIndex="1"
+                          GridPane.rowIndex="7"/>
+
+                <HBox spacing="15"
+                      GridPane.columnIndex="1"
+                      GridPane.rowIndex="8">
+                    <CheckBox fx:id="preferredCheckBox"
+                              text="Preferred Supplier"/>
+                    <CheckBox fx:id="taxExemptCheckBox"
+                              text="Tax Exempt"/>
+                </HBox>
+
+            </GridPane>
+
+            <HBox spacing="20"
+                  alignment="CENTER">
+                <Button text="➕ Add Supplier"
+                        onAction="#handleAddSupplier"
+                        prefWidth="200"
+                        prefHeight="50"
+                        style="-fx-background-color:#388E3C; -fx-text-fill:white; -fx-font-size:14px; -fx-font-weight:bold;"/>
+
+                <Button text="🔄 Reset Form"
+                        onAction="#handleReset"
+                        prefWidth="150"
+                        prefHeight="50"
+                        style="-fx-background-color:#F57C00; -fx-text-fill:white; -fx-font-size:14px;"/>
+            </HBox>
+
+            <Label fx:id="statusLabel"
+                   style="-fx-font-size:14px; -fx-font-weight:bold;"
+                   text="Fill in the details and click Add Supplier"/>
+
+        </VBox>
+    </center>
+
+</BorderPane>

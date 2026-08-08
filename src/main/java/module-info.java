@@ -2,6 +2,7 @@ module com.example.group66_ms3version1_carmanufacturingcompanytoyota_2521797_252
 
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.desktop;
 
     // Main Application
     exports com.example.group66_ms3version1_carmanufacturingcompanytoyota_2521797_2521122_2520946_2521060;
@@ -26,4 +27,26 @@ module com.example.group66_ms3version1_carmanufacturingcompanytoyota_2521797_252
     // User 4 - Sales Executive
     exports Tawsif.SalesExecutiveControllers;
     opens Tawsif.SalesExecutiveControllers to javafx.fxml;
+
+    exports Sohan.ModelClasses.QualityControlManager;
+    opens Sohan.ModelClasses.QualityControlManager to javafx.base, javafx.fxml;
+
+    exports Sohan.ModelClasses.ProcurementOfficer;
+    opens Sohan.ModelClasses.ProcurementOfficer to javafx.base, javafx.fxml;
+
+    exports Sohan.QualityControlManagerControllers;
+    opens Sohan.QualityControlManagerControllers to javafx.fxml;
+
+    exports Sohan.ProcurementOfficerControllers;
+    opens Sohan.ProcurementOfficerControllers to javafx.fxml;
+
+    exports Tanvir.Model_Class;
+    opens Tanvir.Model_Class to javafx.base, javafx.fxml;
+
+    exports Tanvir.CEO_Controller;
+    opens Tanvir.CEO_Controller to javafx.fxml;
+
+    exports  Tanvir.ProductionManager_Controller;
+    opens Tanvir.ProductionManager_Controller to javafx.fxml;
+
 }

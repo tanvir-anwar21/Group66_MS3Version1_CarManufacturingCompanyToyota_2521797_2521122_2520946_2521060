@@ -7,97 +7,231 @@
 <BorderPane xmlns="http://javafx.com/javafx/17"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="Sohan.QualityControlManagerControllers.CheckCarQualityView_Controller"
-            prefWidth="1000" prefHeight="650">
+            prefWidth="900"
+            prefHeight="650">
 
     <top>
-        <HBox alignment="CENTER_LEFT" spacing="15" style="-fx-padding: 15 20; -fx-background-color: #2c3e50;">
-            <Button text="← Back to Dashboard" onAction="#handleBack" style="-fx-background-color: #34495e; -fx-text-fill: white;"/>
-            <Label text="🚗 Check Car Quality" style="-fx-text-fill: white; -fx-font-size: 20px; -fx-font-weight: bold;"/>
+        <HBox alignment="CENTER_LEFT"
+              spacing="15"
+              style="-fx-padding:15 20; -fx-background-color:#4A148C;">
+
+            <Label text="🔍 Check Car Quality"
+                   style="-fx-text-fill:white; -fx-font-size:22px; -fx-font-weight:bold;"/>
+
             <Region HBox.hgrow="ALWAYS"/>
-            <Label fx:id="userLabel" text="QC Manager: " style="-fx-text-fill: #bdc3c7;"/>
+
+            <Button text="⬅ Back to Dashboard"
+                    onAction="#handleBackToDashboard"
+                    style="-fx-background-color:#e74c3c; -fx-text-fill:white;"/>
+
         </HBox>
     </top>
 
     <center>
-        <VBox spacing="15" style="-fx-padding: 20;">
+        <VBox alignment="TOP_CENTER"
+              spacing="20"
+              style="-fx-padding:30;">
 
-            <GridPane hgap="15" vgap="10" style="-fx-padding: 15; -fx-background-color: #ecf0f1; -fx-border-color: #bdc3c7; -fx-border-radius: 5;">
-                <Label text="Enter Car ID:" GridPane.columnIndex="0" GridPane.rowIndex="0" style="-fx-font-weight: bold;"/>
-                <TextField fx:id="carIdField" GridPane.columnIndex="1" GridPane.rowIndex="0" promptText="e.g., CAR-2026-0045" prefWidth="200"/>
-                <Button text="🔍 Search" onAction="#handleSearch" GridPane.columnIndex="2" GridPane.rowIndex="0" style="-fx-background-color: #3498db; -fx-text-fill: white;"/>
+            <Label text="Vehicle Quality Inspection"
+                   style="-fx-font-size:24px; -fx-font-weight:bold;"/>
 
-                <Label text="OR" GridPane.columnIndex="3" GridPane.rowIndex="0" style="-fx-font-weight: bold; -fx-text-fill: #7f8c8d;"/>
+            <HBox spacing="15"
+                  alignment="CENTER"
+                  style="-fx-padding:10; -fx-background-color:#f5f5f5; -fx-border-color:#ddd;">
 
-                <Label text="Select from List:" GridPane.columnIndex="4" GridPane.rowIndex="0" style="-fx-font-weight: bold;"/>
-                <ComboBox fx:id="vehicleListCombo" GridPane.columnIndex="5" GridPane.rowIndex="0" prefWidth="200">
-                </ComboBox>
-                <Button text="Load" onAction="#handleLoadFromList" GridPane.columnIndex="6" GridPane.rowIndex="0" style="-fx-background-color: #2ecc71; -fx-text-fill: white;"/>
-            </GridPane>
+                <Label text="Car ID:"
+                       style="-fx-font-weight:bold;"/>
 
-            <TitledPane text="Vehicle Information" expanded="true">
-                <GridPane hgap="15" vgap="10" style="-fx-padding: 15;">
-                    <Label text="Vehicle ID:" GridPane.columnIndex="0" GridPane.rowIndex="0" style="-fx-font-weight: bold;"/>
-                    <Label fx:id="vehicleIdDisplay" text="CAR-2026-0045" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                <TextField fx:id="carIdField"
+                           prefWidth="200"
+                           promptText="Enter Car ID"/>
 
-                    <Label text="Model:" GridPane.columnIndex="0" GridPane.rowIndex="1" style="-fx-font-weight: bold;"/>
-                    <Label fx:id="modelDisplay" text="Camry 2026" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                <Button text="🔍 Search"
+                        onAction="#handleSearchCar"
+                        style="-fx-background-color:#1976D2; -fx-text-fill:white;"/>
 
-                    <Label text="VIN:" GridPane.columnIndex="0" GridPane.rowIndex="2" style="-fx-font-weight: bold;"/>
-                    <Label fx:id="vinDisplay" text="4T1BF1FK9HU123456" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                <Button text="🔄 Clear"
+                        onAction="#handleClear"
+                        style="-fx-background-color:#F57C00; -fx-text-fill:white;"/>
 
-                    <Label text="Production Date:" GridPane.columnIndex="0" GridPane.rowIndex="3" style="-fx-font-weight: bold;"/>
-                    <Label fx:id="productionDateDisplay" text="2026-08-01" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
-
-                    <Label text="Production Line:" GridPane.columnIndex="2" GridPane.rowIndex="0" style="-fx-font-weight: bold;"/>
-                    <Label fx:id="lineDisplay" text="Line A-3" GridPane.columnIndex="3" GridPane.rowIndex="0"/>
-
-                    <Label text="Current Status:" GridPane.columnIndex="2" GridPane.rowIndex="1" style="-fx-font-weight: bold;"/>
-                    <Label fx:id="statusDisplay" text="Pending Inspection" GridPane.columnIndex="3" GridPane.rowIndex="1" style="-fx-text-fill: #f39c12;"/>
-                </GridPane>
-            </TitledPane>
-
-            <TitledPane text="Inspection Criteria" expanded="true">
-                <VBox spacing="10" style="-fx-padding: 15;">
-                    <Label text="Select inspection parameters to check:" style="-fx-font-weight: bold;"/>
-
-                    <CheckBox fx:id="engineCheck" text="Engine Performance" selected="true"/>
-                    <CheckBox fx:id="bodyCheck" text="Body Condition (paint, dents)" selected="true"/>
-                    <CheckBox fx:id="brakeCheck" text="Brake System" selected="true"/>
-                    <CheckBox fx:id="safetyCheck" text="Safety Features (airbags, seatbelts)" selected="true"/>
-                    <CheckBox fx:id="electricalCheck" text="Electrical System" selected="true"/>
-                    <CheckBox fx:id="interiorCheck" text="Interior Quality" selected="true"/>
-                    <CheckBox fx:id="exteriorCheck" text="Exterior Quality" selected="true"/>
-                </VBox>
-            </TitledPane>
-
-            <TitledPane text="Inspection Result" expanded="true">
-                <GridPane hgap="15" vgap="10" style="-fx-padding: 15;">
-                    <Label text="Overall Status:" GridPane.columnIndex="0" GridPane.rowIndex="0" style="-fx-font-weight: bold;"/>
-                    <RadioButton fx:id="passRadio" text="✅ Pass" GridPane.columnIndex="1" GridPane.rowIndex="0">
-                        <toggleGroup><ToggleGroup fx:id="resultGroup"/></toggleGroup>
-                    </RadioButton>
-                    <RadioButton fx:id="failRadio" text="❌ Fail" GridPane.columnIndex="2" GridPane.rowIndex="0">
-                        <toggleGroup><ToggleGroup fx:id="resultGroup"/></toggleGroup>
-                    </RadioButton>
-                    <RadioButton fx:id="pendingRadio" text="⏳ Pending Review" GridPane.columnIndex="3" GridPane.rowIndex="0">
-                        <toggleGroup><ToggleGroup fx:id="resultGroup"/></toggleGroup>
-                    </RadioButton>
-
-                    <Label text="Comments:" GridPane.columnIndex="0" GridPane.rowIndex="1" style="-fx-font-weight: bold;"/>
-                    <TextField fx:id="commentsField" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.columnSpan="3" promptText="Enter inspection comments..." prefWidth="400"/>
-
-                    <Label text="Inspector Name:" GridPane.columnIndex="0" GridPane.rowIndex="2" style="-fx-font-weight: bold;"/>
-                    <TextField fx:id="inspectorNameField" GridPane.columnIndex="1" GridPane.rowIndex="2" promptText="Enter inspector name"/>
-                </GridPane>
-            </TitledPane>
-
-            <HBox spacing="15" alignment="CENTER">
-                <Button text="✅ Submit Inspection" onAction="#handleSubmit" style="-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 30;"/>
-                <Button text="❌ Reset" onAction="#handleReset" style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-padding: 10 30;"/>
-                <Button text="📋 View History" onAction="#handleViewHistory" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-padding: 10 30;"/>
             </HBox>
 
-            <Label fx:id="statusMessage" text="" style="-fx-text-fill: #2c3e50; -fx-font-weight: bold;"/>
+            <GridPane hgap="20"
+                      vgap="12"
+                      alignment="CENTER"
+                      style="-fx-padding:15; -fx-background-color:#f3e5f5; -fx-border-color:#ce93d8;">
+
+                <Label text="Vehicle Details"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="0"
+                       GridPane.columnSpan="4"
+                       style="-fx-font-size:16px; -fx-font-weight:bold;"/>
+
+                <Label text="Car ID:"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="1"
+                       style="-fx-font-weight:bold;"/>
+
+                <Label fx:id="carIdDisplay"
+                       text="N/A"
+                       GridPane.columnIndex="1"
+                       GridPane.rowIndex="1"/>
+
+                <Label text="Model:"
+                       GridPane.columnIndex="2"
+                       GridPane.rowIndex="1"
+                       style="-fx-font-weight:bold;"/>
+
+                <Label fx:id="modelDisplay"
+                       text="N/A"
+                       GridPane.columnIndex="3"
+                       GridPane.rowIndex="1"/>
+
+                <Label text="VIN:"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="2"
+                       style="-fx-font-weight:bold;"/>
+
+                <Label fx:id="vinDisplay"
+                       text="N/A"
+                       GridPane.columnIndex="1"
+                       GridPane.rowIndex="2"/>
+
+                <Label text="Production Date:"
+                       GridPane.columnIndex="2"
+                       GridPane.rowIndex="2"
+                       style="-fx-font-weight:bold;"/>
+
+                <Label fx:id="productionDateDisplay"
+                       text="N/A"
+                       GridPane.columnIndex="3"
+                       GridPane.rowIndex="2"/>
+
+            </GridPane>
+
+            <Label text="Quality Inspection Checklist"
+                   style="-fx-font-size:16px; -fx-font-weight:bold;"/>
+
+            <GridPane hgap="20"
+                      vgap="10"
+                      alignment="CENTER">
+
+                <Label text="Engine:"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="0"
+                       style="-fx-font-weight:bold;"/>
+
+                <ComboBox fx:id="engineCombo"
+                          prefWidth="200"
+                          promptText="Select Status"
+                          GridPane.columnIndex="1"
+                          GridPane.rowIndex="0"/>
+
+                <Label text="Body:"
+                       GridPane.columnIndex="2"
+                       GridPane.rowIndex="0"
+                       style="-fx-font-weight:bold;"/>
+
+                <ComboBox fx:id="bodyCombo"
+                          prefWidth="200"
+                          promptText="Select Status"
+                          GridPane.columnIndex="3"
+                          GridPane.rowIndex="0"/>
+
+                <Label text="Paint:"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="1"
+                       style="-fx-font-weight:bold;"/>
+
+                <ComboBox fx:id="paintCombo"
+                          prefWidth="200"
+                          promptText="Select Status"
+                          GridPane.columnIndex="1"
+                          GridPane.rowIndex="1"/>
+
+                <Label text="Brakes:"
+                       GridPane.columnIndex="2"
+                       GridPane.rowIndex="1"
+                       style="-fx-font-weight:bold;"/>
+
+                <ComboBox fx:id="brakesCombo"
+                          prefWidth="200"
+                          promptText="Select Status"
+                          GridPane.columnIndex="3"
+                          GridPane.rowIndex="1"/>
+
+                <Label text="Safety Features:"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="2"
+                       style="-fx-font-weight:bold;"/>
+
+                <ComboBox fx:id="safetyCombo"
+                          prefWidth="200"
+                          promptText="Select Status"
+                          GridPane.columnIndex="1"
+                          GridPane.rowIndex="2"/>
+
+                <Label text="Electrical:"
+                       GridPane.columnIndex="2"
+                       GridPane.rowIndex="2"
+                       style="-fx-font-weight:bold;"/>
+
+                <ComboBox fx:id="electricalCombo"
+                          prefWidth="200"
+                          promptText="Select Status"
+                          GridPane.columnIndex="3"
+                          GridPane.rowIndex="2"/>
+
+            </GridPane>
+
+            <Label text="Overall Quality Status:"
+                   style="-fx-font-weight:bold;"/>
+
+            <HBox spacing="20"
+                  alignment="CENTER">
+                <RadioButton fx:id="passRadio"
+                             text="✓ Pass"
+                             selected="true">
+                    <toggleGroup>
+                        <ToggleGroup fx:id="qualityStatusGroup"/>
+                    </toggleGroup>
+                </RadioButton>
+                <RadioButton fx:id="failRadio"
+                             text="✗ Fail"
+                             toggleGroup="$qualityStatusGroup"/>
+                <RadioButton fx:id="conditionalRadio"
+                             text="⚠ Conditional Pass"
+                             toggleGroup="$qualityStatusGroup"/>
+            </HBox>
+
+            <Label text="Inspection Notes:"
+                   style="-fx-font-weight:bold;"/>
+
+            <TextArea fx:id="notesArea"
+                      prefWidth="800"
+                      prefHeight="60"
+                      promptText="Enter any inspection notes or comments..."/>
+
+            <HBox spacing="20"
+                  alignment="CENTER">
+                <Button text="✅ Submit Quality Report"
+                        onAction="#handleSubmitQualityReport"
+                        prefWidth="250"
+                        prefHeight="50"
+                        style="-fx-background-color:#388E3C; -fx-text-fill:white; -fx-font-size:14px; -fx-font-weight:bold;"/>
+
+                <Button text="🔄 Reset"
+                        onAction="#handleReset"
+                        prefWidth="150"
+                        prefHeight="50"
+                        style="-fx-background-color:#F57C00; -fx-text-fill:white; -fx-font-size:14px;"/>
+            </HBox>
+
+            <Label fx:id="statusLabel"
+                   style="-fx-font-size:14px; -fx-font-weight:bold;"
+                   text="Enter Car ID to begin quality inspection"/>
+
         </VBox>
     </center>
+
 </BorderPane>

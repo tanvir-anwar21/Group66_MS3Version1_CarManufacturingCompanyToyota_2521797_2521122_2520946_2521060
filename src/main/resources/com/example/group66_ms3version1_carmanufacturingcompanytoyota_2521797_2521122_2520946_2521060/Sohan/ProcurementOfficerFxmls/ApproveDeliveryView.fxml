@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.collections.FXCollections?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="Sohan.ProcurementOfficerControllers.ApproveDeliveryView_Controller"
+            prefWidth="900"
+            prefHeight="600">
+
+    <top>
+        <HBox alignment="CENTER_LEFT"
+              spacing="15"
+              style="-fx-padding:15 20; -fx-background-color:#1B5E20;">
+
+            <Label text="✅ Approve Material Delivery"
+                   style="-fx-text-fill:white; -fx-font-size:22px; -fx-font-weight:bold;"/>
+
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <Button text="⬅ Back to Dashboard"
+                    onAction="#handleBackToDashboard"
+                    style="-fx-background-color:#e74c3c; -fx-text-fill:white;"/>
+
+        </HBox>
+    </top>
+
+    <center>
+        <VBox alignment="TOP_CENTER"
+              spacing="20"
+              style="-fx-padding:30;">
+
+            <Label text="Material Delivery Approval"
+                   style="-fx-font-size:24px; -fx-font-weight:bold;"/>
+
+            <!-- Search Section -->
+            <HBox spacing="15"
+                  alignment="CENTER"
+                  style="-fx-padding:10; -fx-background-color:#f5f5f5; -fx-border-color:#ddd;">
+
+                <Label text="Delivery ID:"
+                       style="-fx-font-weight:bold;"/>
+
+                <TextField fx:id="deliveryIdField"
+                           prefWidth="150"
+                           promptText="Enter Delivery ID"/>
+
+                <Label text="PO ID:"
+                       style="-fx-font-weight:bold;"/>
+
+                <TextField fx:id="poIdField"
+                           prefWidth="150"
+                           promptText="Enter PO ID"/>
+
+                <Button text="🔍 Search"
+                        onAction="#handleSearch"
+                        style="-fx-background-color:#1976D2; -fx-text-fill:white;"/>
+
+            </HBox>
+
+            <!-- Delivery Details Section -->
+            <GridPane hgap="20"
+                      vgap="12"
+                      alignment="CENTER"
+                      style="-fx-padding:15; -fx-background-color:#e8f5e9; -fx-border-color:#a5d6a7;">
+
+                <Label text="Delivery Details"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="0"
+                       GridPane.columnSpan="4"
+                       style="-fx-font-size:16px; -fx-font-weight:bold;"/>
+
+                <Label text="Delivery ID:"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="1"
+                       style="-fx-font-weight:bold;"/>
+
+                <Label fx:id="deliveryIdDisplay"
+                       text="N/A"
+                       GridPane.columnIndex="1"
+                       GridPane.rowIndex="1"/>
+
+                <Label text="PO ID:"
+                       GridPane.columnIndex="2"
+                       GridPane.rowIndex="1"
+                       style="-fx-font-weight:bold;"/>
+
+                <Label fx:id="poIdDisplay"
+                       text="N/A"
+                       GridPane.columnIndex="3"
+                       GridPane.rowIndex="1"/>
+
+                <Label text="Supplier:"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="2"
+                       style="-fx-font-weight:bold;"/>
+
+                <Label fx:id="supplierDisplay"
+                       text="N/A"
+                       GridPane.columnIndex="1"
+                       GridPane.rowIndex="2"/>
+
+                <Label text="Material:"
+                       GridPane.columnIndex="2"
+                       GridPane.rowIndex="2"
+                       style="-fx-font-weight:bold;"/>
+
+                <Label fx:id="materialDisplay"
+                       text="N/A"
+                       GridPane.columnIndex="3"
+                       GridPane.rowIndex="2"/>
+
+                <Label text="Quantity Delivered:"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="3"
+                       style="-fx-font-weight:bold;"/>
+
+                <Label fx:id="quantityDisplay"
+                       text="N/A"
+                       GridPane.columnIndex="1"
+                       GridPane.rowIndex="3"/>
+
+                <Label text="Delivery Date:"
+                       GridPane.columnIndex="2"
+                       GridPane.rowIndex="3"
+                       style="-fx-font-weight:bold;"/>
+
+                <Label fx:id="deliveryDateDisplay"
+                       text="N/A"
+                       GridPane.columnIndex="3"
+                       GridPane.rowIndex="3"/>
+
+            </GridPane>
+
+            <!-- Approval Section -->
+            <GridPane hgap="20"
+                      vgap="12"
+                      alignment="CENTER">
+
+                <Label text="Quality Check:"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="0"
+                       style="-fx-font-weight:bold;"/>
+
+                <HBox spacing="15"
+                      GridPane.columnIndex="1"
+                      GridPane.rowIndex="0">
+                    <RadioButton fx:id="passRadio"
+                                 text="Pass"
+                                 selected="true">
+                        <toggleGroup>
+                            <ToggleGroup fx:id="qualityGroup"/>
+                        </toggleGroup>
+                    </RadioButton>
+                    <RadioButton fx:id="failRadio"
+                                 text="Fail"
+                                 toggleGroup="$qualityGroup"/>
+                    <RadioButton fx:id="partialRadio"
+                                 text="Partial"
+                                 toggleGroup="$qualityGroup"/>
+                </HBox>
+
+                <Label text="Quantity Accepted:"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="1"
+                       style="-fx-font-weight:bold;"/>
+
+                <TextField fx:id="acceptedQuantityField"
+                           prefWidth="150"
+                           promptText="Enter Accepted Quantity"
+                           GridPane.columnIndex="1"
+                           GridPane.rowIndex="1"/>
+
+                <Label text="Notes:"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="2"
+                       style="-fx-font-weight:bold;"/>
+
+                <TextArea fx:id="notesArea"
+                          prefWidth="400"
+                          prefHeight="60"
+                          promptText="Enter any notes or remarks"
+                          GridPane.columnIndex="1"
+                          GridPane.rowIndex="2"/>
+
+                <CheckBox fx:id="updateInventoryCheckBox"
+                          text="Auto-update inventory records"
+                          selected="true"
+                          GridPane.columnIndex="1"
+                          GridPane.rowIndex="3"/>
+
+            </GridPane>
+
+            <HBox spacing="20"
+                  alignment="CENTER">
+                <Button text="✅ Approve Delivery"
+                        onAction="#handleApproveDelivery"
+                        prefWidth="200"
+                        prefHeight="50"
+                        style="-fx-background-color:#388E3C; -fx-text-fill:white; -fx-font-size:14px; -fx-font-weight:bold;"/>
+
+                <Button text="❌ Reject Delivery"
+                        onAction="#handleRejectDelivery"
+                        prefWidth="200"
+                        prefHeight="50"
+                        style="-fx-background-color:#D32F2F; -fx-text-fill:white; -fx-font-size:14px; -fx-font-weight:bold;"/>
+
+                <Button text="🔄 Clear"
+                        onAction="#handleClear"
+                        prefWidth="150"
+                        prefHeight="50"
+                        style="-fx-background-color:#F57C00; -fx-text-fill:white; -fx-font-size:14px;"/>
+            </HBox>
+
+            <Label fx:id="statusLabel"
+                   style="-fx-font-size:14px; -fx-font-weight:bold;"
+                   text="Search for a delivery to approve"/>
+
+        </VBox>
+    </center>
+
+</BorderPane>

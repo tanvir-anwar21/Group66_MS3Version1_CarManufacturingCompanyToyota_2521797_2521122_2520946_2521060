@@ -3,19 +3,20 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
+<?import javafx.collections.FXCollections?>
 
 <BorderPane xmlns="http://javafx.com/javafx/17"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="Sohan.QualityControlManagerControllers.ScheduleReinspectionView_Controller"
+            fx:controller="Sohan.ProcurementOfficerControllers.OrderRawMaterialsView_Controller"
             prefWidth="900"
             prefHeight="600">
 
     <top>
         <HBox alignment="CENTER_LEFT"
               spacing="15"
-              style="-fx-padding:15 20; -fx-background-color:#4A148C;">
+              style="-fx-padding:15 20; -fx-background-color:#1B5E20;">
 
-            <Label text="🔄 Schedule Re-Inspection"
+            <Label text="📦 Order Raw Materials"
                    style="-fx-text-fill:white; -fx-font-size:22px; -fx-font-weight:bold;"/>
 
             <Region HBox.hgrow="ALWAYS"/>
@@ -32,67 +33,72 @@
               spacing="20"
               style="-fx-padding:30;">
 
-            <Label text="Schedule Vehicle Re-Inspection"
+            <Label text="Place Raw Material Order"
                    style="-fx-font-size:24px; -fx-font-weight:bold;"/>
 
             <GridPane hgap="20"
                       vgap="15"
                       alignment="CENTER">
 
-                <Label text="Vehicle ID: *"
+                <Label text="Material Type: *"
                        GridPane.columnIndex="0"
                        GridPane.rowIndex="0"
                        style="-fx-font-weight:bold;"/>
 
-                <TextField fx:id="vehicleIdField"
-                           prefWidth="300"
-                           promptText="Enter Vehicle ID"
-                           GridPane.columnIndex="1"
-                           GridPane.rowIndex="0"/>
+                <ComboBox fx:id="materialCombo"
+                          prefWidth="250"
+                          promptText="Select Material"
+                          GridPane.columnIndex="1"
+                          GridPane.rowIndex="0"/>
 
-                <Label text="Previous Inspection Date:"
+                <Label text="Supplier: *"
                        GridPane.columnIndex="0"
                        GridPane.rowIndex="1"
                        style="-fx-font-weight:bold;"/>
 
-                <DatePicker fx:id="previousInspectionDate"
-                            prefWidth="300"
-                            promptText="Select Previous Date"
-                            GridPane.columnIndex="1"
-                            GridPane.rowIndex="1"/>
+                <ComboBox fx:id="supplierCombo"
+                          prefWidth="250"
+                          promptText="Select Supplier"
+                          GridPane.columnIndex="1"
+                          GridPane.rowIndex="1"/>
 
-                <Label text="Re-Inspection Date: *"
+                <Label text="Quantity: *"
                        GridPane.columnIndex="0"
                        GridPane.rowIndex="2"
                        style="-fx-font-weight:bold;"/>
 
-                <DatePicker fx:id="reInspectionDatePicker"
-                            prefWidth="300"
-                            promptText="Select Re-Inspection Date"
-                            GridPane.columnIndex="1"
-                            GridPane.rowIndex="2"/>
+                <HBox spacing="10"
+                      GridPane.columnIndex="1"
+                      GridPane.rowIndex="2">
+                    <TextField fx:id="quantityField"
+                               prefWidth="150"
+                               promptText="Enter Quantity"/>
+                    <ComboBox fx:id="unitCombo"
+                              prefWidth="100"
+                              promptText="Unit"/>
+                </HBox>
 
-                <Label text="Reason for Re-Inspection:"
+                <Label text="Estimated Cost:"
                        GridPane.columnIndex="0"
                        GridPane.rowIndex="3"
                        style="-fx-font-weight:bold;"/>
 
-                <ComboBox fx:id="reasonCombo"
-                          prefWidth="300"
-                          promptText="Select Reason"
-                          GridPane.columnIndex="1"
-                          GridPane.rowIndex="3"/>
+                <TextField fx:id="costField"
+                           prefWidth="250"
+                           promptText="Enter Estimated Cost (USD)"
+                           GridPane.columnIndex="1"
+                           GridPane.rowIndex="3"/>
 
-                <Label text="Assigned Inspector:"
+                <Label text="Required By:"
                        GridPane.columnIndex="0"
                        GridPane.rowIndex="4"
                        style="-fx-font-weight:bold;"/>
 
-                <ComboBox fx:id="inspectorCombo"
-                          prefWidth="300"
-                          promptText="Select Inspector"
-                          GridPane.columnIndex="1"
-                          GridPane.rowIndex="4"/>
+                <DatePicker fx:id="requiredDatePicker"
+                            prefWidth="250"
+                            promptText="Select Required Date"
+                            GridPane.columnIndex="1"
+                            GridPane.rowIndex="4"/>
 
                 <Label text="Priority:"
                        GridPane.columnIndex="0"
@@ -102,44 +108,48 @@
                 <HBox spacing="15"
                       GridPane.columnIndex="1"
                       GridPane.rowIndex="5">
-                    <RadioButton fx:id="lowPriorityRadio"
-                                 text="Low">
+                    <RadioButton fx:id="standardRadio"
+                                 text="Standard"
+                                 selected="true">
                         <toggleGroup>
                             <ToggleGroup fx:id="priorityGroup"/>
                         </toggleGroup>
                     </RadioButton>
-                    <RadioButton fx:id="mediumPriorityRadio"
-                                 text="Medium"
-                                 selected="true"
+                    <RadioButton fx:id="urgentRadio"
+                                 text="Urgent"
                                  toggleGroup="$priorityGroup"/>
-                    <RadioButton fx:id="highPriorityRadio"
-                                 text="High"
+                    <RadioButton fx:id="emergencyRadio"
+                                 text="Emergency"
                                  toggleGroup="$priorityGroup"/>
                 </HBox>
 
-                <Label text="Notes:"
+                <Label text="Options:"
                        GridPane.columnIndex="0"
                        GridPane.rowIndex="6"
                        style="-fx-font-weight:bold;"/>
 
-                <TextArea fx:id="notesArea"
-                          prefWidth="300"
-                          prefHeight="60"
-                          promptText="Enter any notes or special instructions..."
-                          GridPane.columnIndex="1"
-                          GridPane.rowIndex="6"/>
+                <HBox spacing="15"
+                      GridPane.columnIndex="1"
+                      GridPane.rowIndex="6">
+                    <CheckBox fx:id="insuredCheckBox"
+                              text="Insured"/>
+                    <CheckBox fx:id="trackingCheckBox"
+                              text="Track Delivery"/>
+                    <CheckBox fx:id="qualityCertCheckBox"
+                              text="Quality Certificate"/>
+                </HBox>
 
             </GridPane>
 
             <HBox spacing="20"
                   alignment="CENTER">
-                <Button text="✅ Schedule Re-Inspection"
-                        onAction="#handleScheduleReInspection"
-                        prefWidth="250"
+                <Button text="✅ Place Order"
+                        onAction="#handlePlaceOrder"
+                        prefWidth="200"
                         prefHeight="50"
                         style="-fx-background-color:#388E3C; -fx-text-fill:white; -fx-font-size:14px; -fx-font-weight:bold;"/>
 
-                <Button text="🔄 Clear Form"
+                <Button text="🔄 Clear All"
                         onAction="#handleClear"
                         prefWidth="150"
                         prefHeight="50"
@@ -148,7 +158,7 @@
 
             <Label fx:id="statusLabel"
                    style="-fx-font-size:14px; -fx-font-weight:bold;"
-                   text="Enter vehicle details and schedule re-inspection"/>
+                   text="Fill in the material details and place order"/>
 
         </VBox>
     </center>

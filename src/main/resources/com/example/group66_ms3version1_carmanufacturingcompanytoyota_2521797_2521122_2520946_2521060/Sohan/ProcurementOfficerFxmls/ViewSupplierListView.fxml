@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.collections.FXCollections?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="Sohan.ProcurementOfficerControllers.ViewSupplierListView_Controller"
+            prefWidth="1000"
+            prefHeight="650">
+
+    <top>
+        <HBox alignment="CENTER_LEFT"
+              spacing="15"
+              style="-fx-padding:15 20; -fx-background-color:#1B5E20;">
+
+            <Label text="📋 Supplier List"
+                   style="-fx-text-fill:white; -fx-font-size:22px; -fx-font-weight:bold;"/>
+
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <Button text="⬅ Back to Dashboard"
+                    onAction="#handleBackToDashboard"
+                    style="-fx-background-color:#e74c3c; -fx-text-fill:white;"/>
+
+        </HBox>
+    </top>
+
+    <center>
+        <VBox alignment="TOP_CENTER"
+              spacing="15"
+              style="-fx-padding:20;">
+
+            <Label text="Manage Approved Vendors &amp; Procurement Activities"
+                   style="-fx-font-size:18px;"/>
+
+            <!-- Search and Filter Section -->
+            <HBox spacing="15"
+                  alignment="CENTER_LEFT"
+                  style="-fx-padding:10; -fx-background-color:#f5f5f5; -fx-border-color:#ddd;">
+
+                <Label text="Search:"
+                       style="-fx-font-weight:bold;"/>
+
+                <TextField fx:id="searchField"
+                           prefWidth="200"
+                           promptText="Enter Supplier Name"/>
+
+                <Label text="Filter:"
+                       style="-fx-font-weight:bold;"/>
+
+                <ComboBox fx:id="filterCombo"
+                          prefWidth="150"
+                          promptText="All Suppliers"/>
+
+                <Button text="🔍 Search"
+                        onAction="#handleSearch"
+                        style="-fx-background-color:#1976D2; -fx-text-fill:white;"/>
+
+                <Button text="🔄 Refresh"
+                        onAction="#handleRefresh"
+                        style="-fx-background-color:#F57C00; -fx-text-fill:white;"/>
+
+            </HBox>
+
+            <!-- Supplier Table -->
+            <TableView fx:id="supplierTableView"
+                       prefHeight="400"
+                       prefWidth="960">
+
+                <columns>
+                    <TableColumn text="Supplier ID"
+                                 prefWidth="120">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="supplierID"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Name"
+                                 prefWidth="180">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="name"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Contact Person"
+                                 prefWidth="150">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="contactPerson"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Email"
+                                 prefWidth="180">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="email"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Phone"
+                                 prefWidth="150">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="phone"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Status"
+                                 prefWidth="120">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="status"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                </columns>
+
+            </TableView>
+
+            <!-- Status Bar -->
+            <HBox spacing="15"
+                  alignment="CENTER_LEFT"
+                  style="-fx-padding:5 10; -fx-background-color:#e8f5e9;">
+
+                <Label fx:id="recordCountLabel"
+                       text="Total Suppliers: 0"/>
+
+                <Region HBox.hgrow="ALWAYS"/>
+
+                <Label fx:id="statusLabel"
+                       text="Ready"/>
+
+            </HBox>
+
+        </VBox>
+    </center>
+
+</BorderPane>

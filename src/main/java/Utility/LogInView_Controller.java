@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class LogInController {
+public class LogInView_Controller {
 
     @FXML
     private TextField employeeIdField;

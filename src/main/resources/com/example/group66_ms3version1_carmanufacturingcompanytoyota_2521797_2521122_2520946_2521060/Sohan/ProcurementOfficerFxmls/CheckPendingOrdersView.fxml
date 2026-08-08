@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.collections.FXCollections?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="Sohan.ProcurementOfficerControllers.CheckPendingOrdersView_Controller"
+            prefWidth="1000"
+            prefHeight="650">
+
+    <top>
+        <HBox alignment="CENTER_LEFT"
+              spacing="15"
+              style="-fx-padding:15 20; -fx-background-color:#1B5E20;">
+
+            <Label text="⏳ Check Pending Orders"
+                   style="-fx-text-fill:white; -fx-font-size:22px; -fx-font-weight:bold;"/>
+
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <Button text="⬅ Back to Dashboard"
+                    onAction="#handleBackToDashboard"
+                    style="-fx-background-color:#e74c3c; -fx-text-fill:white;"/>
+
+        </HBox>
+    </top>
+
+    <center>
+        <VBox alignment="TOP_CENTER"
+              spacing="15"
+              style="-fx-padding:20;">
+
+            <Label text="Track and Monitor Pending Purchase Orders"
+                   style="-fx-font-size:18px;"/>
+
+            <!-- Search Section -->
+            <HBox spacing="15"
+                  alignment="CENTER_LEFT"
+                  style="-fx-padding:10; -fx-background-color:#f5f5f5; -fx-border-color:#ddd;">
+
+                <Label text="Order ID:"
+                       style="-fx-font-weight:bold;"/>
+
+                <TextField fx:id="orderIdField"
+                           prefWidth="150"
+                           promptText="Enter Order ID"/>
+
+                <Label text="Supplier:"
+                       style="-fx-font-weight:bold;"/>
+
+                <ComboBox fx:id="supplierFilterCombo"
+                          prefWidth="180"
+                          promptText="All Suppliers"/>
+
+                <Button text="🔍 Check Status"
+                        onAction="#handleCheckStatus"
+                        style="-fx-background-color:#1976D2; -fx-text-fill:white;"/>
+
+                <Button text="📋 All Pending"
+                        onAction="#handleAllPending"
+                        style="-fx-background-color:#F57C00; -fx-text-fill:white;"/>
+
+                <Separator orientation="VERTICAL"
+                           prefHeight="30"/>
+
+                <RadioButton fx:id="pendingRadio"
+                             text="Pending"
+                             selected="true">
+                    <toggleGroup>
+                        <ToggleGroup fx:id="filterGroup"/>
+                    </toggleGroup>
+                </RadioButton>
+                <RadioButton fx:id="inTransitRadio"
+                             text="In Transit"
+                             toggleGroup="$filterGroup"/>
+                <RadioButton fx:id="deliveredRadio"
+                             text="Delivered"
+                             toggleGroup="$filterGroup"/>
+                <RadioButton fx:id="allRadio"
+                             text="All"
+                             toggleGroup="$filterGroup"/>
+
+            </HBox>
+
+            <!-- Pending Orders Table -->
+            <TableView fx:id="pendingOrderTableView"
+                       prefHeight="350"
+                       prefWidth="960">
+
+                <columns>
+                    <TableColumn text="Order ID"
+                                 prefWidth="120">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="orderID"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Supplier"
+                                 prefWidth="180">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="supplier"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Material"
+                                 prefWidth="150">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="material"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Quantity"
+                                 prefWidth="100">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="quantity"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Date Ordered"
+                                 prefWidth="130">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="dateOrdered"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Expected Delivery"
+                                 prefWidth="130">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="expectedDelivery"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Status"
+                                 prefWidth="120">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="status"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                </columns>
+
+            </TableView>
+
+            <!-- Order Details Section -->
+            <GridPane hgap="15"
+                      vgap="10"
+                      style="-fx-padding:10; -fx-background-color:#e8f5e9; -fx-border-color:#a5d6a7;">
+
+                <Label text="Selected Order Details:"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="0"
+                       style="-fx-font-weight:bold;"/>
+
+                <Label fx:id="selectedOrderLabel"
+                       text="No order selected"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="1"
+                       GridPane.columnSpan="4"/>
+
+                <Button text="View Details"
+                        onAction="#handleViewDetails"
+                        GridPane.columnIndex="4"
+                        GridPane.rowIndex="1"
+                        style="-fx-background-color:#1976D2; -fx-text-fill:white;"/>
+
+                <Button text="📄 Generate Report"
+                        onAction="#handleGenerateReport"
+                        GridPane.columnIndex="4"
+                        GridPane.rowIndex="2"
+                        style="-fx-background-color:#388E3C; -fx-text-fill:white;"/>
+
+            </GridPane>
+
+            <!-- Status Bar -->
+            <HBox spacing="15"
+                  alignment="CENTER_LEFT"
+                  style="-fx-padding:5 10;">
+
+                <Label fx:id="recordCountLabel"
+                       text="Total Orders: 0"/>
+
+                <Region HBox.hgrow="ALWAYS"/>
+
+                <Label fx:id="statusLabel"
+                       text="Ready"/>
+
+            </HBox>
+
+        </VBox>
+    </center>
+
+</BorderPane>

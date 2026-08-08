@@ -7,79 +7,160 @@
 <BorderPane xmlns="http://javafx.com/javafx/17"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="Sohan.QualityControlManagerControllers.PrintQualityReportView_Controller"
-            prefWidth="1000" prefHeight="650">
+            prefWidth="900"
+            prefHeight="600">
 
     <top>
-        <HBox alignment="CENTER_LEFT" spacing="15" style="-fx-padding: 15 20; -fx-background-color: #2c3e50;">
-            <Button text="← Back to Dashboard" onAction="#handleBack" style="-fx-background-color: #34495e; -fx-text-fill: white;"/>
-            <Label text="🖨️ Print Quality Report" style="-fx-text-fill: white; -fx-font-size: 20px; -fx-font-weight: bold;"/>
+        <HBox alignment="CENTER_LEFT"
+              spacing="15"
+              style="-fx-padding:15 20; -fx-background-color:#4A148C;">
+
+            <Label text="🖨️ Print Quality Report"
+                   style="-fx-text-fill:white; -fx-font-size:22px; -fx-font-weight:bold;"/>
+
             <Region HBox.hgrow="ALWAYS"/>
-            <Label fx:id="userLabel" text="QC Manager: " style="-fx-text-fill: #bdc3c7;"/>
+
+            <Button text="⬅ Back to Dashboard"
+                    onAction="#handleBackToDashboard"
+                    style="-fx-background-color:#e74c3c; -fx-text-fill:white;"/>
+
         </HBox>
     </top>
 
     <center>
-        <VBox spacing="15" style="-fx-padding: 20;">
+        <VBox alignment="TOP_CENTER"
+              spacing="20"
+              style="-fx-padding:30;">
 
-            <GridPane hgap="15" vgap="10" style="-fx-padding: 20; -fx-background-color: #ecf0f1; -fx-border-color: #bdc3c7; -fx-border-radius: 5;">
-                <Label text="Report Type:" GridPane.columnIndex="0" GridPane.rowIndex="0" style="-fx-font-weight: bold;"/>
-                <ComboBox fx:id="reportTypeCombo" GridPane.columnIndex="1" GridPane.rowIndex="0" promptText="Select report type" prefWidth="250">
-                </ComboBox>
+            <Label text="Print Quality Control Report"
+                   style="-fx-font-size:24px; -fx-font-weight:bold;"/>
 
-                <Label text="Date Range:" GridPane.columnIndex="0" GridPane.rowIndex="1" style="-fx-font-weight: bold;"/>
-                <DatePicker fx:id="startDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="1" promptText="Start Date"/>
-                <Label text="to" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
-                <DatePicker fx:id="endDatePicker" GridPane.columnIndex="3" GridPane.rowIndex="1" promptText="End Date"/>
+            <GridPane hgap="20"
+                      vgap="15"
+                      alignment="CENTER">
 
-                <Label text="Format:" GridPane.columnIndex="0" GridPane.rowIndex="2" style="-fx-font-weight: bold;"/>
-                <RadioButton fx:id="pdfRadio" text="PDF" GridPane.columnIndex="1" GridPane.rowIndex="2" selected="true">
-                    <toggleGroup><ToggleGroup fx:id="formatGroup"/></toggleGroup>
-                </RadioButton>
-                <RadioButton fx:id="excelRadio" text="Excel" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                    <toggleGroup><ToggleGroup fx:id="formatGroup"/></toggleGroup>
-                </RadioButton>
-                <RadioButton fx:id="htmlRadio" text="HTML" GridPane.columnIndex="3" GridPane.rowIndex="2">
-                    <toggleGroup><ToggleGroup fx:id="formatGroup"/></toggleGroup>
-                </RadioButton>
+                <Label text="Report Type: *"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="0"
+                       style="-fx-font-weight:bold;"/>
 
-                <Label text="Include:" GridPane.columnIndex="0" GridPane.rowIndex="3" style="-fx-font-weight: bold;"/>
-                <CheckBox fx:id="includeChartsCheck" text="Charts" GridPane.columnIndex="1" GridPane.rowIndex="3" selected="true"/>
-                <CheckBox fx:id="includeDetailsCheck" text="Detailed Records" GridPane.columnIndex="2" GridPane.rowIndex="3" selected="true"/>
-                <CheckBox fx:id="includeSummaryCheck" text="Executive Summary" GridPane.columnIndex="3" GridPane.rowIndex="3" selected="true"/>
+                <ComboBox fx:id="reportTypeCombo"
+                          prefWidth="300"
+                          promptText="Select Report Type"
+                          GridPane.columnIndex="1"
+                          GridPane.rowIndex="0"/>
 
-                <Label text="Export Options:" GridPane.columnIndex="0" GridPane.rowIndex="4" style="-fx-font-weight: bold;"/>
-                <CheckBox fx:id="sendEmailCheck" text="Send via Email" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
-                <TextField fx:id="emailField" GridPane.columnIndex="2" GridPane.rowIndex="4" GridPane.columnSpan="2" promptText="email@example.com" prefWidth="250"/>
+                <Label text="Date Range:"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="1"
+                       style="-fx-font-weight:bold;"/>
+
+                <HBox spacing="10"
+                      GridPane.columnIndex="1"
+                      GridPane.rowIndex="1">
+                    <DatePicker fx:id="startDatePicker"
+                                prefWidth="140"
+                                promptText="Start Date"/>
+                    <Label text="to"/>
+                    <DatePicker fx:id="endDatePicker"
+                                prefWidth="140"
+                                promptText="End Date"/>
+                </HBox>
+
+                <Label text="Vehicle Model:"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="2"
+                       style="-fx-font-weight:bold;"/>
+
+                <ComboBox fx:id="modelCombo"
+                          prefWidth="300"
+                          promptText="All Models"
+                          GridPane.columnIndex="1"
+                          GridPane.rowIndex="2"/>
+
+                <Label text="Production Line:"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="3"
+                       style="-fx-font-weight:bold;"/>
+
+                <ComboBox fx:id="lineCombo"
+                          prefWidth="300"
+                          promptText="All Lines"
+                          GridPane.columnIndex="1"
+                          GridPane.rowIndex="3"/>
+
+                <Label text="Output Format:"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="4"
+                       style="-fx-font-weight:bold;"/>
+
+                <HBox spacing="15"
+                      GridPane.columnIndex="1"
+                      GridPane.rowIndex="4">
+                    <RadioButton fx:id="pdfRadio"
+                                 text="PDF"
+                                 selected="true">
+                        <toggleGroup>
+                            <ToggleGroup fx:id="formatGroup"/>
+                        </toggleGroup>
+                    </RadioButton>
+                    <RadioButton fx:id="excelRadio"
+                                 text="Excel"
+                                 toggleGroup="$formatGroup"/>
+                    <RadioButton fx:id="htmlRadio"
+                                 text="HTML"
+                                 toggleGroup="$formatGroup"/>
+                    <RadioButton fx:id="csvRadio"
+                                 text="CSV"
+                                 toggleGroup="$formatGroup"/>
+                </HBox>
+
+                <Label text="Options:"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="5"
+                       style="-fx-font-weight:bold;"/>
+
+                <HBox spacing="15"
+                      GridPane.columnIndex="1"
+                      GridPane.rowIndex="5">
+                    <CheckBox fx:id="includeChartsCheckBox"
+                              text="Include Charts"
+                              selected="true"/>
+                    <CheckBox fx:id="includeDetailsCheckBox"
+                              text="Include Details"
+                              selected="true"/>
+                    <CheckBox fx:id="summaryOnlyCheckBox"
+                              text="Summary Only"/>
+                </HBox>
+
             </GridPane>
 
-            <TitledPane text="Report Preview" expanded="true">
-                <VBox spacing="10" style="-fx-padding: 15;">
-                    <Label fx:id="reportTitleLabel" text="[Report Title]" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
-                    <Label fx:id="reportMetaLabel" text="[Date Range | Generated By: QC Manager]" style="-fx-text-fill: #7f8c8d;"/>
+            <HBox spacing="20"
+                  alignment="CENTER">
+                <Button text="🖨️ Generate &amp; Print"
+                        onAction="#handleGenerateAndPrint"
+                        prefWidth="250"
+                        prefHeight="50"
+                        style="-fx-background-color:#388E3C; -fx-text-fill:white; -fx-font-size:14px; -fx-font-weight:bold;"/>
 
-                    <GridPane hgap="20" vgap="5" style="-fx-padding: 10; -fx-background-color: #f8f9fa;">
-                        <Label text="Total Records:" GridPane.columnIndex="0" GridPane.rowIndex="0" style="-fx-font-weight: bold;"/>
-                        <Label fx:id="totalRecordsLabel" text="0" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
-                        <Label text="Pass Rate:" GridPane.columnIndex="2" GridPane.rowIndex="0" style="-fx-font-weight: bold;"/>
-                        <Label fx:id="previewPassRateLabel" text="0%" GridPane.columnIndex="3" GridPane.rowIndex="0"/>
-                        <Label text="Defects Found:" GridPane.columnIndex="4" GridPane.rowIndex="0" style="-fx-font-weight: bold;"/>
-                        <Label fx:id="previewDefectsLabel" text="0" GridPane.columnIndex="5" GridPane.rowIndex="0"/>
-                    </GridPane>
+                <Button text="📄 Preview Report"
+                        onAction="#handlePreviewReport"
+                        prefWidth="200"
+                        prefHeight="50"
+                        style="-fx-background-color:#1976D2; -fx-text-fill:white; -fx-font-size:14px;"/>
 
-                    <TableView fx:id="reportPreviewTable" style="-fx-pref-height: 150;">
-                    </TableView>
-                </VBox>
-            </TitledPane>
-
-            <HBox spacing="15" alignment="CENTER">
-                <Button text="🖨️ Print Report" onAction="#handlePrint" style="-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 30;"/>
-                <Button text="📄 Preview" onAction="#handlePreview" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-padding: 10 30;"/>
-                <Button text="📥 Download" onAction="#handleDownload" style="-fx-background-color: #9b59b6; -fx-text-fill: white; -fx-padding: 10 30;"/>
-                <Button text="✉️ Send Email" onAction="#handleSendEmail" style="-fx-background-color: #1abc9c; -fx-text-fill: white; -fx-padding: 10 30;"/>
-                <Button text="❌ Reset" onAction="#handleReset" style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-padding: 10 30;"/>
+                <Button text="🔄 Reset"
+                        onAction="#handleReset"
+                        prefWidth="150"
+                        prefHeight="50"
+                        style="-fx-background-color:#F57C00; -fx-text-fill:white; -fx-font-size:14px;"/>
             </HBox>
 
-            <Label fx:id="statusMessage" text="" style="-fx-text-fill: #2c3e50; -fx-font-weight: bold;"/>
+            <Label fx:id="statusLabel"
+                   style="-fx-font-size:14px; -fx-font-weight:bold;"
+                   text="Select report type and options to generate quality report"/>
+
         </VBox>
     </center>
+
 </BorderPane>

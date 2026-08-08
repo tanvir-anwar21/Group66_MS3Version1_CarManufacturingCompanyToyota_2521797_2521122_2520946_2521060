@@ -1,75 +1,251 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 
 <BorderPane xmlns="http://javafx.com/javafx/17"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="Sohan.QualityControlManagerControllers.MonitorQualityStatisticsView_Controller"
-            prefWidth="1100" prefHeight="700">
+            prefWidth="1000"
+            prefHeight="700">
 
     <top>
-        <HBox alignment="CENTER_LEFT" spacing="15" style="-fx-padding: 15 20; -fx-background-color: #2c3e50;">
-            <Button text="← Back to Dashboard" onAction="#handleBack" style="-fx-background-color: #34495e; -fx-text-fill: white;"/>
-            <Label text="📊 Monitor Quality Statistics" style="-fx-text-fill: white; -fx-font-size: 20px; -fx-font-weight: bold;"/>
+        <HBox alignment="CENTER_LEFT"
+              spacing="15"
+              style="-fx-padding:15 20; -fx-background-color:#4A148C;">
+
+            <Label text="📊 Monitor Quality Statistics"
+                   style="-fx-text-fill:white; -fx-font-size:22px; -fx-font-weight:bold;"/>
+
             <Region HBox.hgrow="ALWAYS"/>
-            <Label fx:id="userLabel" text="QC Manager: " style="-fx-text-fill: #bdc3c7;"/>
+
+            <Button text="⬅ Back to Dashboard"
+                    onAction="#handleBackToDashboard"
+                    style="-fx-background-color:#e74c3c; -fx-text-fill:white;"/>
+
         </HBox>
     </top>
 
     <center>
-        <VBox spacing="15" style="-fx-padding: 20;">
+        <VBox alignment="TOP_CENTER"
+              spacing="15"
+              style="-fx-padding:20;">
 
-            <GridPane hgap="15" vgap="10" style="-fx-padding: 15; -fx-background-color: #ecf0f1; -fx-border-color: #bdc3c7; -fx-border-radius: 5;">
-                <Label text="Period:" GridPane.columnIndex="0" GridPane.rowIndex="0" style="-fx-font-weight: bold;"/>
-                <ComboBox fx:id="periodCombo" GridPane.columnIndex="1" GridPane.rowIndex="0" promptText="Select period">
-                </ComboBox>
+            <Label text="Quality Control Statistics Dashboard"
+                   style="-fx-font-size:24px; -fx-font-weight:bold;"/>
 
-                <Label text="Department:" GridPane.columnIndex="2" GridPane.rowIndex="0" style="-fx-font-weight: bold;"/>
-                <ComboBox fx:id="departmentCombo" GridPane.columnIndex="3" GridPane.rowIndex="0" promptText="All departments">
-                </ComboBox>
+            <GridPane hgap="15"
+                      vgap="10"
+                      style="-fx-padding:10; -fx-background-color:#f5f5f5; -fx-border-color:#ddd;">
 
-                <Label text="Vehicle Model:" GridPane.columnIndex="0" GridPane.rowIndex="1" style="-fx-font-weight: bold;"/>
-                <ComboBox fx:id="modelCombo" GridPane.columnIndex="1" GridPane.rowIndex="1" promptText="All models"/>
+                <Label text="Period:"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="0"
+                       style="-fx-font-weight:bold;"/>
 
-                <Button text="📊 Generate Statistics" onAction="#handleGenerate" GridPane.columnIndex="3" GridPane.rowIndex="1" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold;"/>
+                <ComboBox fx:id="periodCombo"
+                          prefWidth="150"
+                          promptText="Select Period"
+                          GridPane.columnIndex="1"
+                          GridPane.rowIndex="0"/>
+
+                <Label text="Production Line:"
+                       GridPane.columnIndex="2"
+                       GridPane.rowIndex="0"
+                       style="-fx-font-weight:bold;"/>
+
+                <ComboBox fx:id="lineCombo"
+                          prefWidth="150"
+                          promptText="All Lines"
+                          GridPane.columnIndex="3"
+                          GridPane.rowIndex="0"/>
+
+                <Label text="Vehicle Model:"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="1"
+                       style="-fx-font-weight:bold;"/>
+
+                <ComboBox fx:id="modelCombo"
+                          prefWidth="150"
+                          promptText="All Models"
+                          GridPane.columnIndex="1"
+                          GridPane.rowIndex="1"/>
+
+                <Button text="🔍 Apply Filters"
+                        onAction="#handleApplyFilters"
+                        prefWidth="120"
+                        GridPane.columnIndex="3"
+                        GridPane.rowIndex="1"
+                        style="-fx-background-color:#1976D2; -fx-text-fill:white;"/>
+
+                <Button text="🔄 Reset"
+                        onAction="#handleReset"
+                        prefWidth="100"
+                        GridPane.columnIndex="4"
+                        GridPane.rowIndex="1"
+                        style="-fx-background-color:#F57C00; -fx-text-fill:white;"/>
+
             </GridPane>
 
-            <GridPane hgap="20" vgap="15">
-                <VBox style="-fx-padding: 15; -fx-background-color: #ecf0f1; -fx-border-color: #bdc3c7; -fx-border-radius: 5;" GridPane.columnIndex="0" GridPane.rowIndex="0" prefWidth="200">
-                    <Label text="Total Inspections" style="-fx-font-size: 12px; -fx-text-fill: #7f8c8d;"/>
-                    <Label fx:id="totalInspectionsLabel" text="0" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
-                </VBox>
-                <VBox style="-fx-padding: 15; -fx-background-color: #ecf0f1; -fx-border-color: #bdc3c7; -fx-border-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="0" prefWidth="200">
-                    <Label text="Pass Rate" style="-fx-font-size: 12px; -fx-text-fill: #7f8c8d;"/>
-                    <Label fx:id="passRateLabel" text="0%" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #27ae60;"/>
-                </VBox>
-                <VBox style="-fx-padding: 15; -fx-background-color: #ecf0f1; -fx-border-color: #bdc3c7; -fx-border-radius: 5;" GridPane.columnIndex="2" GridPane.rowIndex="0" prefWidth="200">
-                    <Label text="Total Defects" style="-fx-font-size: 12px; -fx-text-fill: #7f8c8d;"/>
-                    <Label fx:id="totalDefectsLabel" text="0" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #e74c3c;"/>
-                </VBox>
-                <VBox style="-fx-padding: 15; -fx-background-color: #ecf0f1; -fx-border-color: #bdc3c7; -fx-border-radius: 5;" GridPane.columnIndex="3" GridPane.rowIndex="0" prefWidth="200">
-                    <Label text="Defects per Car" style="-fx-font-size: 12px; -fx-text-fill: #7f8c8d;"/>
-                    <Label fx:id="defectsPerCarLabel" text="0.0" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #f39c12;"/>
-                </VBox>
+            <!-- Summary Statistics Cards -->
+            <GridPane hgap="20"
+                      vgap="10"
+                      style="-fx-padding:10;">
+
+                <Label text="Total Inspections:"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="0"
+                       style="-fx-font-weight:bold;"/>
+
+                <Label fx:id="totalInspectionsLabel"
+                       text="0"
+                       GridPane.columnIndex="1"
+                       GridPane.rowIndex="0"
+                       style="-fx-font-size:18px; -fx-font-weight:bold; -fx-text-fill:#4A148C;"/>
+
+                <Label text="Pass Rate:"
+                       GridPane.columnIndex="2"
+                       GridPane.rowIndex="0"
+                       style="-fx-font-weight:bold;"/>
+
+                <Label fx:id="passRateLabel"
+                       text="0%"
+                       GridPane.columnIndex="3"
+                       GridPane.rowIndex="0"
+                       style="-fx-font-size:18px; -fx-font-weight:bold; -fx-text-fill:#388E3C;"/>
+
+                <Label text="Defect Rate:"
+                       GridPane.columnIndex="4"
+                       GridPane.rowIndex="0"
+                       style="-fx-font-weight:bold;"/>
+
+                <Label fx:id="defectRateLabel"
+                       text="0%"
+                       GridPane.columnIndex="5"
+                       GridPane.rowIndex="0"
+                       style="-fx-font-size:18px; -fx-font-weight:bold; -fx-text-fill:#D32F2F;"/>
+
+                <Label text="Critical Defects:"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="1"
+                       style="-fx-font-weight:bold;"/>
+
+                <Label fx:id="criticalDefectsLabel"
+                       text="0"
+                       GridPane.columnIndex="1"
+                       GridPane.rowIndex="1"
+                       style="-fx-font-size:18px; -fx-font-weight:bold; -fx-text-fill:#e74c3c;"/>
+
+                <Label text="Avg. Repair Time:"
+                       GridPane.columnIndex="2"
+                       GridPane.rowIndex="1"
+                       style="-fx-font-weight:bold;"/>
+
+                <Label fx:id="avgRepairTimeLabel"
+                       text="0 hrs"
+                       GridPane.columnIndex="3"
+                       GridPane.rowIndex="1"
+                       style="-fx-font-size:18px; -fx-font-weight:bold; -fx-text-fill:#F57C00;"/>
+
+                <Label text="Quality Score:"
+                       GridPane.columnIndex="4"
+                       GridPane.rowIndex="1"
+                       style="-fx-font-weight:bold;"/>
+
+                <Label fx:id="qualityScoreLabel"
+                       text="A+"
+                       GridPane.columnIndex="5"
+                       GridPane.rowIndex="1"
+                       style="-fx-font-size:18px; -fx-font-weight:bold; -fx-text-fill:#4A148C;"/>
+
             </GridPane>
 
-            <TitledPane text="Defect Distribution by Category" expanded="true">
-                <TableView fx:id="defectDistributionTable" style="-fx-pref-height: 180;">
-                </TableView>
-            </TitledPane>
+            <!-- Quality Statistics Table -->
+            <TableView fx:id="qualityStatsTableView"
+                       prefHeight="250"
+                       prefWidth="960">
 
-            <TitledPane text="Quality Trend Over Time" expanded="true">
-                <TableView fx:id="qualityTrendTable" style="-fx-pref-height: 150;">
-                </TableView>
-            </TitledPane>
+                <columns>
+                    <TableColumn text="Date"
+                                 prefWidth="130">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="date"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Production Line"
+                                 prefWidth="140">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="productionLine"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Model"
+                                 prefWidth="120">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="model"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Inspected"
+                                 prefWidth="100">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="inspected"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Passed"
+                                 prefWidth="100">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="passed"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Failed"
+                                 prefWidth="100">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="failed"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Defects Found"
+                                 prefWidth="120">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="defectsFound"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Pass Rate"
+                                 prefWidth="100">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="passRate"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                </columns>
 
-            <HBox spacing="15" alignment="CENTER_RIGHT">
-                <Button text="📥 Export Statistics" onAction="#handleExport" style="-fx-background-color: #27ae60; -fx-text-fill: white;"/>
-                <Button text="📊 Generate Detailed Report" onAction="#handleDetailedReport" style="-fx-background-color: #9b59b6; -fx-text-fill: white;"/>
-                <Button text="🔄 Refresh" onAction="#handleRefresh" style="-fx-background-color: #3498db; -fx-text-fill: white;"/>
+            </TableView>
+
+            <HBox spacing="20"
+                  alignment="CENTER">
+                <Button text="📊 Generate Quality Report"
+                        onAction="#handleGenerateReport"
+                        prefWidth="200"
+                        prefHeight="40"
+                        style="-fx-background-color:#388E3C; -fx-text-fill:white; -fx-font-size:14px; -fx-font-weight:bold;"/>
+
+                <Button text="📈 Export to Excel"
+                        onAction="#handleExportExcel"
+                        prefWidth="200"
+                        prefHeight="40"
+                        style="-fx-background-color:#1976D2; -fx-text-fill:white; -fx-font-size:14px;"/>
+
+                <Button text="🔄 Refresh Data"
+                        onAction="#handleRefresh"
+                        prefWidth="150"
+                        prefHeight="40"
+                        style="-fx-background-color:#F57C00; -fx-text-fill:white; -fx-font-size:14px;"/>
             </HBox>
+
+            <Label fx:id="statusLabel"
+                   style="-fx-font-size:14px; -fx-font-weight:bold;"
+                   text="Select filters and click Apply to view quality statistics"/>
+
         </VBox>
     </center>
+
 </BorderPane>

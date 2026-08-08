@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.collections.FXCollections?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="Sohan.ProcurementOfficerControllers.UpdateSupplierView_Controller"
+            prefWidth="900"
+            prefHeight="650">
+
+    <top>
+        <HBox alignment="CENTER_LEFT"
+              spacing="15"
+              style="-fx-padding:15 20; -fx-background-color:#1B5E20;">
+
+            <Label text="✏️ Update Supplier Information"
+                   style="-fx-text-fill:white; -fx-font-size:22px; -fx-font-weight:bold;"/>
+
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <Button text="⬅ Back to Dashboard"
+                    onAction="#handleBackToDashboard"
+                    style="-fx-background-color:#e74c3c; -fx-text-fill:white;"/>
+
+        </HBox>
+    </top>
+
+    <center>
+        <VBox alignment="TOP_CENTER"
+              spacing="15"
+              style="-fx-padding:25;">
+
+            <Label text="Update Supplier Details"
+                   style="-fx-font-size:24px; -fx-font-weight:bold;"/>
+
+            <!-- Search Section -->
+            <HBox spacing="15"
+                  alignment="CENTER_LEFT"
+                  style="-fx-padding:10; -fx-background-color:#f5f5f5; -fx-border-color:#ddd;">
+
+                <Label text="Supplier ID:"
+                       style="-fx-font-weight:bold;"/>
+
+                <TextField fx:id="searchIdField"
+                           prefWidth="150"
+                           promptText="Enter Supplier ID"/>
+
+                <Button text="🔍 Load Supplier"
+                        onAction="#handleLoadSupplier"
+                        style="-fx-background-color:#1976D2; -fx-text-fill:white;"/>
+
+                <Separator orientation="VERTICAL"
+                           prefHeight="30"/>
+
+                <Label text="Search by Name:"
+                       style="-fx-font-weight:bold;"/>
+
+                <TextField fx:id="searchNameField"
+                           prefWidth="200"
+                           promptText="Enter Supplier Name"/>
+
+                <Button text="🔍 Find"
+                        onAction="#handleFindByName"
+                        style="-fx-background-color:#1976D2; -fx-text-fill:white;"/>
+
+            </HBox>
+
+            <GridPane hgap="20"
+                      vgap="12"
+                      alignment="CENTER">
+
+                <Label text="Supplier ID:"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="0"
+                       style="-fx-font-weight:bold;"/>
+
+                <Label fx:id="supplierIdLabel"
+                       text="Not Loaded"
+                       GridPane.columnIndex="1"
+                       GridPane.rowIndex="0"
+                       style="-fx-font-weight:bold; -fx-text-fill:#1B5E20;"/>
+
+                <Label text="Name: *"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="1"
+                       style="-fx-font-weight:bold;"/>
+
+                <TextField fx:id="nameField"
+                           prefWidth="300"
+                           promptText="Enter New Name"
+                           GridPane.columnIndex="1"
+                           GridPane.rowIndex="1"/>
+
+                <Label text="Contact Person: *"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="2"
+                       style="-fx-font-weight:bold;"/>
+
+                <TextField fx:id="contactPersonField"
+                           prefWidth="300"
+                           promptText="Enter New Contact Person"
+                           GridPane.columnIndex="1"
+                           GridPane.rowIndex="2"/>
+
+                <Label text="Email:"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="3"
+                       style="-fx-font-weight:bold;"/>
+
+                <TextField fx:id="emailField"
+                           prefWidth="300"
+                           promptText="Enter New Email"
+                           GridPane.columnIndex="1"
+                           GridPane.rowIndex="3"/>
+
+                <Label text="Phone:"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="4"
+                       style="-fx-font-weight:bold;"/>
+
+                <TextField fx:id="phoneField"
+                           prefWidth="300"
+                           promptText="Enter New Phone"
+                           GridPane.columnIndex="1"
+                           GridPane.rowIndex="4"/>
+
+                <Label text="Address:"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="5"
+                       style="-fx-font-weight:bold;"/>
+
+                <TextArea fx:id="addressArea"
+                          prefWidth="300"
+                          prefHeight="60"
+                          promptText="Enter New Address"
+                          GridPane.columnIndex="1"
+                          GridPane.rowIndex="5"/>
+
+                <Label text="Status:"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="6"
+                       style="-fx-font-weight:bold;"/>
+
+                <ComboBox fx:id="statusCombo"
+                          prefWidth="300"
+                          promptText="Select New Status"
+                          GridPane.columnIndex="1"
+                          GridPane.rowIndex="6"/>
+
+                <HBox spacing="15"
+                      GridPane.columnIndex="1"
+                      GridPane.rowIndex="7">
+                    <RadioButton fx:id="preferredRadio"
+                                 text="Preferred Supplier">
+                        <toggleGroup>
+                            <ToggleGroup fx:id="preferredGroup"/>
+                        </toggleGroup>
+                    </RadioButton>
+                    <RadioButton fx:id="standardRadio"
+                                 text="Standard"
+                                 selected="true"
+                                 toggleGroup="$preferredGroup"/>
+                </HBox>
+
+            </GridPane>
+
+            <HBox spacing="20"
+                  alignment="CENTER">
+                <Button text="💾 Update Supplier"
+                        onAction="#handleUpdateSupplier"
+                        prefWidth="200"
+                        prefHeight="50"
+                        style="-fx-background-color:#FF9800; -fx-text-fill:white; -fx-font-size:14px; -fx-font-weight:bold;"/>
+
+                <Button text="🔄 Clear Form"
+                        onAction="#handleClear"
+                        prefWidth="150"
+                        prefHeight="50"
+                        style="-fx-background-color:#F57C00; -fx-text-fill:white; -fx-font-size:14px;"/>
+            </HBox>
+
+            <Label fx:id="statusLabel"
+                   style="-fx-font-size:14px; -fx-font-weight:bold;"
+                   text="Search for a supplier to update"/>
+
+        </VBox>
+    </center>
+
+</BorderPane>
