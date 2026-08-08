@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="650.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Tanvir.CEO_Controller.FinancialSummaryView_Controller">
+<AnchorPane prefHeight="650.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Tanvir.CEO_Controller.CustomerFeedbackView_Controller">
 
     <children>
 
@@ -26,11 +26,11 @@
             </padding>
 
             <!-- Title -->
-            <Label style="-fx-font-size:24px; -fx-font-weight:bold;" text="Financial Summary" />
+            <Label style="-fx-font-size:24px; -fx-font-weight:bold;" text="Customer Feedback" />
 
             <Separator />
 
-            <!-- Financial Summary Cards -->
+            <!-- Feedback Summary -->
             <GridPane hgap="15" vgap="15">
 
                 <columnConstraints>
@@ -41,23 +41,23 @@
                 </columnConstraints>
 
                 <VBox spacing="5" style="-fx-border-color:#BDBDBD; -fx-padding:10;">
-                    <Label text="Total Revenue" />
-                    <TextField fx:id="revenueField" editable="false" />
+                    <Label text="Total Feedback" />
+                    <TextField fx:id="totalFeedbackField" editable="false" />
                 </VBox>
 
                 <VBox spacing="5" style="-fx-border-color:#BDBDBD; -fx-padding:10;" GridPane.columnIndex="1">
-                    <Label text="Total Expenses" />
-                    <TextField fx:id="expensesField" editable="false" />
+                    <Label text="Positive" />
+                    <TextField fx:id="positiveField" editable="false" />
                 </VBox>
 
                 <VBox spacing="5" style="-fx-border-color:#BDBDBD; -fx-padding:10;" GridPane.columnIndex="2">
-                    <Label text="Net Profit" />
-                    <TextField fx:id="profitField" editable="false" />
+                    <Label text="Negative" />
+                    <TextField fx:id="negativeField" editable="false" />
                 </VBox>
 
                 <VBox spacing="5" style="-fx-border-color:#BDBDBD; -fx-padding:10;" GridPane.columnIndex="3">
-                    <Label text="Profit Margin" />
-                    <TextField fx:id="marginField" editable="false" />
+                    <Label text="Average Rating" />
+                    <TextField fx:id="ratingField" editable="false" />
                 </VBox>
             <rowConstraints>
                <RowConstraints />
@@ -67,22 +67,22 @@
 
             <Separator />
 
-            <!-- Financial Records -->
-            <Label style="-fx-font-size:18px; -fx-font-weight:bold;" text="Financial Records" />
+            <!-- Customer Feedback Table -->
+            <Label style="-fx-font-size:18px; -fx-font-weight:bold;" text="Customer Feedback Records" />
 
-            <TableView fx:id="financialTable" prefHeight="270">
+            <TableView fx:id="feedbackTable" prefHeight="270">
 
                 <columns>
 
-                    <TableColumn fx:id="categoryColumn" prefWidth="180" text="Category" />
+                    <TableColumn fx:id="customerColumn" prefWidth="180" text="Customer" />
 
-                    <TableColumn fx:id="incomeColumn" prefWidth="170" text="Income" />
+                    <TableColumn fx:id="productColumn" prefWidth="180" text="Product" />
 
-                    <TableColumn fx:id="expenseColumn" prefWidth="170" text="Expense" />
+                    <TableColumn fx:id="ratingColumn" prefWidth="100" text="Rating" />
 
-                    <TableColumn fx:id="balanceColumn" prefWidth="170" text="Balance" />
+                    <TableColumn fx:id="feedbackColumn" prefWidth="320" text="Feedback" />
 
-                    <TableColumn fx:id="remarksColumn" prefWidth="220" text="Remarks" />
+                    <TableColumn fx:id="dateColumn" prefWidth="140" text="Date" />
 
                 </columns>
 
@@ -90,20 +90,20 @@
 
             <Separator />
 
-            <!-- CEO Financial Notes -->
-            <Label style="-fx-font-size:18px; -fx-font-weight:bold;" text="CEO Financial Notes" />
+            <!-- CEO Response -->
+            <Label style="-fx-font-size:18px; -fx-font-weight:bold;" text="CEO Remarks / Response" />
 
-            <TextArea fx:id="notesArea" prefHeight="100" promptText="Enter financial observations or recommendations..." wrapText="true" />
+            <TextArea fx:id="remarksArea" prefHeight="100" promptText="Enter remarks or action plan based on customer feedback..." wrapText="true" />
 
             <HBox spacing="15">
 
-                <Button onAction="#loadButton" prefWidth="140" text="Load Summary" />
+                <Button onAction="#loadButton" prefWidth="140" text="Load Feedback" />
 
                 <Button onAction="#refreshButton" prefWidth="120" text="Refresh" />
 
-                <Button onAction="#refreshButton" prefWidth="150" text="Export Report" />
+                <Button onAction="#exportButton" prefWidth="150" text="Export Report" />
 
-               <Button onAction="#backButton" prefWidth="100" text="Back" />
+                <Button onAction="#backButton" prefWidth="100" text="Back" />
 
             </HBox>
 

@@ -26,4 +26,14 @@ module com.example.group66_ms3version1_carmanufacturingcompanytoyota_2521797_252
     // User 4 - Sales Executive
     exports Tawsif.SalesExecutiveControllers;
     opens Tawsif.SalesExecutiveControllers to javafx.fxml;
+
+    exports Tanvir.CEO_Controller;
+    opens Tanvir.CEO_Controller to javafx.fxml;
+
+    exports Tanvir.Model_Class;
+    opens Tanvir.Model_Class to javafx.base,javafx.fxml;
+
+    exports Tanvir.ProductionManager_Controller;
+    opens Tanvir.ProductionManager_Controller to javafx.fxml;
+
 }

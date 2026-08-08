@@ -158,6 +158,13 @@ public class LogInController {
             // =========================
 
             switch (role) {
+                case "Chief Executive Officer (CEO)":
+
+                    dashboardPath =
+                            "/com/example/group66_ms3version1_carmanufacturingcompanytoyota_2521797_2521122_2520946_2521060/Tanvir/ChiefExecutiveOfficer/CEODashboard_View.fxml";
+
+                    break;
+
 
                 case "Sales Executive":
 
@@ -186,7 +193,7 @@ public class LogInController {
                 case "Production Manager":
 
                     dashboardPath =
-                            "/com/example/group66_ms3version1_carmanufacturingcompanytoyota_2521797_2521122_2520946_2521060/ProductionManager/ProductionManagerDashboard.fxml";
+                            "/com/example/group66_ms3version1_carmanufacturingcompanytoyota_2521797_2521122_2520946_2521060/Tanvir/Production Manager/ProductionManager_view.fxml";
 
                     break;
 
