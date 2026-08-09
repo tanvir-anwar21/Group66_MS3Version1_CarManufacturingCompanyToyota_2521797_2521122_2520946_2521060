@@ -28,7 +28,6 @@ public class WorkerPerformance implements Serializable {
     private String supervisorID;
     private String supervisorName;
 
-    // Default Constructor
     public WorkerPerformance() {
         this.feedbackComments = new ArrayList<>();
         this.performanceRating = "Average";
@@ -39,7 +38,6 @@ public class WorkerPerformance implements Serializable {
         this.reviewDate = LocalDate.now();
     }
 
-    // Parameterized Constructor
     public WorkerPerformance(String workerID, String workerName, String department, String position) {
         this();
         this.workerID = workerID;
@@ -48,7 +46,6 @@ public class WorkerPerformance implements Serializable {
         this.position = position;
     }
 
-    // Getters and Setters
     public String getWorkerID() {
         return workerID;
     }
@@ -94,6 +91,9 @@ public class WorkerPerformance implements Serializable {
     }
 
     public void setQualityScore(int qualityScore) {
+        if (qualityScore < 0 || qualityScore > 100) {
+            throw new IllegalArgumentException("Quality score must be between 0 and 100");
+        }
         this.qualityScore = qualityScore;
         updatePerformanceRating();
     }
@@ -103,6 +103,9 @@ public class WorkerPerformance implements Serializable {
     }
 
     public void setProductsChecked(int productsChecked) {
+        if (productsChecked < 0) {
+            throw new IllegalArgumentException("Products checked cannot be negative");
+        }
         this.productsChecked = productsChecked;
     }
 
@@ -111,6 +114,9 @@ public class WorkerPerformance implements Serializable {
     }
 
     public void setDefectsFound(int defectsFound) {
+        if (defectsFound < 0) {
+            throw new IllegalArgumentException("Defects found cannot be negative");
+        }
         this.defectsFound = defectsFound;
     }
 
@@ -119,6 +125,9 @@ public class WorkerPerformance implements Serializable {
     }
 
     public void setDefectsMissed(int defectsMissed) {
+        if (defectsMissed < 0) {
+            throw new IllegalArgumentException("Defects missed cannot be negative");
+        }
         this.defectsMissed = defectsMissed;
     }
 
@@ -127,6 +136,9 @@ public class WorkerPerformance implements Serializable {
     }
 
     public void setAccuracyRate(double accuracyRate) {
+        if (accuracyRate < 0 || accuracyRate > 100) {
+            throw new IllegalArgumentException("Accuracy rate must be between 0 and 100");
+        }
         this.accuracyRate = accuracyRate;
     }
 
@@ -135,6 +147,9 @@ public class WorkerPerformance implements Serializable {
     }
 
     public void setEfficiencyRate(double efficiencyRate) {
+        if (efficiencyRate < 0 || efficiencyRate > 100) {
+            throw new IllegalArgumentException("Efficiency rate must be between 0 and 100");
+        }
         this.efficiencyRate = efficiencyRate;
     }
 
@@ -155,7 +170,9 @@ public class WorkerPerformance implements Serializable {
     }
 
     public void addFeedbackComment(String comment) {
-        this.feedbackComments.add(comment);
+        if (comment != null && !comment.trim().isEmpty()) {
+            this.feedbackComments.add(comment);
+        }
     }
 
     public String getStatus() {
@@ -171,6 +188,9 @@ public class WorkerPerformance implements Serializable {
     }
 
     public void setInspectionsCompleted(int inspectionsCompleted) {
+        if (inspectionsCompleted < 0) {
+            throw new IllegalArgumentException("Inspections completed cannot be negative");
+        }
         this.inspectionsCompleted = inspectionsCompleted;
     }
 
@@ -179,6 +199,9 @@ public class WorkerPerformance implements Serializable {
     }
 
     public void setAverageTimePerInspection(double averageTimePerInspection) {
+        if (averageTimePerInspection < 0) {
+            throw new IllegalArgumentException("Average time per inspection cannot be negative");
+        }
         this.averageTimePerInspection = averageTimePerInspection;
     }
 
@@ -187,6 +210,9 @@ public class WorkerPerformance implements Serializable {
     }
 
     public void setReworkCount(int reworkCount) {
+        if (reworkCount < 0) {
+            throw new IllegalArgumentException("Rework count cannot be negative");
+        }
         this.reworkCount = reworkCount;
     }
 
@@ -234,6 +260,24 @@ public class WorkerPerformance implements Serializable {
         return "Needs Improvement".equals(performanceRating) || "Below Average".equals(performanceRating);
     }
 
+    public double getProductivityScore() {
+        if (productsChecked == 0) return 0.0;
+        return ((double) productsChecked / 100) * 100;
+    }
+
+    public String getPerformanceSummary() {
+        StringBuilder summary = new StringBuilder();
+        summary.append("Worker: ").append(workerName).append("\n");
+        summary.append("Department: ").append(department).append("\n");
+        summary.append("Quality Score: ").append(qualityScore).append("\n");
+        summary.append("Rating: ").append(performanceRating).append("\n");
+        summary.append("Defects Found: ").append(defectsFound).append("\n");
+        summary.append("Defects Missed: ").append(defectsMissed).append("\n");
+        summary.append("Accuracy: ").append(String.format("%.1f", getDefectDetectionRate())).append("%\n");
+        summary.append("Feedback: ").append(String.join(" | ", feedbackComments));
+        return summary.toString();
+    }
+
     @Override
     public String toString() {
         return "WorkerPerformance{" +
@@ -245,6 +289,7 @@ public class WorkerPerformance implements Serializable {
                 ", performanceRating='" + performanceRating + '\'' +
                 ", accuracyRate=" + accuracyRate +
                 ", efficiencyRate=" + efficiencyRate +
+                ", status='" + status + '\'' +
                 '}';
     }
 }

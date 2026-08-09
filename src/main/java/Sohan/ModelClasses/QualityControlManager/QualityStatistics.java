@@ -28,17 +28,15 @@ public class QualityStatistics implements Serializable {
     private int reworkCount;
     private int scrapCount;
 
-    // Default Constructor
     public QualityStatistics() {
         this.defectByCategory = new HashMap<>();
         this.passRate = 0.0;
         this.defectRate = 0.0;
         this.avgRepairTime = 0.0;
-        this.qualityScore = "A";
+        this.qualityScore = "N/A";
         this.date = LocalDate.now();
     }
 
-    // Parameterized Constructor
     public QualityStatistics(String statisticID, String productionLine, String vehicleModel) {
         this();
         this.statisticID = statisticID;
@@ -46,7 +44,6 @@ public class QualityStatistics implements Serializable {
         this.vehicleModel = vehicleModel;
     }
 
-    // Getters and Setters
     public String getStatisticID() {
         return statisticID;
     }
@@ -84,8 +81,12 @@ public class QualityStatistics implements Serializable {
     }
 
     public void setTotalInspected(int totalInspected) {
+        if (totalInspected < 0) {
+            throw new IllegalArgumentException("Total inspected cannot be negative");
+        }
         this.totalInspected = totalInspected;
         calculateRates();
+        calculateQualityScore();
     }
 
     public int getPassed() {
@@ -93,8 +94,12 @@ public class QualityStatistics implements Serializable {
     }
 
     public void setPassed(int passed) {
+        if (passed < 0) {
+            throw new IllegalArgumentException("Passed count cannot be negative");
+        }
         this.passed = passed;
         calculateRates();
+        calculateQualityScore();
     }
 
     public int getFailed() {
@@ -102,6 +107,9 @@ public class QualityStatistics implements Serializable {
     }
 
     public void setFailed(int failed) {
+        if (failed < 0) {
+            throw new IllegalArgumentException("Failed count cannot be negative");
+        }
         this.failed = failed;
         calculateRates();
     }
@@ -111,6 +119,9 @@ public class QualityStatistics implements Serializable {
     }
 
     public void setConditionalPassed(int conditionalPassed) {
+        if (conditionalPassed < 0) {
+            throw new IllegalArgumentException("Conditional passed count cannot be negative");
+        }
         this.conditionalPassed = conditionalPassed;
         calculateRates();
     }
@@ -120,6 +131,9 @@ public class QualityStatistics implements Serializable {
     }
 
     public void setDefectsFound(int defectsFound) {
+        if (defectsFound < 0) {
+            throw new IllegalArgumentException("Defects found cannot be negative");
+        }
         this.defectsFound = defectsFound;
     }
 
@@ -136,6 +150,9 @@ public class QualityStatistics implements Serializable {
     }
 
     public void setCriticalDefects(int criticalDefects) {
+        if (criticalDefects < 0) {
+            throw new IllegalArgumentException("Critical defects cannot be negative");
+        }
         this.criticalDefects = criticalDefects;
     }
 
@@ -144,6 +161,9 @@ public class QualityStatistics implements Serializable {
     }
 
     public void setMajorDefects(int majorDefects) {
+        if (majorDefects < 0) {
+            throw new IllegalArgumentException("Major defects cannot be negative");
+        }
         this.majorDefects = majorDefects;
     }
 
@@ -152,6 +172,9 @@ public class QualityStatistics implements Serializable {
     }
 
     public void setMinorDefects(int minorDefects) {
+        if (minorDefects < 0) {
+            throw new IllegalArgumentException("Minor defects cannot be negative");
+        }
         this.minorDefects = minorDefects;
     }
 
@@ -164,6 +187,9 @@ public class QualityStatistics implements Serializable {
     }
 
     public void addDefectCategory(String category, int count) {
+        if (count < 0) {
+            throw new IllegalArgumentException("Defect count cannot be negative");
+        }
         this.defectByCategory.put(category, count);
     }
 
@@ -172,6 +198,9 @@ public class QualityStatistics implements Serializable {
     }
 
     public void setAvgRepairTime(double avgRepairTime) {
+        if (avgRepairTime < 0) {
+            throw new IllegalArgumentException("Average repair time cannot be negative");
+        }
         this.avgRepairTime = avgRepairTime;
     }
 
@@ -188,6 +217,9 @@ public class QualityStatistics implements Serializable {
     }
 
     public void setReworkCount(int reworkCount) {
+        if (reworkCount < 0) {
+            throw new IllegalArgumentException("Rework count cannot be negative");
+        }
         this.reworkCount = reworkCount;
     }
 
@@ -196,6 +228,9 @@ public class QualityStatistics implements Serializable {
     }
 
     public void setScrapCount(int scrapCount) {
+        if (scrapCount < 0) {
+            throw new IllegalArgumentException("Scrap count cannot be negative");
+        }
         this.scrapCount = scrapCount;
     }
 
@@ -209,8 +244,39 @@ public class QualityStatistics implements Serializable {
         }
     }
 
+    public void calculateQualityScore() {
+        if (totalInspected == 0) {
+            this.qualityScore = "N/A";
+            return;
+        }
+        double passRate = ((double) passed / totalInspected) * 100;
+        if (passRate >= 95) {
+            this.qualityScore = "A";
+        } else if (passRate >= 85) {
+            this.qualityScore = "B";
+        } else if (passRate >= 75) {
+            this.qualityScore = "C";
+        } else if (passRate >= 60) {
+            this.qualityScore = "D";
+        } else {
+            this.qualityScore = "F";
+        }
+    }
+
     public int getDefectsTotal() {
         return criticalDefects + majorDefects + minorDefects;
+    }
+
+    public double getPassPercentage() {
+        return passRate;
+    }
+
+    public double getFailPercentage() {
+        return 100 - passRate;
+    }
+
+    public boolean isAcceptableQuality() {
+        return passRate >= 85;
     }
 
     @Override

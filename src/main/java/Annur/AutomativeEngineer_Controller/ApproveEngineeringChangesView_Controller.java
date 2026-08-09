@@ -1,5 +1,9 @@
 package Annur.AutomativeEngineer_Controller;
 
+import javafx.scene.control.*;
+
+import java.awt.event.ActionEvent;
+
 public class ApproveEngineeringChangesView_Controller {
     @javafx.fxml.FXML
     private CheckBox technicalComplianceCheckBox;

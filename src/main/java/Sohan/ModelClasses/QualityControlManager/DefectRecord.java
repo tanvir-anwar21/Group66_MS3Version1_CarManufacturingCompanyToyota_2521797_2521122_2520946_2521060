@@ -22,16 +22,16 @@ public class DefectRecord implements Serializable {
     private String resolutionNotes;
     private String reportedBy;
     private String productionLine;
+    private String priority;
 
-    // Default Constructor
     public DefectRecord() {
         this.status = "Open";
         this.urgent = false;
         this.severity = "Medium";
+        this.priority = "Medium";
         this.detectionDate = LocalDate.now();
     }
 
-    // Parameterized Constructor
     public DefectRecord(String defectID, String vehicleID, String vehicleModel,
                         String category, String partInfo, String description) {
         this();
@@ -43,7 +43,6 @@ public class DefectRecord implements Serializable {
         this.description = description;
     }
 
-    // Getters and Setters
     public String getDefectID() {
         return defectID;
     }
@@ -172,6 +171,14 @@ public class DefectRecord implements Serializable {
         this.productionLine = productionLine;
     }
 
+    public String getPriority() {
+        return priority;
+    }
+
+    public void setPriority(String priority) {
+        this.priority = priority;
+    }
+
     public boolean isResolved() {
         return "Resolved".equals(status) || "Closed".equals(status);
     }
@@ -180,15 +187,22 @@ public class DefectRecord implements Serializable {
         return "Critical".equals(severity);
     }
 
+    public boolean isHighPriority() {
+        return "High".equals(priority) || "Critical".equals(severity);
+    }
+
     @Override
     public String toString() {
         return "DefectRecord{" +
                 "defectID='" + defectID + '\'' +
                 ", vehicleID='" + vehicleID + '\'' +
+                ", vehicleModel='" + vehicleModel + '\'' +
                 ", category='" + category + '\'' +
                 ", severity='" + severity + '\'' +
                 ", status='" + status + '\'' +
+                ", priority='" + priority + '\'' +
                 ", urgent=" + urgent +
+                ", detectionDate=" + detectionDate +
                 '}';
     }
 }

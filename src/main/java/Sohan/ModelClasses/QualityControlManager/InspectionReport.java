@@ -26,8 +26,8 @@ public class InspectionReport implements Serializable {
     private String recommendations;
     private boolean approved;
     private String approvalStatus;
+    private LocalDate approvalDate;
 
-    // Default Constructor
     public InspectionReport() {
         this.defectsFound = new ArrayList<>();
         this.approved = false;
@@ -36,7 +36,6 @@ public class InspectionReport implements Serializable {
         this.reportDate = LocalDate.now();
     }
 
-    // Parameterized Constructor
     public InspectionReport(String reportID, String vehicleID, String vehicleModel,
                             String inspectorID, String inspectorName) {
         this();
@@ -47,7 +46,6 @@ public class InspectionReport implements Serializable {
         this.inspectorName = inspectorName;
     }
 
-    // Getters and Setters
     public String getReportID() {
         return reportID;
     }
@@ -187,6 +185,9 @@ public class InspectionReport implements Serializable {
     public void setApproved(boolean approved) {
         this.approved = approved;
         this.approvalStatus = approved ? "Approved" : "Rejected";
+        if (approved) {
+            this.approvalDate = LocalDate.now();
+        }
     }
 
     public String getApprovalStatus() {
@@ -197,12 +198,32 @@ public class InspectionReport implements Serializable {
         this.approvalStatus = approvalStatus;
     }
 
+    public LocalDate getApprovalDate() {
+        return approvalDate;
+    }
+
+    public void setApprovalDate(LocalDate approvalDate) {
+        this.approvalDate = approvalDate;
+    }
+
     public int getDefectsCount() {
         return defectsFound.size();
     }
 
     public boolean isPassing() {
         return "Pass".equals(overallStatus) || "Conditional Pass".equals(overallStatus);
+    }
+
+    public boolean isFailed() {
+        return "Fail".equals(overallStatus);
+    }
+
+    public double getPassRate() {
+        if (defectsFound.isEmpty()) return 100.0;
+        int criticalDefects = (int) defectsFound.stream()
+                .filter(DefectRecord::isCritical)
+                .count();
+        return ((double) (defectsFound.size() - criticalDefects) / defectsFound.size()) * 100;
     }
 
     @Override
@@ -216,6 +237,7 @@ public class InspectionReport implements Serializable {
                 ", overallStatus='" + overallStatus + '\'' +
                 ", defectsCount=" + getDefectsCount() +
                 ", approved=" + approved +
+                ", approvalDate=" + approvalDate +
                 '}';
     }
 }

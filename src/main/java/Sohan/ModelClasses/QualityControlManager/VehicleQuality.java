@@ -27,7 +27,6 @@ public class VehicleQuality implements Serializable {
     private String batchID;
     private String qualityScore;
 
-    // Default Constructor
     public VehicleQuality() {
         this.engineStatus = "Not Tested";
         this.bodyStatus = "Not Tested";
@@ -43,7 +42,6 @@ public class VehicleQuality implements Serializable {
         this.inspectionDate = LocalDate.now();
     }
 
-    // Parameterized Constructor
     public VehicleQuality(String qualityID, String vehicleID, String vehicleModel, String vin,
                           String inspectorID, String inspectorName) {
         this();
@@ -55,7 +53,6 @@ public class VehicleQuality implements Serializable {
         this.inspectorName = inspectorName;
     }
 
-    // Getters and Setters
     public String getQualityID() {
         return qualityID;
     }
@@ -181,6 +178,9 @@ public class VehicleQuality implements Serializable {
     }
 
     public void setDefectsCount(int defectsCount) {
+        if (defectsCount < 0) {
+            throw new IllegalArgumentException("Defects count cannot be negative");
+        }
         this.defectsCount = defectsCount;
     }
 
@@ -229,6 +229,56 @@ public class VehicleQuality implements Serializable {
         return defectsCount > 0;
     }
 
+    public void calculateQualityScore() {
+        int score = 0;
+
+        score += getStatusScore(engineStatus);
+        score += getStatusScore(bodyStatus);
+        score += getStatusScore(paintStatus);
+        score += getStatusScore(brakesStatus);
+        score += getStatusScore(electricalStatus);
+        score += getStatusScore(safetyStatus);
+
+        int maxScore = 120;
+        int percentage = (score * 100) / maxScore;
+
+        if (percentage >= 90) {
+            this.qualityScore = "A";
+        } else if (percentage >= 80) {
+            this.qualityScore = "B";
+        } else if (percentage >= 70) {
+            this.qualityScore = "C";
+        } else if (percentage >= 60) {
+            this.qualityScore = "D";
+        } else {
+            this.qualityScore = "F";
+        }
+    }
+
+    private int getStatusScore(String status) {
+        if (status == null) {
+            return 0;
+        }
+
+        if (status.equals("Excellent")) {
+            return 20;
+        } else if (status.equals("Good")) {
+            return 15;
+        } else if (status.equals("Satisfactory")) {
+            return 10;
+        } else if (status.equals("Needs Improvement")) {
+            return 5;
+        } else {
+            return 0;
+        }
+    }
+
+    public double getPassPercentage() {
+        if (defectsCount == 0) return 100.0;
+        int criticalDefects = "Fail".equals(overallStatus) ? 1 : 0;
+        return ((double) (defectsCount - criticalDefects) / defectsCount) * 100;
+    }
+
     @Override
     public String toString() {
         return "VehicleQuality{" +
@@ -241,6 +291,7 @@ public class VehicleQuality implements Serializable {
                 ", overallStatus='" + overallStatus + '\'' +
                 ", defectsCount=" + defectsCount +
                 ", approvedForDelivery=" + approvedForDelivery +
+                ", qualityScore='" + qualityScore + '\'' +
                 '}';
     }
 }

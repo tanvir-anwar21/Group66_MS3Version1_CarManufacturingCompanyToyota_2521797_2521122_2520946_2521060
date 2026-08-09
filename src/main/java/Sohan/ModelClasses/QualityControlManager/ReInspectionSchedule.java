@@ -22,7 +22,6 @@ public class ReInspectionSchedule implements Serializable {
     private boolean completed;
     private String result;
 
-    // Default Constructor
     public ReInspectionSchedule() {
         this.status = "Scheduled";
         this.priority = "Medium";
@@ -30,7 +29,6 @@ public class ReInspectionSchedule implements Serializable {
         this.scheduledDate = LocalDate.now();
     }
 
-    // Parameterized Constructor
     public ReInspectionSchedule(String scheduleID, String vehicleID, String vehicleModel,
                                 LocalDate reInspectionDate, String reason, String assignedInspectorID) {
         this();
@@ -42,7 +40,6 @@ public class ReInspectionSchedule implements Serializable {
         this.assignedInspectorID = assignedInspectorID;
     }
 
-    // Getters and Setters
     public String getScheduleID() {
         return scheduleID;
     }
@@ -88,6 +85,9 @@ public class ReInspectionSchedule implements Serializable {
     }
 
     public void setReInspectionDate(LocalDate reInspectionDate) {
+        if (reInspectionDate != null && reInspectionDate.isBefore(LocalDate.now())) {
+            throw new IllegalArgumentException("Re-inspection date cannot be in the past");
+        }
         this.reInspectionDate = reInspectionDate;
     }
 
@@ -165,7 +165,21 @@ public class ReInspectionSchedule implements Serializable {
     }
 
     public boolean isOverdue() {
-        return !completed && reInspectionDate != null && reInspectionDate.isBefore(LocalDate.now());
+        return !isCompleted() && reInspectionDate != null && reInspectionDate.isBefore(LocalDate.now());
+    }
+
+    public boolean isToday() {
+        return reInspectionDate != null && reInspectionDate.equals(LocalDate.now());
+    }
+
+    public boolean isUpcoming() {
+        return !isCompleted() && reInspectionDate != null && reInspectionDate.isAfter(LocalDate.now());
+    }
+
+    public void completeReInspection(String result) {
+        this.completed = true;
+        this.status = "Completed";
+        this.result = result;
     }
 
     @Override
@@ -179,6 +193,7 @@ public class ReInspectionSchedule implements Serializable {
                 ", assignedInspectorName='" + assignedInspectorName + '\'' +
                 ", priority='" + priority + '\'' +
                 ", status='" + status + '\'' +
+                ", completed=" + completed +
                 '}';
     }
 }

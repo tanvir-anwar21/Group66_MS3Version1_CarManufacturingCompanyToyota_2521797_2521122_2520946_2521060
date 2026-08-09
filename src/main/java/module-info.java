@@ -49,4 +49,10 @@ module com.example.group66_ms3version1_carmanufacturingcompanytoyota_2521797_252
     exports  Tanvir.ProductionManager_Controller;
     opens Tanvir.ProductionManager_Controller to javafx.fxml;
 
+    exports Annur.AutomativeEngineer_Controller;
+    opens Annur.AutomativeEngineer_Controller to javafx.base, javafx.fxml;
+
+    exports Annur.VehicleInspector_Controller;
+    opens Annur.VehicleInspector_Controller to javafx.base, javafx.fxml;
+
 }

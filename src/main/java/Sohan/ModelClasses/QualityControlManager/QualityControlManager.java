@@ -8,7 +8,6 @@ import java.util.List;
 public class QualityControlManager extends User implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    // QC Specific Fields
     private String qcCertification;
     private String assignedDepartment;
     private int yearsOfExperience;
@@ -22,7 +21,6 @@ public class QualityControlManager extends User implements Serializable {
     private String shiftTiming;
     private int teamSize;
 
-    // Default Constructor
     public QualityControlManager() {
         super();
         this.specializations = new ArrayList<>();
@@ -40,7 +38,6 @@ public class QualityControlManager extends User implements Serializable {
         setRole("QualityControlManager");
     }
 
-    // Parameterized Constructor
     public QualityControlManager(String userId, String fullName, String email,
                                  String password, String phoneNumber, String role,
                                  String qcCertification, String assignedDepartment,
@@ -60,7 +57,6 @@ public class QualityControlManager extends User implements Serializable {
         this.teamSize = 5;
     }
 
-    // Simplified Constructor
     public QualityControlManager(String userId, String fullName, String email,
                                  String password, String phoneNumber) {
         super(userId, fullName, email, password, phoneNumber, "QualityControlManager");
@@ -78,7 +74,6 @@ public class QualityControlManager extends User implements Serializable {
         this.teamSize = 5;
     }
 
-    // Getters and Setters
     public String getQcCertification() {
         return qcCertification;
     }
@@ -100,6 +95,9 @@ public class QualityControlManager extends User implements Serializable {
     }
 
     public void setYearsOfExperience(int yearsOfExperience) {
+        if (yearsOfExperience < 0) {
+            throw new IllegalArgumentException("Years of experience cannot be negative");
+        }
         this.yearsOfExperience = yearsOfExperience;
     }
 
@@ -112,7 +110,7 @@ public class QualityControlManager extends User implements Serializable {
     }
 
     public void addSpecialization(String specialization) {
-        if (!this.specializations.contains(specialization)) {
+        if (specialization != null && !this.specializations.contains(specialization)) {
             this.specializations.add(specialization);
         }
     }
@@ -122,6 +120,9 @@ public class QualityControlManager extends User implements Serializable {
     }
 
     public void setQualityScore(double qualityScore) {
+        if (qualityScore < 0 || qualityScore > 100) {
+            throw new IllegalArgumentException("Quality score must be between 0 and 100");
+        }
         this.qualityScore = qualityScore;
     }
 
@@ -130,6 +131,9 @@ public class QualityControlManager extends User implements Serializable {
     }
 
     public void setTotalInspectionsCompleted(int totalInspectionsCompleted) {
+        if (totalInspectionsCompleted < 0) {
+            throw new IllegalArgumentException("Total inspections cannot be negative");
+        }
         this.totalInspectionsCompleted = totalInspectionsCompleted;
     }
 
@@ -142,6 +146,9 @@ public class QualityControlManager extends User implements Serializable {
     }
 
     public void setDefectsReported(int defectsReported) {
+        if (defectsReported < 0) {
+            throw new IllegalArgumentException("Defects reported cannot be negative");
+        }
         this.defectsReported = defectsReported;
     }
 
@@ -154,6 +161,9 @@ public class QualityControlManager extends User implements Serializable {
     }
 
     public void setVehiclesApproved(int vehiclesApproved) {
+        if (vehiclesApproved < 0) {
+            throw new IllegalArgumentException("Vehicles approved cannot be negative");
+        }
         this.vehiclesApproved = vehiclesApproved;
     }
 
@@ -166,6 +176,9 @@ public class QualityControlManager extends User implements Serializable {
     }
 
     public void setVehiclesRejected(int vehiclesRejected) {
+        if (vehiclesRejected < 0) {
+            throw new IllegalArgumentException("Vehicles rejected cannot be negative");
+        }
         this.vehiclesRejected = vehiclesRejected;
     }
 
@@ -194,10 +207,12 @@ public class QualityControlManager extends User implements Serializable {
     }
 
     public void setTeamSize(int teamSize) {
+        if (teamSize < 0) {
+            throw new IllegalArgumentException("Team size cannot be negative");
+        }
         this.teamSize = teamSize;
     }
 
-    // Business Methods
     public double getPassRate() {
         int total = vehiclesApproved + vehiclesRejected;
         if (total == 0) return 0.0;
@@ -207,6 +222,11 @@ public class QualityControlManager extends User implements Serializable {
     public double getDefectDetectionRate() {
         if (totalInspectionsCompleted == 0) return 0.0;
         return ((double) defectsReported / totalInspectionsCompleted) * 100;
+    }
+
+    public double getEfficiencyScore() {
+        if (totalInspectionsCompleted == 0) return 0.0;
+        return ((double) (vehiclesApproved + vehiclesRejected) / totalInspectionsCompleted) * 100;
     }
 
     @Override
